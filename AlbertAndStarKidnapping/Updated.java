@@ -14,8 +14,4 @@ public abstract class Updated  {
     public void _receiveBroadcast(int ID) {
     
     }
-    
-    public abstract Actor getSprite();
-    
-    public abstract Point getLoc();
 }
