@@ -45,7 +45,7 @@ public class Slot extends Sprite {
     boolean selected = false;
     public void _update(float delta) {
         if(getNode().isBlocked()) {
-            scale(0, 0);
+            setTransparency(0);
 
             return;
         } else {

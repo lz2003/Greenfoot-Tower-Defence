@@ -32,6 +32,10 @@ public class ObjectManager
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     
     private Mouse mouse;
+    
+    private int 
+        targetIndexX = 12, targetIndexY = 10,
+        startIndexX = 0, startIndexY = 5;
 
     /**
      * Constructor for objects of class ObjectManager
@@ -75,7 +79,6 @@ public class ObjectManager
         for(Enemy o: enemies) {
             o._update(1f);
         }
-        
     }
     
     private void updateSpriteLocs() {
@@ -136,8 +139,8 @@ public class ObjectManager
             }
         }
 
-        this.targetNode = nodes[15][12];
-        this.startNode = nodes[0][0];
+        this.targetNode = nodes[targetIndexX][targetIndexY];
+        this.startNode = nodes[startIndexX][startIndexY];
         
         pathfinder = new PathfindingSimplified(nodes, this.startNode, this.targetNode);
         path = pathfinder.getPath();
@@ -179,7 +182,7 @@ public class ObjectManager
     
     public boolean rebuildPath() {
         // Try to find a path
-        pathfinder = new PathfindingSimplified(nodes, nodes[0][0], nodes[15][12]);
+        pathfinder = new PathfindingSimplified(nodes, nodes[0][0], nodes[targetIndexX][targetIndexY]);
         Node[] path = pathfinder.getPath();
         
         // If no path found, dont set enemy path to new path

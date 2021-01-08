@@ -131,15 +131,15 @@ public class Canvas extends Actor
                     // By passing in the AffineTransform object, the transformations applied to it will be applied to the Graphics2D object
                     g.drawImage(current.getImage(), tf, null);
                     
-                    g.setTransform(old);
+                    //g.setTransform(old);
                     if(oldC != null) g.setComposite(oldC);
                 }
                 
             }
         }
-        
+
         Graphics2D gimg = image.createGraphics();
-        gimg.drawImage(vi, 0, 0, width, height, null);
+        gimg.drawImage(vi, 0, 0, width, height, null); 
     }
 
     public GreenfootImage getGreenfootImage() {
