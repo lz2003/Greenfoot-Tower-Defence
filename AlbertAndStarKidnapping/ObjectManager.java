@@ -17,7 +17,7 @@ public class ObjectManager
     public static final int 
         STATE_BUILD = 0;    
         
-    private float camX = 0, camY = 0;
+    //private float camX = 0, camY = 0;
     private int state = 0;
     
     private int maxNodesX, maxNodesY;
@@ -47,7 +47,7 @@ public class ObjectManager
         updateCam();
     }
     
-    private void updateCam() {
+    private void updateCam() {/*
         if(Greenfoot.isKeyDown("w")) {
             camY += CAM_SPEED;
         }
@@ -64,7 +64,7 @@ public class ObjectManager
         int height = Global.world.getHeight();
         // Clamp camera to within space with background
         camX = camX < -width ? -width : camX > width ? width : camX;
-        camY = camY < -width ? -width : camY > width ? width : camY;
+        camY = camY < -width ? -width : camY > width ? width : camY;*/
     }
     
     private void updateLoop() {
@@ -72,9 +72,10 @@ public class ObjectManager
             o._update(1f);
         }
         
-        for(Updated o: enemies) {
+        for(Enemy o: enemies) {
             o._update(1f);
         }
+        
     }
     
     private void updateSpriteLocs() {
@@ -88,10 +89,7 @@ public class ObjectManager
     }
     
     private void updateSpriteLoc(Updated o) {
-        o.getSprite().setLocation(
-            (int) (o.getLoc().x + camX + .5f),
-            (int) (o.getLoc().y + camY + .5f)
-        );
+
     }
     
     public void broadcast(int ID) {
@@ -105,7 +103,7 @@ public class ObjectManager
     }
     
     public void addEnemy(int x, int y, int ID) {
-        Enemy e = new Enemy(x, y);
+        Enemy e = new Enemy(x, y, new GreenfootImage("god.png"));
         
         enemies.add(e);
     }

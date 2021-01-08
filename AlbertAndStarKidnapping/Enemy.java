@@ -5,18 +5,15 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Enemy extends Updated  {
+public class Enemy extends Sprite  {
     private float speed = 1;
-    private Point loc;
     private int nodeIndex = 0;
-    private Actor sprite;
     private boolean stuck, rerouted;
     private Node[] reroutedPath;
     
-    public Enemy(int x, int y) {
-        this.loc = new Point(x, y);
-        sprite = new God();
-        Global.world.addObject(sprite, x, y);
+    public Enemy(double x, double y, GreenfootImage image) {
+        super(x, y, image, 100, 100, 1);
+        setLocation(x, y);
     }
     
     public void _update(float delta) {
@@ -31,62 +28,49 @@ public class Enemy extends Updated  {
     
     private void movement(float delta) {
         if(stuck) return;
+        if(isRemoved()) return;
+
 
         Node nextNode;
-        if(!rerouted) {
-            nextNode = Global.manager.getPathNode(nodeIndex);
-        } else {
-            if(reroutedPath == null) return;
-            if(nodeIndex >= reroutedPath.length) nodeIndex = 0;
+        //if(!rerouted) {
+        nextNode = Global.manager.getPathNode(nodeIndex);
+        //} else {
+        //    if(reroutedPath == null) return;
+        //    if(nodeIndex >= reroutedPath.length) nodeIndex = 0;
             
-            nextNode = reroutedPath[nodeIndex];
+        //    nextNode = reroutedPath[nodeIndex];
+        //}
+        
+        if(nextNode == null) {
+            removeSprite();
+            return;
         }
-        
-        if(nextNode == null) return;
-        
         Point next = nextNode.getWorldLoc();
             
         moveTowards(next.x, next.y);
         
-        if(Math2D.distance(loc.x, next.x, loc.y, next.y) < speed + 5f) {
+        if(Math2D.distance(getX(), next.x, getY(), next.y) < speed + 5f) {
             nodeIndex++;
             
-            if(rerouted) {
-                if(nodeIndex >= reroutedPath.length) {
-                    resetPath();
-                }
-            }
+            //if(rerouted) {
+            //    if(nodeIndex >= reroutedPath.length) {
+            //        resetPath();
+            //    }
+            //}
         }
     }
     
-    public void setX(float x) {
-        this.loc.x = x;
+    public void translate(double x, double y) {
+        setLocation(getX() + x, getY() + y);
     }
     
-    public void setY(float y) {
-        this.loc.y = y;
-    }
-    
-    public void translate(float x, float y) {
-        this.setX(this.loc.x + x);
-        this.setY(this.loc.y + y);
-    }
-    
-    public void moveTowards(float x, float y) {
-        float angle = Math2D.angleTo(loc.x, x, loc.y, y);
+    public void moveTowards(double x, double y) {
+        double angle = Math2D.angleTo(getX(), x, getY(), y);
         
-        float velX = speed * (float) Math.cos(angle);
-        float velY = speed * (float) Math.sin(angle);
+        double velX = speed *  Math.cos(angle);
+        double velY = speed * Math.sin(angle);
         
         translate(velX, velY);
-    }
-    
-    public Actor getSprite() {
-        return this.sprite;
-    }
-    
-    public Point getLoc() {
-        return this.loc;
     }
     
     private void resetPath() {
@@ -94,21 +78,23 @@ public class Enemy extends Updated  {
         
         float smallestDist = 999999999f;
         int index = 0;
-        
+
         for(int i = 0; i < path.length; i++) {
             Node n = path[i];
             Point loc = n.getWorldLoc();
-            
-            float dist = Math2D.distanceSquared(loc.x, this.loc.x, loc.y, this.loc.y);
+
+            float dist = Math2D.distanceSquared(loc.x, (float) getX(), loc.y, (float) getY());
             if(dist < smallestDist) {
                 smallestDist = dist;
                 index = i;
+
             }
+
         }
-        
+
         if(Math.sqrt(smallestDist) < Global.SLOT_SIZE) {
             this.nodeIndex = index + 1; // + 1 so it doesn't go back whenever the path changes
-            this.rerouted = false;
+            //this.rerouted = false;
         } else {
             this.nodeIndex = index;
         }
