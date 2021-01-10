@@ -26,6 +26,9 @@ public abstract class Sprite extends Updated{
     private double scaleX, scaleY;
     private double alpha;
     private boolean removed = false;
+    private Animation animation;
+    private float animationTimer = 0, animationDur = 1;
+    private int animFrame = 0;
     
     public Sprite(double x, double y, GreenfootImage image) {
         if(globalCanvas == null) throw new Error("Global canvas has not been set. If no global " + 
@@ -163,8 +166,15 @@ public abstract class Sprite extends Updated{
         alpha = 1;
     }
     
-    public void setImage(GreenfootImage image) {
-        initImage(image);
+    private void initImage(BufferedImage image) {
+        this.image = image;
+        width = image.getWidth();
+        height = image.getHeight();
+        apparentWidth = width;
+        apparentHeight = height;
+        scaleX = 1;
+        scaleY = 1;
+        alpha = 1;
     }
     
     public void move(double dist) {
@@ -248,6 +258,32 @@ public abstract class Sprite extends Updated{
         setDimensions(width, height);
     }
     
+    public void setImage(GreenfootImage image) {
+        this.image = image.getAwtImage();
+        width = image.getWidth();
+        height = image.getHeight();
+        setDimensions(apparentWidth, apparentHeight);
+    }
+    
+    public void setImage(GreenfootImage image, boolean keepPreviousState) {
+        if(keepPreviousState) setImage(image);
+        
+        else initImage(image);
+    }
+    
+    public void setImage(BufferedImage image) {
+        this.image = image;
+        width = image.getWidth();
+        height = image.getHeight();
+        setDimensions(apparentWidth, apparentHeight);
+    }
+    
+    public void setImage(BufferedImage image, boolean keepPreviousState) {
+        if(keepPreviousState) setImage(image);
+        
+        else initImage(image);
+    }
+    
     public void changeWidth(int delta) {
         setWidth(getWidth() + delta);
     }
@@ -287,5 +323,61 @@ public abstract class Sprite extends Updated{
     
     public boolean isRemoved() {
         return removed;
+    }
+    
+    public void setAnimation(Animation animation) {
+        this.animation = animation;
+    }
+    
+    public void setAnimation(Animation animation, float time) {
+        this.animation = animation;
+        setAnimationFrameTime(time);
+    }
+    
+    public void setAnimationFrameTime(float time) {
+        animationDur = time;
+    }
+    
+    public void animate(float delta) {
+        animationTimer += delta;
+        
+        if(animationTimer > animationDur) {
+            animationTimer = 0;
+            nextFrameLooped();
+        }
+    }
+    
+    public void nextFrame() {
+        setImage(animation.getFrame(++this.animFrame));
+    }
+    
+    public void nextFrameLooped() {
+        animFrame++;
+        if(animFrame >= animation.getFrameCount()) animFrame = 0;
+        
+        setImage(animation.getFrame(this.animFrame));
+    }
+}
+
+class Animation {
+    private BufferedImage[] frames;
+    
+    public Animation(GreenfootImage[] frames) {
+        this.frames = new BufferedImage[frames.length];
+        for(int i = 0; i < frames.length; i++) {
+            this.frames[i] = frames[i].getAwtImage();
+        }
+    }
+    
+    public Animation(BufferedImage[] frames) {
+        this.frames = frames;
+    }
+    
+    public BufferedImage getFrame(int index) {
+        return this.frames[index];
+    }
+    
+    public int getFrameCount() {
+        return frames.length;
     }
 }

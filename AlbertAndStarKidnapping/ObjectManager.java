@@ -46,7 +46,7 @@ public class ObjectManager
     
     public void update() {
         mouse.update();
-        updateLoop();
+        updateLoop(getDelta());
         updateSpriteLocs();
         updateCam();
     }
@@ -71,13 +71,13 @@ public class ObjectManager
         camY = camY < -width ? -width : camY > width ? width : camY;*/
     }
     
-    private void updateLoop() {
+    private void updateLoop(float delta) {
         for(Updated o: objects) {
-            o._update(1f);
+            o._update(delta);
         }
         
         for(Enemy o: enemies) {
-            o._update(1f);
+            o._update(delta);
         }
     }
     
@@ -113,6 +113,14 @@ public class ObjectManager
     
     public void addObject(Updated u) {
         this.objects.add(u);
+    }
+    
+    private long last;
+    private float getDelta() {
+        long now = System.nanoTime();
+        float delta = (now - last) / 1000000000f;
+        last = now;
+        return delta;
     }
 
     public void init() {
