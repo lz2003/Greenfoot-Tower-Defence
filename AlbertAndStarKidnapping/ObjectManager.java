@@ -81,6 +81,14 @@ public class ObjectManager
         for(Enemy o: enemies) {
             o._update(delta);
         }
+        
+        for(Tower o: towers) {
+            o._update(delta);
+        }
+        
+        for(Projectile o: projectiles) {
+            o._update(delta);
+        }
     }
     
     private void updateSpriteLocs() {
@@ -89,6 +97,14 @@ public class ObjectManager
         }
         
         for(Updated o: enemies) {
+            updateSpriteLoc(o);
+        }
+        
+        for(Tower o: towers) {
+            updateSpriteLoc(o);
+        }
+        
+        for(Projectile o: projectiles) {
             updateSpriteLoc(o);
         }
     }
@@ -103,6 +119,14 @@ public class ObjectManager
         }
         
         for(Updated o: enemies) {
+            o._receiveBroadcast(ID);
+        }
+        
+        for(Updated o: towers) {
+            o._receiveBroadcast(ID);
+        }
+        
+        for(Updated o: projectiles) {
             o._receiveBroadcast(ID);
         }
     }
