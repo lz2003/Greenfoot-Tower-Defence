@@ -51,7 +51,7 @@ public class Canvas extends Actor
             gc = gd.getDefaultConfiguration();
             vi = gc.createCompatibleVolatileImage(width,height);
         } catch (HeadlessException e) {
-
+            throw new Error("Failed to initialise canvas. Please make sure that your device has a display.");
         }   
     }
     
@@ -95,7 +95,7 @@ public class Canvas extends Actor
             for(int i = 0; i < sprites.length; i++) {
                 for(int j = 0; j < sprites[i].size(); j++) {
                     Sprite current = sprites[i].get(j);
-                    AffineTransform old = g.getTransform();
+                    // AffineTransform old = g.getTransform();
                     // Create the AffineTransform object:
                     
                     // This will perform transformations on the Graphics2D object so that the image is drawn
@@ -117,7 +117,7 @@ public class Canvas extends Actor
     
                     // scale
                     tf.scale(current.getScaleX(), current.getScaleY());
-                    
+
                     Composite oldC = null;
                     if(current.getTransparency() < 1) {
                         float alpha = (float) Math.max(current.getTransparency(), 0);
