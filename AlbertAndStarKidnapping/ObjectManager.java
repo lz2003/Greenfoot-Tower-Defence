@@ -30,6 +30,8 @@ public class ObjectManager
     
     private ArrayList<Updated> objects = new ArrayList<Updated>();
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
+    private ArrayList<Tower> towers = new ArrayList<Tower>();
+    private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
     
     private Mouse mouse;
     
@@ -249,5 +251,9 @@ public class ObjectManager
     
     public int getState() {
         return this.state;
+    }
+    
+    public ArrayList<Enemy> getEnemies() {
+        return this.enemies;
     }
 }
