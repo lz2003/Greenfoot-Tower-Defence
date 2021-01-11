@@ -15,8 +15,8 @@ public class Tower extends Slot
     private int frame;
     private int cooldown;
     
-    public Tower(int x, int y, GreenfootImage image) {
-        super(x, y, 100, 100, true, image);
+    public Tower(int x, int y) {
+        super(x, y, 100, 100, true);
         setLocation(x, y);
     }
     
