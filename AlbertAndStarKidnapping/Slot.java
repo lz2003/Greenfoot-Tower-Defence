@@ -14,9 +14,19 @@ public class Slot extends Sprite {
     private Node node;
     private Index2D arrayLoc;
     private Actor sprite;
-
-    public Slot(int x, int y, int iX, int iY, boolean isBlocked) {
-        super(x, y, new GreenfootImage("jay.png"), Global.SLOT_SIZE, Global.SLOT_SIZE);// Global.SLOT_SIZE, Global.SLOT_SIZE);
+    
+    /**
+     * Creates a default slot with jay jay default image
+     */
+    public Slot(int x, int y, int iX, int iY, boolean isBlocked){
+        this(x, y, iX, iY, isBlocked, new GreenfootImage("jay.png"));
+    }
+    
+    /**
+     * Creates a slot with custom image
+     */
+    public Slot(int x, int y, int iX, int iY, boolean isBlocked, GreenfootImage image) {
+        super(x, y, image, Global.SLOT_SIZE, Global.SLOT_SIZE);// Global.SLOT_SIZE, Global.SLOT_SIZE);
         setLocation(x, y);
         this.arrayLoc = new Index2D(iX, iY);
         this.node = new Node(new Point((float) getX(), (float) getY()), arrayLoc, isBlocked);
