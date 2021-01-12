@@ -12,7 +12,7 @@ public class Golem extends Enemy
     private int x;
     
     public Golem(double x, double y, GreenfootImage image) {
-        super(x, y, image);
+        super(x, y, image, 750, 50, 4, 1f, false, false);
     }
 
     /**

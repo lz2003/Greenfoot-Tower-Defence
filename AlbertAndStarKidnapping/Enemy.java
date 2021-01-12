@@ -17,6 +17,7 @@ public class Enemy extends Sprite {
     private double distTravelled = 0;
     private float range = 50, rangeSquared = 50 * 50;
     private float coolDown = 1, coolDownTime;
+    private boolean magRes, phyRes;
     
     private HPBar hpBar;
     private static final int HPBAR_WIDTH = 100, HPBAR_HEIGHT = 20;
@@ -31,7 +32,7 @@ public class Enemy extends Sprite {
         hpBar = new HPBar(x, y, HPBAR_WIDTH, HPBAR_HEIGHT, hp, HPBKG, HPFOR); 
     }
     
-    public Enemy(double x, double y, GreenfootImage image, float hp, float range, float coolDown, float speed) {
+    public Enemy(double x, double y, GreenfootImage image, float hp, float range, float coolDown, float speed, boolean magRes, boolean phyRes) {
         super(x, y, image, 100, 100, 1);
         setLocation(x, y);
         Global.manager.addEnemy(this);
@@ -42,22 +43,47 @@ public class Enemy extends Sprite {
         this.coolDown = coolDown;
         this.coolDownTime = coolDown;
         this.speed = speed;
+        this.magRes = magRes;
+        this.phyRes = phyRes;
         hpBar = new HPBar(x, y, HPBAR_WIDTH, HPBAR_HEIGHT, hp, HPBKG, HPFOR); 
     }
     
-    // do this
-    public void damage(float damage) {
-        
-        // check hp
-        
+    /**
+     * Damage done to enemies to reduce hp
+     * @param damage    the amount of damage being dealt
+     * @param typeMag   true if the type of damage being dealt is magical
+     * @param typePhy   true if the type of damage being dealth is physical
+     */
+    public void damage(float damage, boolean typeMag, boolean typePhy)
+    {
+        if(typeMag && magRes == true || typePhy && phyRes == true)
+        {
+            hp -= damage * 0.1f;
+        }
+        else
+        {
+            hp -= damage;
+        }
         updateHP();
-        // if < 0
-        die();
+        if (hp <= 0)
+        {
+            die();
+        }
     }
     
-    // and this. make sure it cant go over starting hp
+    /**
+     * Heals enemy by a certain amount
+     * @param amount    the amount of hp the enemy is healed
+     */
     public void heal(float amount) {
-    
+        if(hp < maxHp && maxHp - hp >= amount)
+        {
+            hp += amount;
+        }
+        else if(hp < maxHp && maxHp - hp < amount)
+        {
+            hp += maxHp -hp;
+        }
         updateHP();
     }
     
