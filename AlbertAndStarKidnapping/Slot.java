@@ -30,7 +30,6 @@ public class Slot extends Sprite {
         setLocation(x, y);
         this.arrayLoc = new Index2D(iX, iY);
         this.node = new Node(new Point((float) getX(), (float) getY()), arrayLoc, isBlocked);
-        
         //this.sprite = new SlotSprite(this);
         //Global.world.addObject(sprite, x, y);
         Global.manager.addObject(this);

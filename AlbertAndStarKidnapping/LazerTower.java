@@ -1,31 +1,29 @@
+import greenfoot.*;
 /**
- * Write a description of class LazerTower here.
+ * Shoots Lazers at enemies.
  * 
- * @author (your name) 
+ * @author Ryan Lin
  * @version (a version number or a date)
  */
 public class LazerTower extends Tower 
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
     /**
-     * Constructor for objects of class LazerTower
+     * Creates a tower that shoots lazers at enemies.
+     * @param x the x coordinate of the tower
+     * @param y the y coordinate of the tower
+     * @param iX the x index of the tower in the global grid
+     * @param iY the y index of the tower in the global grid
      */
-    public LazerTower(int x, int y)
+    public LazerTower(int x, int y, int iX, int iY)
     {
-        super(x, y);
+        super(x, y, iX, iY, 1, 200, 1000, new GreenfootImage[]{new GreenfootImage("images/temp.png")});
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Attack enemies
      */
-    public int sampleMethod(int y)
+    protected void attack()
     {
-        // put your code here
-        return x + y;
+        //shoot lazers
     }
 }
