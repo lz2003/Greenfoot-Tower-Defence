@@ -8,25 +8,17 @@ import greenfoot.*;
  */
 public class BabyPekka extends Enemy 
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    private float damage = 20;
+    private static GreenfootImage idle = new GreenfootImage("t2.png");
 
     /**
      * Constructor for objects of class BabyPekka
      */
-    public BabyPekka(double x, double y, GreenfootImage image) {
-        super(x, y, image);
+    public BabyPekka(double x, double y) {
+        super(x, y, idle, 300, 50, 2, 5f);
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public void attack() {
+        Global.manager.damageJayJay(damage);
     }
 }

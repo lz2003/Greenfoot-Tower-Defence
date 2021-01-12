@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.awt.Color;
 import greenfoot.*;
 /**
  * Write a description of class ObjectManager here.
@@ -9,6 +10,7 @@ import greenfoot.*;
 public class ObjectManager  
 {
     public static final int 
+        BROADCAST_END = -1,
         BROADCAST_REBUILD = 0;
         
     private static final float 
@@ -33,44 +35,32 @@ public class ObjectManager
     private ArrayList<Tower> towers = new ArrayList<Tower>();
     private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
     
+    private JayJay jay;
+    
     private Mouse mouse;
     
+    private Spawner spawner;
+    
     private int 
-        targetIndexX = 12, targetIndexY = 10,
+        targetIndexX = 16, targetIndexY = 6,
         startIndexX = 0, startIndexY = 5;
+        
+    private double
+        targetX = 775, targetY = 325;
 
     /**
      * Constructor for objects of class ObjectManager
      */
     public ObjectManager() {
         mouse = new Mouse();
+        spawner = new Spawner();
+        jay = new JayJay(targetX, targetY);
     }
     
     public void update() {
         mouse.update();
         updateLoop(getDelta());
-        updateSpriteLocs();
-        updateCam();
-    }
-    
-    private void updateCam() {/*
-        if(Greenfoot.isKeyDown("w")) {
-            camY += CAM_SPEED;
-        }
-        if(Greenfoot.isKeyDown("a")) {
-            camX += CAM_SPEED;
-        }
-        if(Greenfoot.isKeyDown("s")) {
-            camY -= CAM_SPEED;
-        }
-        if(Greenfoot.isKeyDown("d")) {
-            camX -= CAM_SPEED;
-        }
-        int width = Global.world.getWidth();
-        int height = Global.world.getHeight();
-        // Clamp camera to within space with background
-        camX = camX < -width ? -width : camX > width ? width : camX;
-        camY = camY < -width ? -width : camY > width ? width : camY;*/
+        //updateSpriteLocs();
     }
     
     private void updateLoop(float delta) {
@@ -89,8 +79,10 @@ public class ObjectManager
         for(Projectile o: projectiles) {
             o._update(delta);
         }
+        
+        jay._update(delta);
     }
-    
+    /*
     private void updateSpriteLocs() {
         for(Updated o: objects) {
             updateSpriteLoc(o);
@@ -108,7 +100,7 @@ public class ObjectManager
             updateSpriteLoc(o);
         }
     }
-    
+    */
     private void updateSpriteLoc(Updated o) {
 
     }
@@ -137,12 +129,28 @@ public class ObjectManager
         enemies.add(e);
     }
     
+    public void addEnemy(Enemy e) {
+        enemies.add(e);
+    }
+    
     public void addProjectile(Projectile p) {
         projectiles.add(p);
     }
     
     public void addTower(Tower t) {
         towers.add(t);
+    }
+    
+    public void removeEnemy(Enemy e) {
+        enemies.remove(e);
+    }
+    
+    public void removeProjectile(Projectile p) {
+        projectiles.remove(p);
+    }
+    
+    public void removeTower(Tower t) {
+        towers.remove(t);
     }
     
     public void addObject(Updated u) {
@@ -188,7 +196,7 @@ public class ObjectManager
         path = pathfinder.getPath();
         
         for(int i = 0; i < 1; i++)
-            addEnemy(20, 20 + i * 5, 2);
+            new BabyPekka(20, 20);
     }
     
     public Node getClosestNode(Point loc) {
@@ -295,5 +303,25 @@ public class ObjectManager
     
     public ArrayList<Projectile> getProjectiles() {
         return this.projectiles;
+    }
+    
+    public void setTargetX(double x) {
+        targetX = x;
+    }
+    
+    public void setTargetY(double y) {
+        targetY = y;
+    }
+    
+    public double getTargetX() {
+        return targetX;
+    }
+    
+    public double getTargetY() {
+        return targetY;
+    }
+    
+    public void damageJayJay(float damage) {
+        jay.damage(damage);
     }
 }

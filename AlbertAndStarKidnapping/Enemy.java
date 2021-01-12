@@ -1,23 +1,80 @@
 import greenfoot.*;
+import java.awt.Color;
 /**
  * Write a description of class Enemy here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Enemy extends Sprite  {
+public class Enemy extends Sprite {
+    private static final float 
+        DEFAULT_HP = 100,
+        DEFAULT_RANGE = 50;
     private float speed = 1;
     private int nodeIndex = 0;
-    private boolean stuck, rerouted;
     private Node[] reroutedPath;
+    private float hp, maxHp;
+    private double distTravelled = 0;
+    private float range = 50, rangeSquared = 50 * 50;
+    private float coolDown = 1, coolDownTime;
     
+    private HPBar hpBar;
+    private static final int HPBAR_WIDTH = 100, HPBAR_HEIGHT = 20;
+    private static final Color HPBKG = new Color(255, 0, 0), HPFOR = new Color(0, 255, 0);
+    private double hpOffset = 50;
     public Enemy(double x, double y, GreenfootImage image) {
         super(x, y, image, 100, 100, 1);
         setLocation(x, y);
+        Global.manager.addEnemy(this);
+        hp = DEFAULT_HP;
+        maxHp = DEFAULT_HP;
+        hpBar = new HPBar(x, y, HPBAR_WIDTH, HPBAR_HEIGHT, hp, HPBKG, HPFOR); 
+    }
+    
+    public Enemy(double x, double y, GreenfootImage image, float hp, float range, float coolDown, float speed) {
+        super(x, y, image, 100, 100, 1);
+        setLocation(x, y);
+        Global.manager.addEnemy(this);
+        this.hp = hp;
+        this.maxHp = hp;
+        this.range = range;
+        this.rangeSquared = (float) Math.pow(range, 2);
+        this.coolDown = coolDown;
+        this.coolDownTime = coolDown;
+        this.speed = speed;
+        hpBar = new HPBar(x, y, HPBAR_WIDTH, HPBAR_HEIGHT, hp, HPBKG, HPFOR); 
+    }
+    
+    // do this
+    public void damage(float damage) {
+        
+        // check hp
+        
+        updateHP();
+        // if < 0
+        die();
+    }
+    
+    // and this. make sure it cant go over starting hp
+    public void heal(float amount) {
+    
+        updateHP();
+    }
+    
+    // attack function for the subclasses to shadow
+    public void attack() {
+    
+    }
+    
+    private void updateHP() {
+        hpBar.setHP(hp);
     }
     
     public void _update(float delta) {
         movement(delta);
+        checkCanAttack(delta);
+        hpBar.setLocation(getX(), getY() - hpOffset);
+        updateHP();
     }
     
     public void _receiveBroadcast(int id) {
@@ -26,23 +83,24 @@ public class Enemy extends Sprite  {
         }
     }
     
+    private void checkCanAttack(float delta) {
+        coolDown -= delta;
+        if(Math2D.distanceSquared(Global.manager.getTargetX(), getX(), Global.manager.getTargetY(), getY()) < rangeSquared) {
+            if(coolDown < 0) {
+                attack();
+                coolDown = coolDownTime;
+            }   
+        }
+    }
+    
     private void movement(float delta) {
-        if(stuck) return;
         if(isRemoved()) return;
 
-
         Node nextNode;
-        //if(!rerouted) {
+
         nextNode = Global.manager.getPathNode(nodeIndex);
-        //} else {
-        //    if(reroutedPath == null) return;
-        //    if(nodeIndex >= reroutedPath.length) nodeIndex = 0;
-            
-        //    nextNode = reroutedPath[nodeIndex];
-        //}
         
         if(nextNode == null) {
-            removeSprite();
             return;
         }
         Point next = nextNode.getWorldLoc();
@@ -51,17 +109,12 @@ public class Enemy extends Sprite  {
         
         if(Math2D.distance(getX(), next.x, getY(), next.y) < speed + 5f) {
             nodeIndex++;
-            
-            //if(rerouted) {
-            //    if(nodeIndex >= reroutedPath.length) {
-            //        resetPath();
-            //    }
-            //}
         }
     }
     
     public void translate(double x, double y) {
         setLocation(getX() + x, getY() + y);
+        distTravelled += Math2D.distance(0, x, 0, y);
     }
     
     public void moveTowards(double x, double y) {
@@ -94,32 +147,14 @@ public class Enemy extends Sprite  {
 
         if(Math.sqrt(smallestDist) < Global.SLOT_SIZE) {
             this.nodeIndex = index + 1; // + 1 so it doesn't go back whenever the path changes
-            //this.rerouted = false;
         } else {
             this.nodeIndex = index;
         }
-        // Replace below with above to allow enemies to get stuck and to prevent them from
-        // passing through walls by forcing the enemies to find a path towards the
-        // nearest node on the main path
-        
-        // Has high performance costs (frame drops at around 10 - 15 enemies)
-        /*
-        else {
-            Node closest = Global.getManager().getClosestNode(this.loc);
-
-            if(closest == null) {
-                this.stuck = true;
-                return;
-            }
-            
-            rerouted = true;
-            
-            PathfindingSimplified pathfinder = 
-            new PathfindingSimplified(Global.getManager().getNodes(), closest, path[index]);
-            reroutedPath = pathfinder.getPath();
-            nodeIndex = 0;
-        }
-        */
-        this.stuck = false;
+    }
+    
+    private void die() {
+        Global.manager.removeEnemy(this);
+        removeSprite();
+        hpBar.remove();
     }
 }

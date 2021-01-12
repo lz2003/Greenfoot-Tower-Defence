@@ -13,7 +13,6 @@ public class Slot extends Sprite {
         
     private Node node;
     private Index2D arrayLoc;
-    private Actor sprite;
     
     /**
      * Creates a default slot with jay jay default image
@@ -30,17 +29,12 @@ public class Slot extends Sprite {
         setLocation(x, y);
         this.arrayLoc = new Index2D(iX, iY);
         this.node = new Node(new Point((float) getX(), (float) getY()), arrayLoc, isBlocked);
-        //this.sprite = new SlotSprite(this);
-        //Global.world.addObject(sprite, x, y);
+
         Global.manager.addObject(this);
     }
     
     public boolean setBlocked(boolean blocked) {
         return Global.manager.updatePath(arrayLoc.x, arrayLoc.y, blocked);
-    }
-    
-    public Actor getSprite() {
-        return this.sprite;
     }
     
     public Point getLoc() {
@@ -53,6 +47,7 @@ public class Slot extends Sprite {
     
     boolean selected = false;
     public void _update(float delta) {
+        /*
         if(getNode().isBlocked()) {
             setTransparency(0);
 
@@ -95,5 +90,6 @@ public class Slot extends Sprite {
             //setWidth(30);
             setTransparency(255);
         }
+        */
     }
 }
