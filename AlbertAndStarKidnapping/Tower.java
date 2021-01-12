@@ -6,13 +6,14 @@ import greenfoot.*;
  * @author Ryan Lin
  * @version (a version number or a date)
  */
-public abstract class Tower extends Slot 
+public abstract class Tower extends Sprite 
 {
     private int cost;
     private int range;
     private int level;
     private int cooldown;
     private long lastTime;
+    private int iX, iY;
     private GreenfootImage[]images;
     
     /**
@@ -27,8 +28,10 @@ public abstract class Tower extends Slot
      * @param images an array of greenfoot images for each level of the tower
      */
     public Tower(int x, int y, int iX, int iY, int cost, int range, int cooldown, GreenfootImage[]images) {
-        super(x, y, iX, iY, false, images[0]);
+        super(x, y, images[0]);
         setLocation(x, y);
+        this.iX = iX;
+        this.iY = iY;
         this.cost = cost;
         this.range = range;
         this.level = 1;
@@ -95,14 +98,14 @@ public abstract class Tower extends Slot
      * Get the cost of purchasing the tower
      * @return int cost
      */
-    public int getCost(){
+    public int getCost() {
         return this.cost;
     }
     
     /**
      * Set the range of the tower
      */
-    public void setRange(int range){
+    public void setRange(int range) {
         this.range = range;
     }
     
@@ -110,7 +113,23 @@ public abstract class Tower extends Slot
      * Get the current level of the tower
      * @return int level
      */
-    public int getLevel(){
+    public int getLevel() {
         return this.level;
+    }
+    
+    /**
+     * Get the x-index of this element in the grid
+     * @return int x-index
+     */
+    public int getIX() {
+        return this.iX;
+    }
+    
+    /**
+     * Get the y-index of this element in the gird
+     * @return int y-index
+     */
+    public int getIY() {
+        return this.iY;
     }
 }
