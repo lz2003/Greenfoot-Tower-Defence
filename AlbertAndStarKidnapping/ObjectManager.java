@@ -137,6 +137,14 @@ public class ObjectManager
         enemies.add(e);
     }
     
+    public void addProjectile(Projectile p) {
+        projectiles.add(p);
+    }
+    
+    public void addTower(Tower t) {
+        towers.add(t);
+    }
+    
     public void addObject(Updated u) {
         this.objects.add(u);
     }
@@ -279,5 +287,13 @@ public class ObjectManager
     
     public ArrayList<Enemy> getEnemies() {
         return this.enemies;
+    }
+    
+    public ArrayList<Tower> getTowers() {
+        return this.towers;
+    }
+    
+    public ArrayList<Projectile> getProjectiles() {
+        return this.projectiles;
     }
 }
