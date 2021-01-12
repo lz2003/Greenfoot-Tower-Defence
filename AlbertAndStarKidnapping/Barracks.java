@@ -1,28 +1,28 @@
+import greenfoot.*;
 /**
- * Write a description of class Barracks here.
+ * Spawns NPCs to fight enemies on the path near the tower.
  * 
- * @author (your name) 
+ * @author Ryan Lin 
  * @version (a version number or a date)
  */
 public class Barracks extends Tower 
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    public Barracks(int x, int y)
+    /**
+     * Creates a tower that spawns characters to fight enemies.
+     * @param x the x coordinate of the tower
+     * @param y the y coordinate of the tower
+     * @param iX the x index of the tower in the global grid
+     * @param iY the y index of the tower in the global grid
+     */
+    public Barracks(int x, int y, int iX, int iY)
     {
-        super(x, y);
+        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/temp.png")});
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Attack enemies
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    protected void attack() {
+        //spawn barbarian
     }
 }

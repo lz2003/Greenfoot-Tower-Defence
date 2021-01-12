@@ -1,3 +1,4 @@
+import greenfoot.*;
 /**
  * Write a description of class Pillbox here.
  * 
@@ -6,23 +7,23 @@
  */
 public class Pillbox extends Tower 
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    public Pillbox(int x, int y)
+    /**
+     * Creates a Pillbox.
+     * @param x the x coordinate of the tower
+     * @param y the y coordinate of the tower
+     * @param iX the x index of the tower in the global grid
+     * @param iY the y index of the tower in the global grid
+     */
+    public Pillbox(int x, int y, int iX, int iY)
     {
-        super(x, y);
+        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/temp.png")});
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Attack enemies
      */
-    public int sampleMethod(int y)
+    protected void attack()
     {
-        // put your code here
-        return x + y;
+        //do something
     }
 }

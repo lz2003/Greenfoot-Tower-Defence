@@ -1,28 +1,29 @@
+import greenfoot.*;
 /**
- * Write a description of class ArcherTower here.
+ * Shoots arrows at enemies.
  * 
- * @author (your name) 
+ * @author Ryan Lin
  * @version (a version number or a date)
  */
 public class ArcherTower extends Tower 
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    public ArcherTower(int x, int y)
+    /**
+     * Creates a tower than shoots Arrows at physical Enemies.
+     * @param x the x coordinate of the Archer Tower
+     * @param y the y coordinate of the Archer Tower
+     * @param iX the x index of the tower in the global grid
+     * @param iY the y index of the tower in the global grid
+     */
+    public ArcherTower(int x, int y, int iX, int iY)
     {
-        super(x, y);
+        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/temp.png")});
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Attack enemies
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    protected void attack() {
+        //Fire an arrow
+        System.out.println("attacking");
     }
 }
