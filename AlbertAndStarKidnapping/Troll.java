@@ -12,7 +12,7 @@ public class Troll extends Enemy
     private int x;
 
     public Troll(double x, double y, GreenfootImage image) {
-        super(x, y, image);
+        super(x, y, image, 200, 50, 2, 4f, false, true);
     }
 
     /**

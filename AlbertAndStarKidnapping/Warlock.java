@@ -12,7 +12,7 @@ public class Warlock extends Enemy
     private int x;
 
     public Warlock(double x, double y, GreenfootImage image) {
-        super(x, y, image);
+        super(x, y, image, 125, 50, 1, 3f, true, false);
     }
 
     /**

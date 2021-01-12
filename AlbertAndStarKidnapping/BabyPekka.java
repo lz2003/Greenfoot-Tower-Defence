@@ -15,7 +15,7 @@ public class BabyPekka extends Enemy
      * Constructor for objects of class BabyPekka
      */
     public BabyPekka(double x, double y) {
-        super(x, y, idle, 300, 50, 2, 5f);
+        super(x, y, idle, 300, 50, 2, 5f, false, false);
     }
 
     public void attack() {

@@ -15,7 +15,7 @@ public class Pekka extends Enemy
      * Constructor for objects of class Pekka
      */
     public Pekka(double x, double y, GreenfootImage image) {
-        super(x, y, image);
+        super(x, y, image, 500, 50, 3, 2f, false, false);
     }
 
     /**
