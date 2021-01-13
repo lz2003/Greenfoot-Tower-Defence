@@ -76,8 +76,12 @@ public class ObjectManager
             o._update(delta);
         }
         
-        for(Projectile o: projectiles) {
+        for(int i = projectiles.size()-1; i >= 0; i--) {
+            Projectile o = projectiles.get(i);
             o._update(delta);
+            if (o.isRemoved()) {
+                projectiles.remove(i);
+            }
         }
         
         jay._update(delta);
