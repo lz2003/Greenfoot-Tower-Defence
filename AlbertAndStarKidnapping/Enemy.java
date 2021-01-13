@@ -56,7 +56,7 @@ public class Enemy extends Sprite {
      */
     public void damage(float damage, boolean typeMag, boolean typePhy)
     {
-        if(typeMag && magRes == true || typePhy && phyRes == true)
+        if((typeMag && magRes) || (typePhy && phyRes))
         {
             hp -= damage * 0.1f;
         }
