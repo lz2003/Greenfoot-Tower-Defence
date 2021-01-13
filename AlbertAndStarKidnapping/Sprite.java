@@ -219,7 +219,7 @@ public abstract class Sprite extends Updated{
     
     public void turnTowards(double x, double y) {
         this.setRotation(
-            Math.atan2((getY() - y), (getX() - x))
+            Math.atan2((y - getY()), (x - getX()))
         );
     }
     
