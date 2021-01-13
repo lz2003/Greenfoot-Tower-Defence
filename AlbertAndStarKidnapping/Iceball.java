@@ -24,6 +24,7 @@ public class Iceball extends Splash
      */
     public Iceball(double x, double y, Enemy target) {
         super(x, y, image, target);
+        isMagic = true;
         damage = MAX_DAMAGE[0];
         speed = MAX_SPEED[0];
     }
@@ -38,6 +39,7 @@ public class Iceball extends Splash
      */
     public Iceball(double x, double y, Enemy target, int level) {
         super(x, y, image, target);
+        isMagic = true;
         if (level > 0 && level <= MAX_LEVEL) {
             damage = MAX_DAMAGE[level-1];
             speed = MAX_SPEED[level-1];

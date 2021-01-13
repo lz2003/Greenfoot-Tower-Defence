@@ -14,6 +14,7 @@ public abstract class Projectile extends Sprite
     protected float damage;
     protected float speed;
     protected Enemy target;
+    protected boolean isMagic;
     
     /**
      * Constructor for Projectile class
@@ -78,7 +79,7 @@ public abstract class Projectile extends Sprite
      */
     protected void damageEnemy() {
         if (target != null && !isRemoved()) {
-            //target.damage(damage);
+            //target.damage(damage, isMagic, !isMagic);
             //System.out.println("HIT");
             destroy();
         }

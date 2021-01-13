@@ -71,7 +71,7 @@ public class Splash extends Projectile
         // If the projectile directly hits an enemy, then hurt everyone in the radius
         if (target != null && !isRemoved()) {
             for (Enemy e: targets) {
-                //e.damage(damage);
+                //e.damage(damage, isMagic, !isMagic);
                 //System.out.println("HIT");
             }
             destroy();
