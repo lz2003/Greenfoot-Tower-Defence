@@ -7,23 +7,43 @@ import greenfoot.*;
  */
 public class Zap extends Projectile 
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    public Zap(double x, double y, GreenfootImage image) {
-        super(x, y, image);
-  
-    }
-
+    private static final float[]
+        MAX_DAMAGE = {100, 150, 200, 250},
+        MAX_SPEED = {1, 1, 2, 2};
+    
+    private static GreenfootImage image = new GreenfootImage("t1.png");
+    
     /**
-     * An example of a method - replace this comment with your own
+     * Constructor for Zap class
      * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * @param x         the starting x coordinate
+     * @param y         the starting y coordinate
+     * @param target    the reference enemy target
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public Zap(double x, double y, Enemy target) {
+        super(x, y, image, target);
+        isMagic = true;
+        damage = MAX_DAMAGE[0];
+        speed = MAX_SPEED[0];
+    }
+    
+    /**
+     * Constructor for Zap class
+     * 
+     * @param x         the starting x coordinate
+     * @param y         the starting y coordinate
+     * @param target    the reference enemy target
+     * @param level     the level of the projectile
+     */
+    public Zap(double x, double y, Enemy target, int level) {
+        super(x, y, image, target);
+        isMagic = true;
+        if (level > 0 && level <= MAX_LEVEL) {
+            damage = MAX_DAMAGE[level-1];
+            speed = MAX_SPEED[level-1];
+        } else {
+            damage = MAX_DAMAGE[0];
+            speed = MAX_SPEED[0];
+        }
     }
 }

@@ -7,23 +7,43 @@ import greenfoot.*;
  */
 public class Arrow extends Projectile 
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    public Arrow(double x, double y, GreenfootImage image) {
-        super(x, y, image);
-
-    }
-
+    // Change these later on
+    private static final float[]
+        MAX_DAMAGE = {100, 150, 200},
+        MAX_SPEED = {5, 5, 7};
+    
+    private static GreenfootImage image = new GreenfootImage("t1.png");
     /**
-     * An example of a method - replace this comment with your own
+     * Constructor for Arrow class
      * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * @param x         the starting x coordinate
+     * @param y         the starting y coordinate
+     * @param target    the reference enemy target
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public Arrow(double x, double y, Enemy target) {
+        super(x, y, image, target);
+        isMagic = false;
+        damage = MAX_DAMAGE[0];
+        speed = MAX_SPEED[0];
+    }
+    
+    /**
+     * Constructor for Arrow class
+     * 
+     * @param x         the starting x coordinate
+     * @param y         the starting y coordinate
+     * @param target    the reference enemy target
+     * @param level     the level of the projectile
+     */
+    public Arrow(double x, double y, Enemy target, int level) {
+        super(x, y, image, target);
+        isMagic = false;
+        if (level > 0 && level <= MAX_LEVEL) {
+            damage = MAX_DAMAGE[level-1];
+            speed = MAX_SPEED[level-1];
+        } else {
+            damage = MAX_DAMAGE[0];
+            speed = MAX_SPEED[0];
+        }
     }
 }
