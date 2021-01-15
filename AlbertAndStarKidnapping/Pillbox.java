@@ -25,6 +25,6 @@ public class Pillbox extends Tower
     protected void attack()
     {
         //do something
-        Global.manager.addProjectile(new Cannonball(getX(), getY(), getNextEnemy(), level));
+        new Cannonball(getX(), getY(), getNextEnemy(), level);
     }
 }

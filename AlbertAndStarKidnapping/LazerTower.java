@@ -25,6 +25,6 @@ public class LazerTower extends Tower
     protected void attack()
     {
         //shoot lazers
-        Global.manager.addProjectile(new Zap(getX(), getY(), getNextEnemy(), level));
+        new Zap(getX(), getY(), getNextEnemy(), level);
     }
 }

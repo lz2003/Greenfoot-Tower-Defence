@@ -24,6 +24,6 @@ public class FireballTower extends Tower
      */
     protected void attack() {
         //fire fireball
-        Global.manager.addProjectile(new Fireball(getX(), getY(), getNextEnemy(), level));
+        new Fireball(getX(), getY(), getNextEnemy(), level);
     }
 }

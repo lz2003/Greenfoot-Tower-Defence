@@ -38,6 +38,7 @@ public abstract class Tower extends Sprite
         this.cooldown = cooldown;
         this.images = images;
         this.lastTime = System.currentTimeMillis();
+        Global.manager.addTower(this);
     }
     
     /**

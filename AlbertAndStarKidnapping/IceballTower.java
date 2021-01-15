@@ -25,6 +25,6 @@ public class IceballTower extends Tower
     protected void attack()
     {
         //fire iceballs
-        Global.manager.addProjectile(new Iceball(getX(), getY(), getNextEnemy(), level));
+        new Iceball(getX(), getY(), getNextEnemy(), level);
     }
 }

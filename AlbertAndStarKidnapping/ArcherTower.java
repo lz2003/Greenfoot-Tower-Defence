@@ -24,6 +24,6 @@ public class ArcherTower extends Tower
      */
     protected void attack() {
         //Fire an arrow
-        Global.manager.addProjectile(new Arrow(getX(), getY(), getNextEnemy(), level));
+        new Arrow(getX(), getY(), getNextEnemy(), level);
     }
 }

@@ -24,6 +24,6 @@ public class Artillery extends Tower
      */
     protected void attack() {
         //fire cannonball
-        Global.manager.addProjectile(new Cannonball(getX(), getY(), getNextEnemy(), level));
+        new Cannonball(getX(), getY(), getNextEnemy(), level);
     }
 }
