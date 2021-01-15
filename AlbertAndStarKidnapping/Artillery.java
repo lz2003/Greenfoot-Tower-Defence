@@ -16,7 +16,7 @@ public class Artillery extends Tower
      */
     public Artillery(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/temp.png")});
+        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/Cannon/cannon1.png"),new GreenfootImage("images/Cannon/cannon2.png"),new GreenfootImage("images/Cannon/cannon3.png")});
     }
 
     /**
@@ -24,5 +24,6 @@ public class Artillery extends Tower
      */
     protected void attack() {
         //fire cannonball
+        Global.manager.addProjectile(new Cannonball(getX(), getY(), getNextEnemy(), level));
     }
 }

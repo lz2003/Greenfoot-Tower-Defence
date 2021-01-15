@@ -16,7 +16,7 @@ public class LazerTower extends Tower
      */
     public LazerTower(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 200, 1000, new GreenfootImage[]{new GreenfootImage("images/temp.png")});
+        super(x, y, iX, iY, 1, 200, 1000, new GreenfootImage[]{new GreenfootImage("images/Hidden Tesla/hiddenTesla1.png"),new GreenfootImage("images/Hidden Tesla/hiddenTesla2.png"),new GreenfootImage("images/Hidden Tesla/hiddenTesla3.png")});
     }
 
     /**
@@ -25,5 +25,6 @@ public class LazerTower extends Tower
     protected void attack()
     {
         //shoot lazers
+        Global.manager.addProjectile(new Zap(getX(), getY(), getNextEnemy(), level));
     }
 }

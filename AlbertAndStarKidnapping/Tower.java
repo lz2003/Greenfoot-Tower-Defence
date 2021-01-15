@@ -8,12 +8,12 @@ import greenfoot.*;
  */
 public abstract class Tower extends Sprite 
 {
-    private int cost;
-    private int range;
-    private int level;
-    private int cooldown;
-    private long lastTime;
-    private int iX, iY;
+    protected int cost;
+    protected int range;
+    protected int level;
+    protected int cooldown;
+    protected long lastTime;
+    protected int iX, iY;
     private GreenfootImage[]images;
     
     /**
@@ -44,7 +44,7 @@ public abstract class Tower extends Sprite
      * Update the tower
      */
     public void _update(float delta) {
-        if(canAct()){
+        if(canAct() && getNextEnemy() != null){
             attack();
             resetCooldown();
         }
@@ -68,7 +68,7 @@ public abstract class Tower extends Sprite
      * Get the next enemy targeted by this tower
      * @return Enemy the closest enemy to the tower, null if no enemies exist
      */
-    private Enemy getNextEnemy() {
+    protected Enemy getNextEnemy() {
         double min = range;
         Enemy next = null;
         for(Enemy e: Global.manager.getEnemies()){
