@@ -11,7 +11,7 @@ public class Zap extends Projectile
         MAX_DAMAGE = {100, 150, 200, 250},
         MAX_SPEED = {1, 1, 2, 2};
     
-    private static GreenfootImage image = new GreenfootImage("t1.png");
+    private static GreenfootImage image = new GreenfootImage("projectiles/zap1.png");
     
     /**
      * Constructor for Zap class

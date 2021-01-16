@@ -13,7 +13,7 @@ public class Shells extends Splash
         MAX_RADIUS = {100, 100, 120},
         MAX_SPEED = {5, 5, 7};
     
-    private static GreenfootImage image = new GreenfootImage("t1.png");
+    private static GreenfootImage image = new GreenfootImage("projectiles/spikedball.png");
     /**
      * Constructor for Shells class
      * 
