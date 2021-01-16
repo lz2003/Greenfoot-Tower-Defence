@@ -16,7 +16,7 @@ public class IceballTower extends Tower
      */
     public IceballTower(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/temp.png")});
+        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/Ice Tower/iceTower1.png"),new GreenfootImage("images/Ice Tower/iceTower2.png"),new GreenfootImage("images/Ice Tower/iceTower3.png")});
     }
 
     /**
@@ -25,5 +25,6 @@ public class IceballTower extends Tower
     protected void attack()
     {
         //fire iceballs
+        new Iceball(getX(), getY(), getNextEnemy(), level);
     }
 }
