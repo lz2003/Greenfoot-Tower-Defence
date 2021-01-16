@@ -16,7 +16,7 @@ public class Pillbox extends Tower
      */
     public Pillbox(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/temp.png")});
+        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/Cannon/cannon1.png"),new GreenfootImage("images/Cannon/cannon2.png"),new GreenfootImage("images/Cannon/cannon3.png")});
     }
 
     /**
@@ -25,5 +25,6 @@ public class Pillbox extends Tower
     protected void attack()
     {
         //do something
+        new Cannonball(getX(), getY(), getNextEnemy(), level);
     }
 }
