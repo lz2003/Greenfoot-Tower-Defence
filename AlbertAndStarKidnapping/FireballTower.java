@@ -16,7 +16,7 @@ public class FireballTower extends Tower
      */
     public FireballTower(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/temp.png")});
+        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/Inferno Tower/infernoTower1.png"),new GreenfootImage("images/Inferno Tower/infernoTower2.png"),new GreenfootImage("images/Inferno Tower/infernoTower3.png")});
     }
 
     /**
@@ -24,5 +24,6 @@ public class FireballTower extends Tower
      */
     protected void attack() {
         //fire fireball
+        new Fireball(getX(), getY(), getNextEnemy(), level);
     }
 }

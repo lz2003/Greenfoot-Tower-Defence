@@ -16,7 +16,7 @@ public class Barracks extends Tower
      */
     public Barracks(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/temp.png")});
+        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/Barracks/barracks1.png"), new GreenfootImage("images/Barracks/barracks2.png"), new GreenfootImage("images/Barracks/barracks3.png")});
     }
 
     /**

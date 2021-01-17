@@ -1,7 +1,8 @@
 import greenfoot.*;
 import java.awt.Color;
 /**
- * Write a description of class Enemy here.
+ * Enemies make their way to Jay Jay the Dragon by following the path in the attempt to defeat/kill it. They are attacked by the towers that are guarding the path. If their health bar reaches 0, the enemy dies. 
+ * Each different enemy has different stats and attacks. If they are successful in defeating Jay Jay, the level ends.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -23,6 +24,14 @@ public class Enemy extends Sprite {
     private static final int HPBAR_WIDTH = 100, HPBAR_HEIGHT = 20;
     private static final Color HPBKG = new Color(255, 0, 0), HPFOR = new Color(0, 255, 0);
     private double hpOffset = 50;
+    
+    /**
+     * Constructor for enemy
+     * 
+     * @param x         the x coordinate of the enemy
+     * @param y         the y coordinate of the enemy
+     * @param image     image representing the enemy
+     */
     public Enemy(double x, double y, GreenfootImage image) {
         super(x, y, image, 100, 100, 1);
         setLocation(x, y);
@@ -32,6 +41,19 @@ public class Enemy extends Sprite {
         hpBar = new HPBar(x, y, HPBAR_WIDTH, HPBAR_HEIGHT, hp, HPBKG, HPFOR); 
     }
     
+    /**
+     * Constructor for enemy
+     * 
+     * @param x         the x coordinate of the enemy
+     * @param y         the y coordinate of the enemy
+     * @param image     image representing the enemy
+     * @param hp        amount of health the enemy has
+     * @param range     the range of the enemy attack
+     * @param coolDown  time it takes in between enemy attacks 
+     * @param speed     movement speed of the enemy
+     * @param magRes    true if the enemy has resistance to magical damage
+     * @param phyRes    true if the enemy has resistance to physical damage
+     */
     public Enemy(double x, double y, GreenfootImage image, float hp, float range, float coolDown, float speed, boolean magRes, boolean phyRes) {
         super(x, y, image, 100, 100, 1);
         setLocation(x, y);
@@ -92,6 +114,9 @@ public class Enemy extends Sprite {
     
     }
     
+    /**
+     * Updates the health bar to represent the current hp
+     */
     private void updateHP() {
         hpBar.setHP(hp);
     }
@@ -178,6 +203,9 @@ public class Enemy extends Sprite {
         }
     }
     
+    /**
+     * Called when enemy hp hits 0. Removes the enemy and hp bar from the game.
+     */
     private void die() {
         Global.manager.removeEnemy(this);
         removeSprite();

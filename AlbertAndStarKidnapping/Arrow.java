@@ -12,7 +12,7 @@ public class Arrow extends Projectile
         MAX_DAMAGE = {100, 150, 200},
         MAX_SPEED = {5, 5, 7};
     
-    private static GreenfootImage image = new GreenfootImage("t1.png");
+    private static GreenfootImage image = new GreenfootImage("projectiles/arrow1.png");
     /**
      * Constructor for Arrow class
      * 
