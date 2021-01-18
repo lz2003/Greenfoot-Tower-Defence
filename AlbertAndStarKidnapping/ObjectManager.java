@@ -17,7 +17,9 @@ public class ObjectManager
         CAM_SPEED = 3f;
         
     public static final int 
-        STATE_BUILD = 0;    
+        STATE_BUILD = 0,
+        STATE_IDLE = 1,
+        STATE_MENU = 2;    
         
     //private float camX = 0, camY = 0;
     private int state = 0;
@@ -64,17 +66,17 @@ public class ObjectManager
     }
     
     private void updateLoop(float delta) {
-        for(Updated o: objects) {
-            o._update(delta);
-        }
+        for(int i = objects.size() - 1; i >= 0; i--)
+            objects.get(i)._update(delta);
+
         
-        for(Enemy o: enemies) {
-            o._update(delta);
-        }
+        for(int i = enemies.size() - 1; i >= 0; i--)
+            enemies.get(i)._update(delta);
         
-        for(Tower o: towers) {
-            o._update(delta);
-        }
+        
+        for(int i = towers.size() - 1; i >= 0; i--)
+            towers.get(i)._update(delta);
+        
         
         for(int i = projectiles.size()-1; i >= 0; i--) {
             Projectile o = projectiles.get(i);
@@ -171,11 +173,14 @@ public class ObjectManager
 
     public void init() {
         int widthIndex = 0, heightIndex = 0;
-        for(int x = 0; x < Global.getWorld().getWidth(); x += Global.SLOT_SIZE) {
+        int width = 850;
+        int height = 600;
+        
+        for(int x = 0; x < width; x += Global.SLOT_SIZE) {
             widthIndex++;
         }
         
-        for(int y = 0; y < Global.getWorld().getHeight(); y += Global.SLOT_SIZE) {
+        for(int y = 0; y < height; y += Global.SLOT_SIZE) {
             heightIndex++;
         }
             
@@ -184,9 +189,9 @@ public class ObjectManager
         
         this.maxNodesX = widthIndex;
         this.maxNodesY = heightIndex;
-            
-        for(int x = 0, index_x = 0; x < Global.getWorld().getWidth(); x += Global.SLOT_SIZE, index_x++) {
-            for(int y = 0, index_y = 0; y < Global.getWorld().getHeight(); y += Global.SLOT_SIZE, index_y++) {
+           
+        for(int x = 0, index_x = 0; x < width; x += Global.SLOT_SIZE, index_x++) {
+            for(int y = 0, index_y = 0; y < height; y += Global.SLOT_SIZE, index_y++) {
                 Slot s = new Slot(x + Global.SLOT_SIZE / 2, y  + Global.SLOT_SIZE / 2, index_x, index_y, false);
                 nodes[index_x][index_y] = s.getNode();
                 slots[index_x][index_y] = s;

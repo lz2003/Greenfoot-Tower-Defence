@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.core.WorldHandler;  
 import java.util.*;
 
 /**
@@ -9,18 +10,19 @@ import java.util.*;
  */
 public class Game extends World
 {
+    public static final int canvasWidth = 850, canvasHeight = 600;
     private ObjectManager manager;
     private Canvas canvas;
     public Game()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(850, 600, 1, false); 
+        super(950, 750, 1, false); 
         
-        setPaintOrder(Canvas.class);
+        setPaintOrder(BuildCursor.class, Canvas.class);
         
         Global.setWorld(this);
         
-        canvas = new Canvas(20, getWidth(), getHeight());
+        canvas = new Canvas(20, canvasWidth, canvasHeight);
         
         Sprite.setGlobalCanvas(canvas);
         
@@ -30,11 +32,28 @@ public class Game extends World
         
         manager.init();
         
-        addObject(canvas, getWidth() / 2, getHeight() / 2);
+        addObject(canvas, 850 / 2, getHeight() / 2 - 75);
+        
+        init();
     }
     
     public void init() {
+        ButtonGrid b = new ButtonGrid();
+        addObject(b, 900, 75);
+        b.set(
+            new Button[]{
+            new TowerButton(TowerButton.ARCH),
+            new TowerButton(TowerButton.ARTY),
+            new TowerButton(TowerButton.BARA),
+            new TowerButton(TowerButton.FIRE),
+            new TowerButton(TowerButton.ICE),
+            new TowerButton(TowerButton.LAZER),
+            new TowerButton(TowerButton.MINE),
+            new TowerButton(TowerButton.PILL),
+            }, 1, 6, 95
+        );
         
+        BuildCursor.init();
     }
     
     public void act() {

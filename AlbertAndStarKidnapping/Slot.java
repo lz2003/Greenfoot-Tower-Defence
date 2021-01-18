@@ -11,6 +11,7 @@ public class Slot extends Sprite {
         ALPHA_NEAR = 128. / 255.,
         ALPHA_ACTIVE = 192. / 255.;
         
+    private static Slot selected;     
     private Node node;
     private Index2D arrayLoc;
     
@@ -33,6 +34,11 @@ public class Slot extends Sprite {
         Global.manager.addObject(this);
     }
     
+    /**
+     * Sets whether or not this node should block the path
+     * 
+     * @return Whether or not the requested change is valid. (If it will make the path impossible)
+     */
     public boolean setBlocked(boolean blocked) {
         return Global.manager.updatePath(arrayLoc.x, arrayLoc.y, blocked);
     }
@@ -45,8 +51,22 @@ public class Slot extends Sprite {
         return this.node;
     }
     
-    boolean selected = false;
+    public static Slot getSelected() {
+        return selected;
+    }
+    
+    public Index2D getIndex() {
+        return arrayLoc;
+    }
+    
     public void _update(float delta) {
+        int half = Global.SLOT_SIZE / 2;
+        if(Global.manager.mouseX() > this.getX() - half && Global.manager.mouseX() < this.getX() + half) {
+            if(Global.manager.mouseY() > this.getY() - half && Global.manager.mouseY() < this.getY() + half) {
+                //setTransparency(ALPHA_ACTIVE);
+                selected = this;
+            }
+        } 
         /*
         if(getNode().isBlocked()) {
             setTransparency(0);
