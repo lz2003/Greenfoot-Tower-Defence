@@ -138,6 +138,100 @@ public abstract class Sprite extends Updated{
         setHeight(height);
     }
     
+    public Sprite(double x, double y, BufferedImage image, int layer) {
+        if(globalCanvas == null) throw new Error("Global canvas has not been set. If no global " + 
+        "canvas is to be desired, use alternate constructor of new Sprite(canvas, xLoc, yLoc, image)");
+        
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        this.layer = layer;
+        globalCanvas.addSprite(this, layer);
+        canvas = globalCanvas;
+        initImage(image);
+    }
+    
+    public Sprite(Canvas c, double x, double y, BufferedImage image) {
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        this.layer = layer;
+        c.addSprite(this, layer);
+        canvas = c;
+        initImage(image);
+    }
+    
+    public Sprite(Canvas c, double x, double y, BufferedImage image, int layer) {
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        this.layer = layer;
+        c.addSprite(this, layer);
+        canvas = c;
+        initImage(image);
+    }
+    
+    public Sprite(Canvas c, double x, double y, BufferedImage image, int width, int height) {
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        this.layer = layer;
+        c.addSprite(this, layer);
+        canvas = c;
+        initImage(image);
+        setWidth(width);
+        setHeight(height);
+    }
+    
+    public Sprite(Canvas c, double x, double y, BufferedImage image, int width, int height, int layer) {
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        this.layer = layer;
+        c.addSprite(this, layer);
+        canvas = c;
+        initImage(image);
+        setWidth(width);
+        setHeight(height);
+    }
+    
+    public Sprite(double x, double y, BufferedImage image, int width, int height) {
+        if(globalCanvas == null) throw new Error("Global canvas has not been set. If no global " + 
+        "canvas is to be desired, use alternate constructor of new Sprite(canvas, xLoc, yLoc, image)");
+        
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        canvas = globalCanvas;
+        this.layer = layer;
+        canvas.addSprite(this, layer);
+        initImage(image);
+        setWidth(width);
+        setHeight(height);
+    }
+    
+    public Sprite(double x, double y, BufferedImage image, int width, int height, int layer) {
+        if(globalCanvas == null) throw new Error("Global canvas has not been set. If no global " + 
+        "canvas is to be desired, use alternate constructor of new Sprite(canvas, xLoc, yLoc, image)");
+        
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        canvas = globalCanvas;
+        this.layer = layer;
+        canvas.addSprite(this, layer);
+        initImage(image);
+        setWidth(width);
+        setHeight(height);
+    }
+    
     public void setLocation(double x, double y) {
         canvas.removeSprite(this, layer);
         xLoc = x;

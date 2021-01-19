@@ -16,7 +16,7 @@ public class ArcherTower extends Tower
      */
     public ArcherTower(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/Archer Tower/archerTower1.png"),new GreenfootImage("images/Archer Tower/archerTower2.png"), new GreenfootImage("images/Archer Tower/archerTower3")});
+        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/Archer Tower/archerTower1.png"),new GreenfootImage("images/Archer Tower/archerTower2.png"), new GreenfootImage("images/Archer Tower/archerTower3.png")});
     }
 
     /**
