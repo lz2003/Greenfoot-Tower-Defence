@@ -211,4 +211,8 @@ public class Enemy extends Sprite {
         removeSprite();
         hpBar.remove();
     }
+    
+    public int getNodeIndex() {
+        return nodeIndex; 
+    }
 }
