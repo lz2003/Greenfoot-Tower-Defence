@@ -8,7 +8,6 @@ import greenfoot.*;
  */
 public class Pekka extends Enemy 
 {
-
     /**
      * Constructor for Pekka
      * 

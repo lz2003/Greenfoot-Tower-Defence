@@ -130,9 +130,9 @@ public class ObjectManager
     }
     
     public void addEnemy(int x, int y, int ID) {
-        Enemy e = new Enemy(x, y, new GreenfootImage("god.png"));
-        
-        enemies.add(e);
+        //Enemy e = new Maniac(x, y);
+        throw new Error("not implemented yet");
+        //enemies.add(e);
     }
     
     public void addEnemy(Enemy e) {
@@ -205,7 +205,10 @@ public class ObjectManager
         path = pathfinder.getPath();
         
         for(int i = 0; i < 1; i++)
-            new BabyPekka(20, 20);
+            //new Troll(20, 20);
+        new Maniac(50, 50);
+        new BabyPekka(60, 60);
+        new Troll(20, 20);
     }
     
     public Node getClosestNode(Point loc) {

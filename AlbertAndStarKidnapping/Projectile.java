@@ -79,7 +79,7 @@ public abstract class Projectile extends Sprite
      */
     protected void damageEnemy() {
         if (target != null && !isRemoved()) {
-            //target.damage(damage, isMagic, !isMagic);
+            target.damage(damage, isMagic, !isMagic);
             //System.out.println("HIT");
             destroy();
         }

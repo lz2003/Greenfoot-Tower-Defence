@@ -8,22 +8,22 @@ import java.awt.Color;
  * @version (a version number or a date)
  */
 public class Enemy extends Sprite {
-    private static final float 
-        DEFAULT_HP = 100,
+    public static final float 
+        DEFAULT_HP = 1000,
         DEFAULT_RANGE = 50;
-    private float speed = 1;
+    private float speed = 1;//0.3f;
     private int nodeIndex = 0;
     private Node[] reroutedPath;
     private float hp, maxHp;
     private double distTravelled = 0;
     private float range = 50, rangeSquared = 50 * 50;
     private float coolDown = 1, coolDownTime;
-    private boolean magRes, phyRes;
+    private boolean magRes = false, phyRes = false;
     
     private HPBar hpBar;
-    private static final int HPBAR_WIDTH = 100, HPBAR_HEIGHT = 20;
+    private static final int HPBAR_WIDTH = 40, HPBAR_HEIGHT = 5;
     private static final Color HPBKG = new Color(255, 0, 0), HPFOR = new Color(0, 255, 0);
-    private double hpOffset = 50;
+    protected double hpOffset = 50, velX, velY, angle;
     
     /**
      * Constructor for enemy
@@ -85,7 +85,7 @@ public class Enemy extends Sprite {
         else
         {
             hp -= damage;
-        }
+        } 
         updateHP();
         if (hp <= 0)
         {
@@ -122,7 +122,7 @@ public class Enemy extends Sprite {
     }
     
     public void _update(float delta) {
-        movement(delta);
+        movement(delta); 
         checkCanAttack(delta);
         hpBar.setLocation(getX(), getY() - hpOffset);
         updateHP();
@@ -156,7 +156,7 @@ public class Enemy extends Sprite {
         }
         Point next = nextNode.getWorldLoc();
             
-        moveTowards(next.x, next.y);
+        moveTowards(next.x, next.y, delta);
         
         if(Math2D.distance(getX(), next.x, getY(), next.y) < speed + 5f) {
             nodeIndex++;
@@ -168,11 +168,11 @@ public class Enemy extends Sprite {
         distTravelled += Math2D.distance(0, x, 0, y);
     }
     
-    public void moveTowards(double x, double y) {
-        double angle = Math2D.angleTo(getX(), x, getY(), y);
-        
-        double velX = speed *  Math.cos(angle);
-        double velY = speed * Math.sin(angle);
+    public void moveTowards(double x, double y, float magnitude) {
+        this.angle = Math2D.angleTo(getX(), x, getY(), y);
+
+        this.velX = speed *  Math.cos(angle);
+        this.velY = speed * Math.sin(angle);
         
         translate(velX, velY);
     }
