@@ -50,6 +50,8 @@ public class ObjectManager
         
     private double
         targetX = 775, targetY = 325;
+        
+    private float money = 500;
 
     /**
      * Constructor for objects of class ObjectManager
@@ -206,8 +208,7 @@ public class ObjectManager
         pathfinder = new PathfindingSimplified(nodes, this.startNode, this.targetNode);
         path = pathfinder.getPath();
         
-        //for(int i = 0; i < 1; i++)
-            //new Troll(20, 20);
+        new Background(width, height);
     }
     
     public Node getClosestNode(Point loc) {
@@ -334,5 +335,20 @@ public class ObjectManager
     
     public void damageJayJay(float damage) {
         jay.damage(damage);
+    }
+    
+    public void addMoney(float amount) {
+        money += amount;
+    }
+    
+    public boolean requestMoney(float amount) {
+        money -= amount;
+        
+        if(money < 0) {
+            money += amount;
+            return false;
+        }
+        
+        return true;
     }
 }

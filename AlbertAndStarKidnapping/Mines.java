@@ -18,7 +18,10 @@ public class Mines extends Tower
      */
     public Mines(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 0, 1000, new GreenfootImage[]{new GreenfootImage("images/Gold Mine/goldmine1.png"),new GreenfootImage("images/Gold Mine/goldmine2.png"),new GreenfootImage("images/Gold Mine/goldmine3.png")});
+        super(x, y, iX, iY, 1, 0, 1000, new GreenfootImage[]{
+            new GreenfootImage("images/Gold Mine/goldMine1.png"),
+            new GreenfootImage("images/Gold Mine/goldMine2.png"),
+            new GreenfootImage("images/Gold Mine/goldMine3.png")});
         goldPerPeriod = 1;
     }
 

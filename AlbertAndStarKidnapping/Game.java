@@ -16,13 +16,13 @@ public class Game extends World
     public Game()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(950, 750, 1, false); 
+        super(925, 750, 1, false); 
         
         setPaintOrder(BuildCursor.class, Canvas.class);
         
         Global.setWorld(this);
         
-        canvas = new Canvas(20, canvasWidth, canvasHeight);
+        canvas = new Canvas(15, canvasWidth, canvasHeight);
         
         Sprite.setGlobalCanvas(canvas);
         
@@ -39,7 +39,7 @@ public class Game extends World
     
     public void init() {
         ButtonGrid b = new ButtonGrid();
-        addObject(b, 900, 75);
+        addObject(b, 887, 50);
         b.set(
             new Button[]{
             new TowerButton(TowerButton.ARCH),
@@ -50,7 +50,7 @@ public class Game extends World
             new TowerButton(TowerButton.LAZER),
             new TowerButton(TowerButton.MINE),
             new TowerButton(TowerButton.PILL),
-            }, 1, 6, 95
+            }, 1, 8, 60
         );
         
         BuildCursor.init();

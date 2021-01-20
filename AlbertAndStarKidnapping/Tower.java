@@ -8,6 +8,16 @@ import greenfoot.*;
  */
 public abstract class Tower extends Sprite 
 {
+    public static final int 
+        COST_ARCHER = 150,
+        COST_CANNON = 100,
+        COST_BARRACKS = 800,
+        COST_FIREBALL = 500,
+        COST_ICEBALL = 450,
+        COST_LASER = 650,
+        COST_MINES = 100,
+        COST_PILLBOX = 900;
+        
     protected int cost;
     protected int range;
     protected int level;

@@ -29,16 +29,26 @@ public class BuildCursor extends Actor
         // Set location
         if(Global.getManager().mouseX() > Game.canvasWidth || Global.getManager().mouseX() < 0 ||
            Global.getManager().mouseY() > Game.canvasHeight || Global.getManager().mouseY() < 0) {
-            setLocation(-100, -100);
+            setLocation(1000, 500);
             inWorld = false;
             return;
         }
-        else if(Slot.getSelected() != null) {
-            setLocation((int) Slot.getSelected().getX(), (int) Slot.getSelected().getY());
+        else if(Slot.getSelected() != null && state != TowerButton.IDLE) {
+            double targetX =  Slot.getSelected().getX();
+            double targetY =  Slot.getSelected().getY();
+            
+            double diffX = targetX - getX();
+            double diffY = targetY - getY();
+            
+            diffX /= 3; diffY /= 3;
+            
+            setLocation(getX() + (int) diffX, getY() + (int) diffY);
+            
+            
             inWorld = true;
             setImage(TowerButton.icons[state]);
         } else {
-            setLocation(-100, -100);
+            setLocation(1000, 500);
             inWorld = false;
             return;
         }
@@ -47,9 +57,10 @@ public class BuildCursor extends Actor
         
         // Should also add validation for money tho to please the capitalists
         if(Greenfoot.mouseClicked(this) && inWorld) {
-            if(!Slot.getSelected().setBlocked(true)) {
+            if(!Slot.getSelected().setBlocked(true) || state == TowerButton.IDLE) {
                 return;
             }
+            setLocation((int)Slot.getSelected().getX(), (int)Slot.getSelected().getY());
             switch(state) {
                 case TowerButton.ARCH:
                     if(validate(Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y)) {
@@ -94,6 +105,7 @@ public class BuildCursor extends Actor
                 default:
                     throw new Error("Invalid tower ID passed to BuildCursor");
             }
+            setState(TowerButton.IDLE);
         }
     }
     
@@ -106,6 +118,25 @@ public class BuildCursor extends Actor
                 return false; 
         }
         
-        return true;
+        switch(state) {
+            case TowerButton.ARCH:
+                return Global.getManager().requestMoney(Tower.COST_ARCHER);
+            case TowerButton.ARTY:
+                return Global.getManager().requestMoney(Tower.COST_CANNON);
+            case TowerButton.BARA:
+                return Global.getManager().requestMoney(Tower.COST_BARRACKS);
+            case TowerButton.FIRE:
+                return Global.getManager().requestMoney(Tower.COST_FIREBALL);
+            case TowerButton.ICE:
+                return Global.getManager().requestMoney(Tower.COST_ICEBALL);
+            case TowerButton.LAZER:
+                return Global.getManager().requestMoney(Tower.COST_LASER);
+            case TowerButton.MINE:
+                return Global.getManager().requestMoney(Tower.COST_MINES);
+            case TowerButton.PILL:
+                return Global.getManager().requestMoney(Tower.COST_PILLBOX);
+            default:
+                return false;
+        }
     }
 }

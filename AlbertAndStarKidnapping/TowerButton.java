@@ -19,9 +19,10 @@ public class TowerButton extends Button
         new GreenfootImage("pillicon.png"),
     };
     
-    public static final int SIZE = 70;
+    public static final int SIZE = 50;
     
     public static final int 
+        IDLE = -1,
         ARCH = 0,
         ARTY = 1,
         BARA = 2,
