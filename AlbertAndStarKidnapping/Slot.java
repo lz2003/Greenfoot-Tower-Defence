@@ -14,12 +14,12 @@ public class Slot extends Sprite {
     private static Slot selected;     
     private Node node;
     private Index2D arrayLoc;
-    
+    private static final GreenfootImage img = new GreenfootImage("blank.png");
     /**
      * Creates a default slot with jay jay default image
      */
     public Slot(int x, int y, int iX, int iY, boolean isBlocked){
-        this(x, y, iX, iY, isBlocked, new GreenfootImage("jay.png"));
+        this(x, y, iX, iY, isBlocked, img);
     }
     
     /**
