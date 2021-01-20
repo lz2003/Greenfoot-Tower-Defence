@@ -43,9 +43,10 @@ public class ObjectManager
     
     private Spawner spawner;
     
-    private int 
-        targetIndexX = 16, targetIndexY = 6,
-        startIndexX = 0, startIndexY = 5;
+    public static final int 
+        targetIndexX = 15, targetIndexY = 6,
+        startIndexX = 0, startIndexY = 5,
+        startPosX = startIndexX * Global.SLOT_SIZE + Global.SLOT_SIZE / 2, startPosY = startIndexY * Global.SLOT_SIZE + Global.SLOT_SIZE / 2;
         
     private double
         targetX = 775, targetY = 325;
@@ -55,7 +56,7 @@ public class ObjectManager
      */
     public ObjectManager() {
         mouse = new Mouse();
-        spawner = new Spawner();
+        spawner = new Spawner(this);
         jay = new JayJay(targetX, targetY);
     }
     
@@ -87,6 +88,7 @@ public class ObjectManager
         }
         
         jay._update(delta);
+        spawner._update(delta);
     }
     /*
     private void updateSpriteLocs() {
@@ -204,11 +206,8 @@ public class ObjectManager
         pathfinder = new PathfindingSimplified(nodes, this.startNode, this.targetNode);
         path = pathfinder.getPath();
         
-        for(int i = 0; i < 1; i++)
+        //for(int i = 0; i < 1; i++)
             //new Troll(20, 20);
-        new Maniac(50, 50);
-        new BabyPekka(60, 60);
-        new Troll(20, 20);
     }
     
     public Node getClosestNode(Point loc) {
@@ -244,7 +243,7 @@ public class ObjectManager
     
     public boolean rebuildPath() {
         // Try to find a path
-        pathfinder = new PathfindingSimplified(nodes, nodes[0][0], nodes[targetIndexX][targetIndexY]);
+        pathfinder = new PathfindingSimplified(nodes, nodes[startIndexX][startIndexY], nodes[targetIndexX][targetIndexY]);
         Node[] path = pathfinder.getPath();
         
         // If no path found, dont set enemy path to new path

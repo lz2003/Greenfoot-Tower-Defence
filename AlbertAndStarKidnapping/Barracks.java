@@ -22,7 +22,7 @@ public class Barracks extends Tower
     /**
      * Attack enemies
      */
-    protected void attack() {
+    protected void attack(Enemy e) {
         //spawn barbarian
     }
 }
