@@ -9,17 +9,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class TowerButton extends Button
 {
     public static final GreenfootImage[] icons = {
-        new GreenfootImage("archericon.png"),
-        new GreenfootImage("artyicon.png"),
-        new GreenfootImage("barackicon.png"),
-        new GreenfootImage("fireicon.png"),
-        new GreenfootImage("icyicon.png"),
-        new GreenfootImage("lazericon.png"),
-        new GreenfootImage("meinicon.png"),
-        new GreenfootImage("pillicon.png"),
+        new GreenfootImage("images/shop/ArchersCard.png"),
+        new GreenfootImage("images/shop/CannonCard.png"),
+        new GreenfootImage("images/shop/BarbarianHutCard.png"),
+        new GreenfootImage("images/shop/WizardCard.png"),
+        new GreenfootImage("images/shop/IceWizardCard.png"),
+        new GreenfootImage("images/shop/TeslaCard.png"),
+        new GreenfootImage("images/shop/GoldMineCard.png"),
+        new GreenfootImage("images/shop/MortarCard.png"),
     };
     
-    public static final int SIZE = 50;
+    public static final int SIZE = 60;
     
     public static final int 
         IDLE = -1,
