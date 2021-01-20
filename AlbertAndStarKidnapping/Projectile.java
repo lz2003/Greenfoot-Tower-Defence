@@ -50,7 +50,8 @@ public abstract class Projectile extends Sprite
         target = null;
         // Right now, the enemy has to be within half of the projectile's height
         // Can be changed if needed
-        double smallestDist = getHeight()/2;
+        // double smallestDist = getHeight()/2;
+        double smallestDist = 50;
         for (Enemy e : enemies) {
             double dist = Math2D.distance(getX(), e.getX(), getY(), e.getY());
             if (dist <= smallestDist) {

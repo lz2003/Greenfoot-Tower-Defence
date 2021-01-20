@@ -22,9 +22,9 @@ public class Pillbox extends Tower
     /**
      * Attack enemies
      */
-    protected void attack()
+    protected void attack(Enemy e)
     {
         //do something
-        new Cannonball(getX(), getY(), getNextEnemy(), level);
+        new Cannonball(getX(), getY(), e, level);
     }
 }

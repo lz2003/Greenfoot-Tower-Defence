@@ -14,7 +14,6 @@ public class Troll extends Enemy
      * 
      * @param x         the x coordinate of Troll
      * @param y         the y coordinate of Troll
-     * @param image     image representing the Troll
      */
     public Troll(double x, double y) {
         super(x, y, idle, 1500, 50, 2, 0.2f, false, true);

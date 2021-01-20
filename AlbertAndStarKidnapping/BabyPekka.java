@@ -17,7 +17,7 @@ public class BabyPekka extends Enemy
      * @param y         the y coordinate of BabyPekka
      */
     public BabyPekka(double x, double y) {
-        super(x, y, idle, 2500, 50, 2, 0.7f, false, false);
+        super(x, y, idle, 2500, 100, 2, 0.35f, false, false);
     }
     
     private static Animation a0 = new Animation(new GreenfootImage[]{
@@ -143,6 +143,6 @@ public class BabyPekka extends Enemy
      * Attack to damage JayJay the Dragon
      */
     public void attack() {
-        
+        Global.getManager().damageJayJay(damage);
     }
 }

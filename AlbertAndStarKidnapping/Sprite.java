@@ -246,7 +246,7 @@ public abstract class Sprite extends Updated{
     }
     
     public void setY(double y) {
-        setLocation(y, getY());
+        setLocation(getX(), y);
     }
     
     private void initImage(GreenfootImage image) {
@@ -439,6 +439,18 @@ public abstract class Sprite extends Updated{
             animationTimer = 0;
             nextFrameLooped();
         }
+    }
+    
+    public void setFrameIndex(int frame) {
+        animFrame = frame;
+    }
+    
+    public int getFrameIndex() {
+        return animFrame;
+    }
+    
+    public int getFrameCount() {
+        return animation.getFrameCount();
     }
     
     public void nextFrame() {

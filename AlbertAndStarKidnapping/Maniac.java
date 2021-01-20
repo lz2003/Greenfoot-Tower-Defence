@@ -102,15 +102,15 @@ public class Maniac extends Enemy
     
     static GreenfootImage idle = new GreenfootImage("images/enemy/Maniac/0/0001.png");
     private static double overPi = 180./Math.PI;
+    private static int damage = 10;
     /**
      * Constructor for Maniac
      * 
      * @param x         the x coordinate of Maniac
      * @param y         the y coordinate of Maniac
-     * @param image     image representing the Maniac
      */
     public Maniac(double x, double y) {
-        super(x, y, idle, Enemy.DEFAULT_HP, Enemy.DEFAULT_RANGE, 1f, 1f, false, false); 
+        super(x, y, idle, Enemy.DEFAULT_HP, Enemy.DEFAULT_RANGE, 1f, .3f, false, false); 
     }
     
     public void _update(float delta) {
@@ -136,5 +136,12 @@ public class Maniac extends Enemy
         }
          
         animate(delta);
+    }
+    
+    /**
+     * Attack to damage JayJay the Dragon
+     */
+    public void attack() {
+        Global.getManager().damageJayJay(damage);
     }
 }

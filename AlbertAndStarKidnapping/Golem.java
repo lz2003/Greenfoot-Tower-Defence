@@ -8,14 +8,14 @@ import greenfoot.*;
  */
 public class Golem extends Enemy 
 {
+    private static GreenfootImage idle = new GreenfootImage("t1.png");
     /**
      * Constructor for Golem
      * 
      * @param x         the x coordinate of Golem
      * @param y         the y coordinate of Golem
-     * @param image     image representing the Golem
      */
-    public Golem(double x, double y, GreenfootImage image) {
-        super(x, y, image, 750, 50, 4, 1f, false, false);
+    public Golem(double x, double y) {
+        super(x, y, idle, 750, 50, 4, 1f, false, false);
     }
 }

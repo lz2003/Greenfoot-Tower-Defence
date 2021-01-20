@@ -7,6 +7,63 @@ import greenfoot.*;
  */
 public class LazerTower extends Tower 
 {
+    private static GreenfootImage[] sprite1 = {
+        new GreenfootImage("images/tower/Laser/L1/0001.png"),
+        new GreenfootImage("images/tower/Laser/L1/0002.png"),
+        new GreenfootImage("images/tower/Laser/L1/0003.png"),
+        new GreenfootImage("images/tower/Laser/L1/0004.png"),
+        new GreenfootImage("images/tower/Laser/L1/0005.png"),
+        new GreenfootImage("images/tower/Laser/L1/0006.png"),
+        new GreenfootImage("images/tower/Laser/L1/0007.png"),
+        new GreenfootImage("images/tower/Laser/L1/0008.png")
+    };
+    
+    private static GreenfootImage[] sprite2 = {
+        new GreenfootImage("images/tower/Laser/L2/0001.png"),
+        new GreenfootImage("images/tower/Laser/L2/0002.png"),
+        new GreenfootImage("images/tower/Laser/L2/0003.png"),
+        new GreenfootImage("images/tower/Laser/L2/0004.png"),
+        new GreenfootImage("images/tower/Laser/L2/0005.png"),
+        new GreenfootImage("images/tower/Laser/L2/0006.png"),
+        new GreenfootImage("images/tower/Laser/L2/0007.png"),
+        new GreenfootImage("images/tower/Laser/L2/0008.png")
+    };
+    
+    private static GreenfootImage[] sprite3 = {
+        new GreenfootImage("images/tower/Laser/L3/0001.png"),
+        new GreenfootImage("images/tower/Laser/L3/0002.png"),
+        new GreenfootImage("images/tower/Laser/L3/0003.png"),
+        new GreenfootImage("images/tower/Laser/L3/0004.png"),
+        new GreenfootImage("images/tower/Laser/L3/0005.png"),
+        new GreenfootImage("images/tower/Laser/L3/0006.png"),
+        new GreenfootImage("images/tower/Laser/L3/0007.png"),
+        new GreenfootImage("images/tower/Laser/L3/0008.png")
+    };
+    
+    public void _update(float delta) {
+        super._update(delta);
+        setRotation();
+    }
+    
+    private void setRotation() {
+        int degrees = (int) Math.toDegrees(this.rotation);
+        degrees += 720;
+        degrees = degrees % 360;
+        degrees += 22; // 45 / 2
+        degrees = degrees / 45;
+        degrees = degrees % 8;
+        switch(getLevel()) {
+            case 1:
+                setImage(sprite1[degrees]);
+                break;
+            case 2:
+                setImage(sprite2[degrees]);
+                break;
+            case 3:
+                setImage(sprite3[degrees]);
+                break;
+        }
+    }
     /**
      * Creates a tower that shoots lazers at enemies.
      * @param x the x coordinate of the tower
@@ -16,15 +73,19 @@ public class LazerTower extends Tower
      */
     public LazerTower(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 200, 1000, new GreenfootImage[]{new GreenfootImage("images/Hidden Tesla/hiddenTesla1.png"),new GreenfootImage("images/Hidden Tesla/hiddenTesla2.png"),new GreenfootImage("images/Hidden Tesla/hiddenTesla3.png")});
+        super(x, y, iX, iY, 1, 200, 1000, new GreenfootImage[]{
+            sprite1[0]});
+            
+        setDimensions(60, 120);
+        setY(getY() - 45);     
     }
 
     /**
      * Attack enemies
      */
-    protected void attack()
+    protected void attack(Enemy e)
     {
         //shoot lazers
-        new Zap(getX(), getY(), getNextEnemy(), level);
+        new Zap(getX(), getY(), e, level);
     }
 }
