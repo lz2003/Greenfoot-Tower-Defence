@@ -26,7 +26,7 @@ public abstract class Projectile extends Sprite
      */
     public Projectile(double x, double y, GreenfootImage image, Enemy target) {
         super(x, y, image, image.getWidth(), image.getHeight(), 1);
-        setLocation(x, y); 
+        setLocation(x, y);
         turnTowards(target.getX(), target.getY());
         Global.getManager().addProjectile(this);
     }
@@ -37,7 +37,6 @@ public abstract class Projectile extends Sprite
     public void _update(float delta) {
         if (isRemoved()) return;
         move(speed);
-        // Maybe don't run it each loop?
         checkCollision();
         checkWorldBounds();
     }
@@ -48,12 +47,10 @@ public abstract class Projectile extends Sprite
     protected void checkCollision() {
         ArrayList<Enemy> enemies = Global.getManager().getEnemies();
         target = null;
-        // Right now, the enemy has to be within half of the projectile's height
         // Can be changed if needed
-        // double smallestDist = getHeight()/2;
-        double smallestDist = 50;
+        double smallestDist = getHeight() * getHeight() * 2;
         for (Enemy e : enemies) {
-            double dist = Math2D.distance(getX(), e.getX(), getY(), e.getY());
+            double dist = Math2D.distanceSquared(getX(), e.getX(), getY(), e.getY());
             if (dist <= smallestDist) {
                 smallestDist = dist;
                 target = e;
@@ -81,7 +78,6 @@ public abstract class Projectile extends Sprite
     protected void damageEnemy() {
         if (target != null && !isRemoved()) {
             target.damage(damage, isMagic, !isMagic);
-            //System.out.println("HIT");
             destroy();
         }
     }
