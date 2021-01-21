@@ -51,7 +51,7 @@ public class ObjectManager
     private double
         targetX = 775, targetY = 325;
         
-    private float money = 500;
+    public static float money = 500;
 
     /**
      * Constructor for objects of class ObjectManager
