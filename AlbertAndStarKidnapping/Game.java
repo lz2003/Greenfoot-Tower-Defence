@@ -13,6 +13,8 @@ public class Game extends World
     public static final int canvasWidth = 850, canvasHeight = 600;
     private ObjectManager manager;
     private Canvas canvas;
+    private Label moneyLabel = new Label("$", 30);
+    private Label moneyValueLabel = new Label(0, 30);
     public Game()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -33,6 +35,9 @@ public class Game extends World
         manager.init();
         
         addObject(canvas, 850 / 2, getHeight() / 2 - 75);
+        
+        addObject(moneyLabel, 860 , 10);
+        addObject(moneyValueLabel, 885 , 10);
         
         init();
     }
@@ -58,6 +63,7 @@ public class Game extends World
     
     public void act() {
         manager.update();
+        moneyValueLabel.setValue((int)ObjectManager.money);
         //canvas.setLocation(canvas.getX() + 1, canvas.getY());
     }
 }
