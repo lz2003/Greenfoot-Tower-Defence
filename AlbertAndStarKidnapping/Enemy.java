@@ -56,7 +56,7 @@ public class Enemy extends Sprite {
      */
     public Enemy(double x, double y, GreenfootImage image, float hp, float range, float coolDown, float speed, boolean magRes, boolean phyRes) {
         super(x, y, image, 100, 100, 1);
-        setLocation(x, y);
+        setLocation(x, y); 
         Global.manager.addEnemy(this);
         this.hp = hp;
         this.maxHp = hp;
@@ -78,15 +78,18 @@ public class Enemy extends Sprite {
      */
     public void damage(float damage, boolean typeMag, boolean typePhy)
     {
+        float damageDealed = damage;
         if((typeMag && magRes) || (typePhy && phyRes))
         {
-            hp -= damage * 0.1f;
+            damageDealed = damage * .1f;
+            hp -= damageDealed;
         }
         else
         {
             hp -= damage;
         } 
         updateHP();
+        Global.getManager().addMoney(damageDealed / 200f);
         if (hp <= 0)
         {
             die();
@@ -98,6 +101,7 @@ public class Enemy extends Sprite {
      * @param amount    the amount of hp the enemy is healed
      */
     public void heal(float amount) {
+        /*
         if(hp < maxHp && maxHp - hp >= amount)
         {
             hp += amount;
@@ -106,6 +110,8 @@ public class Enemy extends Sprite {
         {
             hp += maxHp -hp;
         }
+        */
+        hp = Math.min(hp + amount, maxHp);
         updateHP();
     }
     

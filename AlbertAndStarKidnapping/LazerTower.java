@@ -77,7 +77,7 @@ public class LazerTower extends Tower
             sprite1[0]});
             
         setDimensions(60, 120);
-        setY(getY() - 45);     
+        setY(getY() - 35);     
     }
 
     /**

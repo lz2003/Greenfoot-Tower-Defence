@@ -88,6 +88,7 @@ public abstract class Projectile extends Sprite
     protected void destroy() {
         if (!isRemoved()) {
             removeSprite();
+            Global.getManager().removeProjectile(this);
         }
     }
 }

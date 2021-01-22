@@ -36,6 +36,7 @@ public class ObjectManager
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     private ArrayList<Tower> towers = new ArrayList<Tower>();
     private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+    private ArrayList<Minion> minions = new ArrayList<Minion>();
     
     private JayJay jay;
     
@@ -51,7 +52,7 @@ public class ObjectManager
     private double
         targetX = 775, targetY = 325;
         
-    public static float money = 500;
+    private float money = 50000;
 
     /**
      * Constructor for objects of class ObjectManager
@@ -64,7 +65,7 @@ public class ObjectManager
     
     public void update() {
         mouse.update();
-        updateLoop(getDelta());
+        updateLoop(getDelta()); 
         //updateSpriteLocs();
     }
     
@@ -80,39 +81,19 @@ public class ObjectManager
         for(int i = towers.size() - 1; i >= 0; i--)
             towers.get(i)._update(delta);
         
-        
+        for(int i = minions.size() - 1; i >= 0; i--)
+            minions.get(i)._update(delta);
+            
         for(int i = projectiles.size()-1; i >= 0; i--) {
             Projectile o = projectiles.get(i);
             o._update(delta);
-            if (o.isRemoved()) {
-                projectiles.remove(i);
-            }
+            //if (o.isRemoved()) {
+            //    projectiles.remove(i);
+            //}
         }
         
         jay._update(delta);
         spawner._update(delta);
-    }
-    /*
-    private void updateSpriteLocs() {
-        for(Updated o: objects) {
-            updateSpriteLoc(o);
-        }
-        
-        for(Updated o: enemies) {
-            updateSpriteLoc(o);
-        }
-        
-        for(Tower o: towers) {
-            updateSpriteLoc(o);
-        }
-        
-        for(Projectile o: projectiles) {
-            updateSpriteLoc(o);
-        }
-    }
-    */
-    private void updateSpriteLoc(Updated o) {
-
     }
     
     public void broadcast(int ID) {
@@ -131,12 +112,10 @@ public class ObjectManager
         for(Updated o: projectiles) {
             o._receiveBroadcast(ID);
         }
-    }
-    
-    public void addEnemy(int x, int y, int ID) {
-        //Enemy e = new Maniac(x, y);
-        throw new Error("not implemented yet");
-        //enemies.add(e);
+        
+        for(Updated o: minions) {
+            o._receiveBroadcast(ID);
+        }
     }
     
     public void addEnemy(Enemy e) {
@@ -151,6 +130,10 @@ public class ObjectManager
         towers.add(t);
     }
     
+    public void addMinion(Minion m) {
+        minions.add(m);
+    }
+    
     public void removeEnemy(Enemy e) {
         enemies.remove(e);
     }
@@ -161,6 +144,10 @@ public class ObjectManager
     
     public void removeTower(Tower t) {
         towers.remove(t);
+    }
+    
+    public void removeMinion(Minion m) {
+        towers.remove(m);
     }
     
     public void addObject(Updated u) {
@@ -337,6 +324,10 @@ public class ObjectManager
         jay.damage(damage);
     }
     
+    public float getMoney() {
+        return money;
+    }
+    
     public void addMoney(float amount) {
         money += amount;
     }
@@ -350,5 +341,9 @@ public class ObjectManager
         }
         
         return true;
+    }
+    
+    public Spawner getSpawner() {
+        return spawner;
     }
 }
