@@ -8,8 +8,8 @@ import greenfoot.*;
 public class Zap extends Projectile 
 {
     private static final float[]
-        MAX_DAMAGE = {100, 150, 200, 250},
-        MAX_SPEED = {1, 1, 2, 2};
+        MAX_DAMAGE = {200, 350, 500},
+        MAX_SPEED = {5, 7, 9};
     
     private static GreenfootImage image = new GreenfootImage("projectiles/zap1.png");
     
