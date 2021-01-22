@@ -53,6 +53,9 @@ public class Spawner extends Updated
             case 2: {
                 ArrayList<String> e = new ArrayList<String>();
                 int i;
+                e.add(TR);
+                e.add(WL);
+                e.add(BP);
                 for(i = 0; i < 10; i++) {
                     e.add(MN);
                 }
@@ -195,27 +198,32 @@ public class Spawner extends Updated
     
     // spawn enemies
     private void spawn(ArrayList<String> enemies, double offset) {
+        int delay = 2;
         for(int i = 0; i < enemies.size(); i++) {
             switch(enemies.get(i)) {
                 case BP: 
-                    manager.addEnemy(new BabyPekka(manager.startPosX - (i + 1)* offset, manager.startPosY));
+                    new BabyPekka(manager.startPosX - (i + delay)* offset, manager.startPosY);
                     break;
                 case GL: 
-                    manager.addEnemy(new Golem(manager.startPosX - (i + 1) * offset, manager.startPosY));
+                    new Golem(manager.startPosX - (i + delay) * offset, manager.startPosY);
                     break;
                 case MN: 
-                    manager.addEnemy(new Maniac(manager.startPosX - (i + 1) * offset, manager.startPosY));
+                    new Maniac(manager.startPosX - (i + delay) * offset, manager.startPosY);
                     break;
                 case PK: 
-                    manager.addEnemy(new Pekka(manager.startPosX - (i + 1) * offset, manager.startPosY));
+                    new Pekka(manager.startPosX - (i + delay) * offset, manager.startPosY);
                     break;
                 case TR: 
-                    manager.addEnemy(new Troll(manager.startPosX - (i + 1) * offset, manager.startPosY));
+                    new Troll(manager.startPosX - (i + delay) * offset, manager.startPosY);
                     break;
                 case WL: 
-                    manager.addEnemy(new Warlock(manager.startPosX - (i + 1) * offset, manager.startPosY));
+                    new Warlock(manager.startPosX - (i + delay) * offset, manager.startPosY);
                     break;
             }
         }
+    }
+    
+    public int getLevel() {
+        return level;
     }
 }

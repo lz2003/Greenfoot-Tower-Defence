@@ -9,7 +9,8 @@ import java.util.*;
 public class BuildCursor extends Actor
 {
     private static BuildCursor cursor;
-    private static int state;
+    private static int state = TowerButton.IDLE; 
+    private static int idleX = 1000, idleY = -100;
     
     public static void init() {
         cursor = new BuildCursor();
@@ -20,7 +21,7 @@ public class BuildCursor extends Actor
     }
 
     private BuildCursor() {
-        Global.world.addObject(this, -50, -50);
+        Global.world.addObject(this, idleX, idleY);
         getImage().setTransparency(169);
     }
 
@@ -29,7 +30,7 @@ public class BuildCursor extends Actor
         // Set location
         if(Global.getManager().mouseX() > Game.canvasWidth || Global.getManager().mouseX() < 0 ||
            Global.getManager().mouseY() > Game.canvasHeight || Global.getManager().mouseY() < 0) {
-            setLocation(1000, 500);
+            setLocation(idleX, idleY);
             inWorld = false;
             return;
         }
@@ -48,7 +49,7 @@ public class BuildCursor extends Actor
             inWorld = true;
             setImage(TowerButton.icons[state]);
         } else {
-            setLocation(1000, 500);
+            setLocation(idleX, idleY);
             inWorld = false;
             return;
         }

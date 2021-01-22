@@ -274,6 +274,10 @@ public abstract class Sprite extends Updated{
     public void move(double dist) {
         setLocation(getX() + Math.cos(rot) * dist, getY() + Math.sin(rot) * dist);
     }
+    
+    public void move(double dist, double angle) {
+        setLocation(getX() + Math.cos(angle) * dist, getY() + Math.sin(angle) * dist);
+    }
    
     public double getX() {
         return xLoc;
@@ -294,7 +298,10 @@ public abstract class Sprite extends Updated{
     public BufferedImage getImage() {
         return image;
     }
-
+    
+    /**
+     * Stores the z index value of the sprite. Does not change the layer or order it is drawn in.
+     */
     public void setZ(int z) {
         zIndex = z;
     }
@@ -315,6 +322,14 @@ public abstract class Sprite extends Updated{
         this.setRotation(
             Math.atan2((y - getY()), (x - getX()))
         );
+    }
+    
+    public void moveTowards(double x, double y, double step) {
+        double rotation = (
+            Math.atan2((y - getY()), (x - getX()))
+        );
+        
+        move(step, rotation);
     }
     
     public int getWidth() {

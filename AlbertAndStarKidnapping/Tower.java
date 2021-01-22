@@ -66,14 +66,14 @@ public abstract class Tower extends Sprite
     /**
      * Determines if the cooldown timer has expired
      */
-    private boolean canAct(){
+    protected boolean canAct(){
         return System.currentTimeMillis() - this.lastTime >= cooldown;
     }
     
     /**
      * Resets Cooldown Timer to zero.
      */
-    private void resetCooldown(){
+    protected void resetCooldown(){
         this.lastTime = System.currentTimeMillis();
     }
     
@@ -145,5 +145,13 @@ public abstract class Tower extends Sprite
      */
     public int getIY() {
         return this.iY;
+    }
+    
+    /**
+     * Removes the tower from the world
+     */
+    public void destroy() {
+        removeSprite();
+        Global.getManager().removeTower(this);
     }
 }
