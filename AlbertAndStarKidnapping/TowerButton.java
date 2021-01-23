@@ -87,7 +87,7 @@ public class TowerButton extends Button
         int y = getY() + 30;
         String s = Integer.toString((int)cost);
 
-        getWorld().addObject(new TowerText(x, y, s), x, y);
+        getWorld().addObject(new TowerTextDisplay(x, y, s), x, y);
     }
     /**
      * Act - do whatever the TowerButton wants to do. This method is called whenever
@@ -129,8 +129,8 @@ public class TowerButton extends Button
     }    
 }
 
-class TowerText extends TextField {
-    public TowerText(int x, int y, String pre) {
+class TowerTextDisplay extends TextField {
+    public TowerTextDisplay(int x, int y, String pre) {
         super(x, y, pre);
         setValue(pre);
     }
