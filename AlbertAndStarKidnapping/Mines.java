@@ -7,9 +7,7 @@ import greenfoot.*;
  */
 public class Mines extends Tower 
 {
-    private static final float PRODUCTION = 5;
-    private int goldPerPeriod;
-    
+    private float goldPerSecond;
     /**
      * Creates a gold mine.
      * @param x the x coordinate of the tower
@@ -19,31 +17,20 @@ public class Mines extends Tower
      */
     public Mines(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 0, 1500, new GreenfootImage[]{
+        super(x, y, iX, iY, 1, 0, 1000, new GreenfootImage[]{
             new GreenfootImage("images/Gold Mine/goldMine1.png"),
             new GreenfootImage("images/Gold Mine/goldMine2.png"),
             new GreenfootImage("images/Gold Mine/goldMine3.png")});
-        goldPerPeriod = 1;
+        goldPerSecond = 1;
     }
 
     /**
      * Attack enemies
      */
-    protected void attack(Enemy e) {
-        // do nothing
-    }
-    
-    /**
-     * Spawn barbarian
-     */
-    protected void attack() {
-        Global.getManager().addMoney(PRODUCTION);
-        resetCooldown();
-    }
-    
-    public void _update(float delta) {
-        if(canAct()) {
-            attack();
-        }
+    public void _update(float delta)
+    {
+        //produce gold
+        System.out.println(goldPerSecond * delta);
+        Global.getManager().addMoney(goldPerSecond * delta);
     }
 }

@@ -13,6 +13,8 @@ public class Game extends World
     public static final int canvasWidth = 850, canvasHeight = 600;
     private ObjectManager manager;
     private Canvas canvas;
+    TowerText towerText;
+    TowerLevel towerLevel;
     public Game()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -40,6 +42,11 @@ public class Game extends World
         
         labelY += 30;
         addObject(new LevelText(5, labelY), 5 , labelY);
+
+        towerText = new TowerText(400, 620);
+        addObject(towerText, 400, 620);
+        towerLevel = new TowerLevel(400, 650);
+        addObject(towerLevel, 400, 650);
         
         addObject(new HomeButton(), 45, 705);
         addObject(new FastForwardButton(), 45 + 75 + 10, 705);
