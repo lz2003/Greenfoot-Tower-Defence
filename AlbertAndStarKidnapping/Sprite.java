@@ -355,6 +355,10 @@ public abstract class Sprite extends Updated{
         this.apparentHeight = height;
     }
     
+    public boolean isInsideImage(int x, int y){
+        return (getX() - apparentWidth/2) <=x && x <= (getX() + apparentWidth/2) && (getY() - apparentHeight/2) <= y && y <= (getY() + apparentHeight/2);
+    }
+    
     public void setDimensions(int width, int height) {
         setWidth(width);
         setHeight(height);

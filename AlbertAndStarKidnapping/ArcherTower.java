@@ -5,7 +5,7 @@ import greenfoot.*;
  * @author Ryan Lin
  * @version (a version number or a date)
  */
-public class ArcherTower extends Tower 
+public class ArcherTower extends CombatTower 
 {
     private static GreenfootImage[] sprite1 = {
         new GreenfootImage("images/tower/Archer/L1/0001.png"),

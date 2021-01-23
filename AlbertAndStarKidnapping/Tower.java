@@ -26,6 +26,9 @@ public abstract class Tower extends Sprite
     protected int iX, iY;
     protected double rotation = 0;
     private GreenfootImage[]images;
+    protected CircleMask mask;
+    protected long lastClicked = 0;
+    protected long timeDelay = 500;
     
     /**
      * Creates a tower.
@@ -56,10 +59,25 @@ public abstract class Tower extends Sprite
      * Update the tower
      */
     public void _update(float delta) {
-        Enemy enemy = getNextEnemy();
-        if(canAct() && enemy != null){
-            attack(enemy);
-            resetCooldown();
+        checkClick();
+    }
+    
+    private void checkClick(){
+        if(Global.getManager().mouseDown() && System.currentTimeMillis() - lastClicked >= timeDelay){
+            if(mask == null){
+                if(isSelectedTower()){
+                    mask = new CircleMask(getX(), getY(), range);
+                    lastClicked = System.currentTimeMillis();
+                    Global.world.towerText.setTower(this);
+                    Global.world.towerLevel.setTower(this);
+                }
+            } else if(Global.getManager().mouseX() <= Global.world.canvasWidth && Global.getManager().mouseY() <= Global.world.canvasHeight){
+                mask.removeSprite();
+                mask = null;
+                lastClicked = System.currentTimeMillis();
+                Global.world.towerText.unlinkTower(this);
+                Global.world.towerLevel.unlinkTower(this);
+            }
         }
     }
     
@@ -78,35 +96,12 @@ public abstract class Tower extends Sprite
     }
     
     /**
-     * Get the next enemy targeted by this tower
-     * @return Enemy the closest enemy to the tower, null if no enemies exist
-     */
-    protected Enemy getNextEnemy() {
-        double min = range;
-        Enemy next = null;
-        for(Enemy e: Global.manager.getEnemies()){
-            double dist = Math2D.distance(e.getX(), this.getX(), e.getY(), this.getY());
-            if(dist < min){
-                min = dist;
-                next = e;
-            }
-        }
-        this.rotation = next != null ? Math2D.angleTo(getX(), next.getX(), getY(), next.getY()) : this.rotation;
-        return next;
-    }
-    
-    /**
      * Level up the tower
      */
     private void levelup() {
         this.level = Math.max(this.level+1, images.length);
         setImage(images[this.level-1]);
     }
-    
-    /**
-     * Attack enemies
-     */
-    protected abstract void attack(Enemy e);
 
     /**
      * Get the cost of purchasing the tower
@@ -153,5 +148,12 @@ public abstract class Tower extends Sprite
     public void destroy() {
         removeSprite();
         Global.getManager().removeTower(this);
+    }
+    
+    /**
+     * Returns if the mouse is currently over this tower
+     */
+    public boolean isSelectedTower(){
+        return Slot.getSelected().getIndex().x == iX && Slot.getSelected().getIndex().y == iY;
     }
 }

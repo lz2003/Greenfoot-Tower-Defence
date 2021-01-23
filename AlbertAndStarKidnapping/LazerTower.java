@@ -5,7 +5,7 @@ import greenfoot.*;
  * @author Ryan Lin
  * @version (a version number or a date)
  */
-public class LazerTower extends Tower 
+public class LazerTower extends CombatTower 
 {
     private static GreenfootImage[] sprite1 = {
         new GreenfootImage("images/tower/Laser/L1/0001.png"),

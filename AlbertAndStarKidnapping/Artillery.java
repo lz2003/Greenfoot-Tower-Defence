@@ -5,7 +5,7 @@ import greenfoot.*;
  * @author Ryan Lin
  * @version (a version number or a date)
  */
-public class Artillery extends Tower 
+public class Artillery extends CombatTower 
 {
     private static GreenfootImage[] sprite1 = {
         new GreenfootImage("images/tower/Cannon/L1/0001.png"),

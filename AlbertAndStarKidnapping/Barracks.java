@@ -6,7 +6,7 @@ import java.util.*;
  * @author Ryan Lin 
  * @version (a version number or a date)
  */
-public class Barracks extends Tower 
+public class Barracks extends CombatTower 
 {
     public static final int MINIONS_PER_BARRACK = 3;
     private static int numBarracks = 0;
