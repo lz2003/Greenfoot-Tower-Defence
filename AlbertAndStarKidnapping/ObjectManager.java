@@ -17,7 +17,9 @@ public class ObjectManager
         CAM_SPEED = 3f;
         
     public static final int 
-        STATE_BUILD = 0;    
+        STATE_BUILD = 0,
+        STATE_IDLE = 1,
+        STATE_MENU = 2;    
         
     //private float camX = 0, camY = 0;
     private int state = 0;
@@ -34,6 +36,7 @@ public class ObjectManager
     private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
     private ArrayList<Tower> towers = new ArrayList<Tower>();
     private ArrayList<Projectile> projectiles = new ArrayList<Projectile>();
+    private ArrayList<Minion> minions = new ArrayList<Minion>();
     
     private JayJay jay;
     
@@ -41,72 +44,56 @@ public class ObjectManager
     
     private Spawner spawner;
     
-    private int 
-        targetIndexX = 16, targetIndexY = 6,
-        startIndexX = 0, startIndexY = 5;
+    public static final int 
+        targetIndexX = 15, targetIndexY = 6,
+        startIndexX = 0, startIndexY = 5,
+        startPosX = startIndexX * Global.SLOT_SIZE + Global.SLOT_SIZE / 2, startPosY = startIndexY * Global.SLOT_SIZE + Global.SLOT_SIZE / 2;
         
     private double
         targetX = 775, targetY = 325;
+        
+    private float money = 50000;
 
     /**
      * Constructor for objects of class ObjectManager
      */
     public ObjectManager() {
         mouse = new Mouse();
-        spawner = new Spawner();
+        spawner = new Spawner(this);
         jay = new JayJay(targetX, targetY);
     }
     
     public void update() {
         mouse.update();
-        updateLoop(getDelta());
+        updateLoop(getDelta()); 
         //updateSpriteLocs();
     }
     
     private void updateLoop(float delta) {
-        for(Updated o: objects) {
-            o._update(delta);
-        }
+        for(int i = objects.size() - 1; i >= 0; i--)
+            objects.get(i)._update(delta);
+
         
-        for(Enemy o: enemies) {
-            o._update(delta);
-        }
+        for(int i = enemies.size() - 1; i >= 0; i--)
+            enemies.get(i)._update(delta);
         
-        for(Tower o: towers) {
-            o._update(delta);
-        }
         
+        for(int i = towers.size() - 1; i >= 0; i--)
+            towers.get(i)._update(delta);
+        
+        for(int i = minions.size() - 1; i >= 0; i--)
+            minions.get(i)._update(delta);
+            
         for(int i = projectiles.size()-1; i >= 0; i--) {
             Projectile o = projectiles.get(i);
             o._update(delta);
-            if (o.isRemoved()) {
-                projectiles.remove(i);
-            }
+            //if (o.isRemoved()) {
+            //    projectiles.remove(i);
+            //}
         }
         
         jay._update(delta);
-    }
-    /*
-    private void updateSpriteLocs() {
-        for(Updated o: objects) {
-            updateSpriteLoc(o);
-        }
-        
-        for(Updated o: enemies) {
-            updateSpriteLoc(o);
-        }
-        
-        for(Tower o: towers) {
-            updateSpriteLoc(o);
-        }
-        
-        for(Projectile o: projectiles) {
-            updateSpriteLoc(o);
-        }
-    }
-    */
-    private void updateSpriteLoc(Updated o) {
-
+        spawner._update(delta);
     }
     
     public void broadcast(int ID) {
@@ -125,12 +112,10 @@ public class ObjectManager
         for(Updated o: projectiles) {
             o._receiveBroadcast(ID);
         }
-    }
-    
-    public void addEnemy(int x, int y, int ID) {
-        Enemy e = new Enemy(x, y, new GreenfootImage("god.png"));
         
-        enemies.add(e);
+        for(Updated o: minions) {
+            o._receiveBroadcast(ID);
+        }
     }
     
     public void addEnemy(Enemy e) {
@@ -145,6 +130,10 @@ public class ObjectManager
         towers.add(t);
     }
     
+    public void addMinion(Minion m) {
+        minions.add(m);
+    }
+    
     public void removeEnemy(Enemy e) {
         enemies.remove(e);
     }
@@ -155,6 +144,10 @@ public class ObjectManager
     
     public void removeTower(Tower t) {
         towers.remove(t);
+    }
+    
+    public void removeMinion(Minion m) {
+        towers.remove(m);
     }
     
     public void addObject(Updated u) {
@@ -171,11 +164,14 @@ public class ObjectManager
 
     public void init() {
         int widthIndex = 0, heightIndex = 0;
-        for(int x = 0; x < Global.getWorld().getWidth(); x += Global.SLOT_SIZE) {
+        int width = 850;
+        int height = 600;
+        
+        for(int x = 0; x < width; x += Global.SLOT_SIZE) {
             widthIndex++;
         }
         
-        for(int y = 0; y < Global.getWorld().getHeight(); y += Global.SLOT_SIZE) {
+        for(int y = 0; y < height; y += Global.SLOT_SIZE) {
             heightIndex++;
         }
             
@@ -184,9 +180,9 @@ public class ObjectManager
         
         this.maxNodesX = widthIndex;
         this.maxNodesY = heightIndex;
-            
-        for(int x = 0, index_x = 0; x < Global.getWorld().getWidth(); x += Global.SLOT_SIZE, index_x++) {
-            for(int y = 0, index_y = 0; y < Global.getWorld().getHeight(); y += Global.SLOT_SIZE, index_y++) {
+           
+        for(int x = 0, index_x = 0; x < width; x += Global.SLOT_SIZE, index_x++) {
+            for(int y = 0, index_y = 0; y < height; y += Global.SLOT_SIZE, index_y++) {
                 Slot s = new Slot(x + Global.SLOT_SIZE / 2, y  + Global.SLOT_SIZE / 2, index_x, index_y, false);
                 nodes[index_x][index_y] = s.getNode();
                 slots[index_x][index_y] = s;
@@ -199,8 +195,7 @@ public class ObjectManager
         pathfinder = new PathfindingSimplified(nodes, this.startNode, this.targetNode);
         path = pathfinder.getPath();
         
-        for(int i = 0; i < 1; i++)
-            new BabyPekka(20, 20);
+        new Background(width, height);
     }
     
     public Node getClosestNode(Point loc) {
@@ -236,7 +231,7 @@ public class ObjectManager
     
     public boolean rebuildPath() {
         // Try to find a path
-        pathfinder = new PathfindingSimplified(nodes, nodes[0][0], nodes[targetIndexX][targetIndexY]);
+        pathfinder = new PathfindingSimplified(nodes, nodes[startIndexX][startIndexY], nodes[targetIndexX][targetIndexY]);
         Node[] path = pathfinder.getPath();
         
         // If no path found, dont set enemy path to new path
@@ -327,5 +322,28 @@ public class ObjectManager
     
     public void damageJayJay(float damage) {
         jay.damage(damage);
+    }
+    
+    public float getMoney() {
+        return money;
+    }
+    
+    public void addMoney(float amount) {
+        money += amount;
+    }
+    
+    public boolean requestMoney(float amount) {
+        money -= amount;
+        
+        if(money < 0) {
+            money += amount;
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public Spawner getSpawner() {
+        return spawner;
     }
 }

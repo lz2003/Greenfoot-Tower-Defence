@@ -1,32 +1,22 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Pekka here.
+ * The Pekka is a large unit that has a large amount of health, large damage, and very slow. 
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
 public class Pekka extends Enemy 
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
+    private static GreenfootImage idle = new GreenfootImage("t1.png");
     /**
-     * Constructor for objects of class Pekka
-     */
-    public Pekka(double x, double y, GreenfootImage image) {
-        super(x, y, image, 500, 50, 3, 2f, false, false);
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
+     * Constructor for Pekka
      * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * @param x         the x coordinate of Pekka
+     * @param y         the y coordinate of Pekka
      */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public Pekka(double x, double y) {
+        super(x, y, idle, 500, 50, 3, 2f, false, false);
     }
+
 }

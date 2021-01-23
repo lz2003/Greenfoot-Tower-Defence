@@ -8,12 +8,23 @@ import greenfoot.*;
  */
 public abstract class Tower extends Sprite 
 {
+    public static final int 
+        COST_ARCHER = 150,
+        COST_CANNON = 100,
+        COST_BARRACKS = 800,
+        COST_FIREBALL = 500,
+        COST_ICEBALL = 450,
+        COST_LASER = 650,
+        COST_MINES = 100,
+        COST_PILLBOX = 900;
+        
     protected int cost;
     protected int range;
     protected int level;
     protected int cooldown;
     protected long lastTime;
     protected int iX, iY;
+    protected double rotation = 0;
     private GreenfootImage[]images;
     protected CircleMask mask;
     protected long lastClicked = 0;
@@ -31,7 +42,7 @@ public abstract class Tower extends Sprite
      * @param images an array of greenfoot images for each level of the tower
      */
     public Tower(int x, int y, int iX, int iY, int cost, int range, int cooldown, GreenfootImage[]images) {
-        super(x, y, images[0]);
+        super(x, y, images[0], 1);
         setLocation(x, y);
         this.iX = iX;
         this.iY = iY;
@@ -48,8 +59,9 @@ public abstract class Tower extends Sprite
      * Update the tower
      */
     public void _update(float delta) {
-        if(canAct() && getNextEnemy() != null){
-            attack();
+        Enemy enemy = getNextEnemy();
+        if(canAct() && enemy != null){
+            attack(enemy);
             resetCooldown();
         }
         if(Global.getManager().mouseDown() && System.currentTimeMillis() - lastClicked >= timeDelay){
@@ -73,14 +85,14 @@ public abstract class Tower extends Sprite
     /**
      * Determines if the cooldown timer has expired
      */
-    private boolean canAct(){
+    protected boolean canAct(){
         return System.currentTimeMillis() - this.lastTime >= cooldown;
     }
     
     /**
      * Resets Cooldown Timer to zero.
      */
-    private void resetCooldown(){
+    protected void resetCooldown(){
         this.lastTime = System.currentTimeMillis();
     }
     
@@ -98,6 +110,7 @@ public abstract class Tower extends Sprite
                 next = e;
             }
         }
+        this.rotation = next != null ? Math2D.angleTo(getX(), next.getX(), getY(), next.getY()) : this.rotation;
         return next;
     }
     
@@ -112,7 +125,7 @@ public abstract class Tower extends Sprite
     /**
      * Attack enemies
      */
-    protected abstract void attack();
+    protected abstract void attack(Enemy e);
 
     /**
      * Get the cost of purchasing the tower
@@ -152,9 +165,6 @@ public abstract class Tower extends Sprite
     public int getIY() {
         return this.iY;
     }
-<<<<<<< Updated upstream
-}
-=======
     
     /**
      * Removes the tower from the world
@@ -170,9 +180,4 @@ public abstract class Tower extends Sprite
     public boolean isSelectedTower(){
         return Slot.getSelected().getIndex().x == iX && Slot.getSelected().getIndex().y == iY;
     }
-<<<<<<< Updated upstream
 }
->>>>>>> Stashed changes
-=======
-}
->>>>>>> Stashed changes

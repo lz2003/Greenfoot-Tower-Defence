@@ -214,10 +214,10 @@ class Node {
                          grid.get(arrayLoc.x    , arrayLoc.y - 1),
                          grid.get(arrayLoc.x    , arrayLoc.y + 1),
                          // Comment below to exclude travelling through corners
-                         grid.get(arrayLoc.x + 1, arrayLoc.y - 1),
-                         grid.get(arrayLoc.x + 1, arrayLoc.y + 1),
-                         grid.get(arrayLoc.x - 1, arrayLoc.y - 1),
-                         grid.get(arrayLoc.x - 1, arrayLoc.y + 1)
+                         //grid.get(arrayLoc.x + 1, arrayLoc.y - 1),
+                         //grid.get(arrayLoc.x + 1, arrayLoc.y + 1),
+                         //grid.get(arrayLoc.x - 1, arrayLoc.y - 1),
+                         //grid.get(arrayLoc.x - 1, arrayLoc.y + 1)
         };
 
         int length = 0;

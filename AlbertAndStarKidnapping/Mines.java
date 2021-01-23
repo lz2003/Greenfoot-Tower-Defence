@@ -29,7 +29,7 @@ public class Mines extends Tower
     /**
      * Attack enemies
      */
-    protected void attack()
+    protected void attack(Enemy e)
     {
         //produce gold
         long currentTime = System.currentTimeMillis();

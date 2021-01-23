@@ -138,6 +138,100 @@ public abstract class Sprite extends Updated{
         setHeight(height);
     }
     
+    public Sprite(double x, double y, BufferedImage image, int layer) {
+        if(globalCanvas == null) throw new Error("Global canvas has not been set. If no global " + 
+        "canvas is to be desired, use alternate constructor of new Sprite(canvas, xLoc, yLoc, image)");
+        
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        this.layer = layer;
+        globalCanvas.addSprite(this, layer);
+        canvas = globalCanvas;
+        initImage(image);
+    }
+    
+    public Sprite(Canvas c, double x, double y, BufferedImage image) {
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        this.layer = layer;
+        c.addSprite(this, layer);
+        canvas = c;
+        initImage(image);
+    }
+    
+    public Sprite(Canvas c, double x, double y, BufferedImage image, int layer) {
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        this.layer = layer;
+        c.addSprite(this, layer);
+        canvas = c;
+        initImage(image);
+    }
+    
+    public Sprite(Canvas c, double x, double y, BufferedImage image, int width, int height) {
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        this.layer = layer;
+        c.addSprite(this, layer);
+        canvas = c;
+        initImage(image);
+        setWidth(width);
+        setHeight(height);
+    }
+    
+    public Sprite(Canvas c, double x, double y, BufferedImage image, int width, int height, int layer) {
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        this.layer = layer;
+        c.addSprite(this, layer);
+        canvas = c;
+        initImage(image);
+        setWidth(width);
+        setHeight(height);
+    }
+    
+    public Sprite(double x, double y, BufferedImage image, int width, int height) {
+        if(globalCanvas == null) throw new Error("Global canvas has not been set. If no global " + 
+        "canvas is to be desired, use alternate constructor of new Sprite(canvas, xLoc, yLoc, image)");
+        
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        canvas = globalCanvas;
+        this.layer = layer;
+        canvas.addSprite(this, layer);
+        initImage(image);
+        setWidth(width);
+        setHeight(height);
+    }
+    
+    public Sprite(double x, double y, BufferedImage image, int width, int height, int layer) {
+        if(globalCanvas == null) throw new Error("Global canvas has not been set. If no global " + 
+        "canvas is to be desired, use alternate constructor of new Sprite(canvas, xLoc, yLoc, image)");
+        
+        xLoc = x;
+        yLoc = y;
+        xLocInt = (int) (x + .5f);
+        yLocInt = (int) (y + .5f);
+        canvas = globalCanvas;
+        this.layer = layer;
+        canvas.addSprite(this, layer);
+        initImage(image);
+        setWidth(width);
+        setHeight(height);
+    }
+    
     public void setLocation(double x, double y) {
         canvas.removeSprite(this, layer);
         xLoc = x;
@@ -152,7 +246,7 @@ public abstract class Sprite extends Updated{
     }
     
     public void setY(double y) {
-        setLocation(y, getY());
+        setLocation(getX(), y);
     }
     
     private void initImage(GreenfootImage image) {
@@ -180,6 +274,10 @@ public abstract class Sprite extends Updated{
     public void move(double dist) {
         setLocation(getX() + Math.cos(rot) * dist, getY() + Math.sin(rot) * dist);
     }
+    
+    public void move(double dist, double angle) {
+        setLocation(getX() + Math.cos(angle) * dist, getY() + Math.sin(angle) * dist);
+    }
    
     public double getX() {
         return xLoc;
@@ -200,7 +298,10 @@ public abstract class Sprite extends Updated{
     public BufferedImage getImage() {
         return image;
     }
-
+    
+    /**
+     * Stores the z index value of the sprite. Does not change the layer or order it is drawn in.
+     */
     public void setZ(int z) {
         zIndex = z;
     }
@@ -221,6 +322,14 @@ public abstract class Sprite extends Updated{
         this.setRotation(
             Math.atan2((y - getY()), (x - getX()))
         );
+    }
+    
+    public void moveTowards(double x, double y, double step) {
+        double rotation = (
+            Math.atan2((y - getY()), (x - getX()))
+        );
+        
+        move(step, rotation);
     }
     
     public int getWidth() {
@@ -349,6 +458,18 @@ public abstract class Sprite extends Updated{
             animationTimer = 0;
             nextFrameLooped();
         }
+    }
+    
+    public void setFrameIndex(int frame) {
+        animFrame = frame;
+    }
+    
+    public int getFrameIndex() {
+        return animFrame;
+    }
+    
+    public int getFrameCount() {
+        return animation.getFrameCount();
     }
     
     public void nextFrame() {

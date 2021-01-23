@@ -1,28 +1,37 @@
 import greenfoot.*;
 import java.awt.Color;
 /**
- * Write a description of class Enemy here.
+ * Enemies make their way to Jay Jay the Dragon by following the path in the attempt to defeat/kill it. They are attacked by the towers that are guarding the path. If their health bar reaches 0, the enemy dies. 
+ * Each different enemy has different stats and attacks. If they are successful in defeating Jay Jay, the level ends.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
 public class Enemy extends Sprite {
-    private static final float 
-        DEFAULT_HP = 100,
+    public static final float 
+        DEFAULT_HP = 1000,
         DEFAULT_RANGE = 50;
-    private float speed = 1;
+    private float speed = 1;//0.3f;
     private int nodeIndex = 0;
     private Node[] reroutedPath;
     private float hp, maxHp;
     private double distTravelled = 0;
     private float range = 50, rangeSquared = 50 * 50;
     private float coolDown = 1, coolDownTime;
-    private boolean magRes, phyRes;
+    private boolean magRes = false, phyRes = false;
     
     private HPBar hpBar;
-    private static final int HPBAR_WIDTH = 100, HPBAR_HEIGHT = 20;
+    private static final int HPBAR_WIDTH = 40, HPBAR_HEIGHT = 5;
     private static final Color HPBKG = new Color(255, 0, 0), HPFOR = new Color(0, 255, 0);
-    private double hpOffset = 50;
+    protected double hpOffset = 50, velX, velY, angle;
+    
+    /**
+     * Constructor for enemy
+     * 
+     * @param x         the x coordinate of the enemy
+     * @param y         the y coordinate of the enemy
+     * @param image     image representing the enemy
+     */
     public Enemy(double x, double y, GreenfootImage image) {
         super(x, y, image, 100, 100, 1);
         setLocation(x, y);
@@ -32,9 +41,22 @@ public class Enemy extends Sprite {
         hpBar = new HPBar(x, y, HPBAR_WIDTH, HPBAR_HEIGHT, hp, HPBKG, HPFOR); 
     }
     
+    /**
+     * Constructor for enemy
+     * 
+     * @param x         the x coordinate of the enemy
+     * @param y         the y coordinate of the enemy
+     * @param image     image representing the enemy
+     * @param hp        amount of health the enemy has
+     * @param range     the range of the enemy attack
+     * @param coolDown  time it takes in between enemy attacks 
+     * @param speed     movement speed of the enemy
+     * @param magRes    true if the enemy has resistance to magical damage
+     * @param phyRes    true if the enemy has resistance to physical damage
+     */
     public Enemy(double x, double y, GreenfootImage image, float hp, float range, float coolDown, float speed, boolean magRes, boolean phyRes) {
         super(x, y, image, 100, 100, 1);
-        setLocation(x, y);
+        setLocation(x, y); 
         Global.manager.addEnemy(this);
         this.hp = hp;
         this.maxHp = hp;
@@ -56,15 +78,18 @@ public class Enemy extends Sprite {
      */
     public void damage(float damage, boolean typeMag, boolean typePhy)
     {
+        float damageDealed = damage;
         if((typeMag && magRes) || (typePhy && phyRes))
         {
-            hp -= damage * 0.1f;
+            damageDealed = damage * .1f;
+            hp -= damageDealed;
         }
         else
         {
             hp -= damage;
-        }
+        } 
         updateHP();
+        Global.getManager().addMoney(damageDealed / 200f);
         if (hp <= 0)
         {
             die();
@@ -76,6 +101,7 @@ public class Enemy extends Sprite {
      * @param amount    the amount of hp the enemy is healed
      */
     public void heal(float amount) {
+        /*
         if(hp < maxHp && maxHp - hp >= amount)
         {
             hp += amount;
@@ -84,6 +110,8 @@ public class Enemy extends Sprite {
         {
             hp += maxHp -hp;
         }
+        */
+        hp = Math.min(hp + amount, maxHp);
         updateHP();
     }
     
@@ -92,12 +120,15 @@ public class Enemy extends Sprite {
     
     }
     
+    /**
+     * Updates the health bar to represent the current hp
+     */
     private void updateHP() {
         hpBar.setHP(hp);
     }
     
     public void _update(float delta) {
-        movement(delta);
+        movement(delta); 
         checkCanAttack(delta);
         hpBar.setLocation(getX(), getY() - hpOffset);
         updateHP();
@@ -131,7 +162,7 @@ public class Enemy extends Sprite {
         }
         Point next = nextNode.getWorldLoc();
             
-        moveTowards(next.x, next.y);
+        moveTowards(next.x, next.y, delta);
         
         if(Math2D.distance(getX(), next.x, getY(), next.y) < speed + 5f) {
             nodeIndex++;
@@ -143,11 +174,11 @@ public class Enemy extends Sprite {
         distTravelled += Math2D.distance(0, x, 0, y);
     }
     
-    public void moveTowards(double x, double y) {
-        double angle = Math2D.angleTo(getX(), x, getY(), y);
-        
-        double velX = speed *  Math.cos(angle);
-        double velY = speed * Math.sin(angle);
+    public void moveTowards(double x, double y, float magnitude) {
+        this.angle = Math2D.angleTo(getX(), x, getY(), y);
+
+        this.velX = speed *  Math.cos(angle);
+        this.velY = speed * Math.sin(angle);
         
         translate(velX, velY);
     }
@@ -178,9 +209,16 @@ public class Enemy extends Sprite {
         }
     }
     
+    /**
+     * Called when enemy hp hits 0. Removes the enemy and hp bar from the game.
+     */
     private void die() {
         Global.manager.removeEnemy(this);
         removeSprite();
         hpBar.remove();
+    }
+    
+    public int getNodeIndex() {
+        return nodeIndex; 
     }
 }

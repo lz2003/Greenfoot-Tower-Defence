@@ -5,13 +5,13 @@ import greenfoot.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Cannonball extends Projectile 
+public class Cannonball extends Projectile
 {
     private static final float[]
-        MAX_DAMAGE = {100, 150, 200},
+        MAX_DAMAGE = {250, 350, 500},
         MAX_SPEED = {5, 5, 7};
     
-    private static GreenfootImage image = new GreenfootImage("t1.png");
+    private static GreenfootImage image = new GreenfootImage("projectiles/cannonball1.png");
     /**
      * Constructor for Cannonball class
      * 
