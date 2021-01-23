@@ -15,6 +15,9 @@ public abstract class Tower extends Sprite
     protected long lastTime;
     protected int iX, iY;
     private GreenfootImage[]images;
+    protected CircleMask mask;
+    protected long lastClicked = 0;
+    protected long timeDelay = 500;
     
     /**
      * Creates a tower.
@@ -48,6 +51,22 @@ public abstract class Tower extends Sprite
         if(canAct() && getNextEnemy() != null){
             attack();
             resetCooldown();
+        }
+        if(Global.getManager().mouseDown() && System.currentTimeMillis() - lastClicked >= timeDelay){
+            if(mask == null){
+                if(isSelectedTower()){
+                    mask = new CircleMask(getX(), getY(), range);
+                    lastClicked = System.currentTimeMillis();
+                    Global.world.towerText.setTower(this);
+                    Global.world.towerLevel.setTower(this);
+                }
+            } else if(Global.getManager().mouseX() <= Global.world.canvasWidth && Global.getManager().mouseY() <= Global.world.canvasHeight){
+                mask.removeSprite();
+                mask = null;
+                lastClicked = System.currentTimeMillis();
+                Global.world.towerText.unlinkTower(this);
+                Global.world.towerLevel.unlinkTower(this);
+            }
         }
     }
     
@@ -133,4 +152,23 @@ public abstract class Tower extends Sprite
     public int getIY() {
         return this.iY;
     }
+<<<<<<< Updated upstream
 }
+=======
+    
+    /**
+     * Removes the tower from the world
+     */
+    public void destroy() {
+        removeSprite();
+        Global.getManager().removeTower(this);
+    }
+    
+    /**
+     * Returns if the mouse is currently over this tower
+     */
+    public boolean isSelectedTower(){
+        return Slot.getSelected().getIndex().x == iX && Slot.getSelected().getIndex().y == iY;
+    }
+}
+>>>>>>> Stashed changes
