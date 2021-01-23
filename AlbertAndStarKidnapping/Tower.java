@@ -170,5 +170,9 @@ public abstract class Tower extends Sprite
     public boolean isSelectedTower(){
         return Slot.getSelected().getIndex().x == iX && Slot.getSelected().getIndex().y == iY;
     }
+<<<<<<< Updated upstream
+}
+>>>>>>> Stashed changes
+=======
 }
 >>>>>>> Stashed changes

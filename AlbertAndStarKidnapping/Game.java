@@ -32,9 +32,6 @@ public class Game extends World
         
         manager.init();
         
-<<<<<<< Updated upstream
-        addObject(canvas, getWidth() / 2, getHeight() / 2);
-=======
         addObject(canvas, 850 / 2, getHeight() / 2 - 75);
         
         int labelY = 620;
@@ -43,7 +40,7 @@ public class Game extends World
         
         labelY += 30;
         addObject(new LevelText(5, labelY), 5 , labelY);
-        //CircleMask test = new CircleMask(400, 400, 400);
+
         towerText = new TowerText(400, 620);
         addObject(towerText, 400, 620);
         towerLevel = new TowerLevel(400, 650);
@@ -51,7 +48,6 @@ public class Game extends World
         
         
         init();
->>>>>>> Stashed changes
     }
     
     public void init() {
