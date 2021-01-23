@@ -59,11 +59,10 @@ public abstract class Tower extends Sprite
      * Update the tower
      */
     public void _update(float delta) {
-        Enemy enemy = getNextEnemy();
-        if(canAct() && enemy != null){
-            attack(enemy);
-            resetCooldown();
-        }
+        checkClick();
+    }
+    
+    private void checkClick(){
         if(Global.getManager().mouseDown() && System.currentTimeMillis() - lastClicked >= timeDelay){
             if(mask == null){
                 if(isSelectedTower()){
@@ -97,35 +96,12 @@ public abstract class Tower extends Sprite
     }
     
     /**
-     * Get the next enemy targeted by this tower
-     * @return Enemy the closest enemy to the tower, null if no enemies exist
-     */
-    protected Enemy getNextEnemy() {
-        double min = range;
-        Enemy next = null;
-        for(Enemy e: Global.manager.getEnemies()){
-            double dist = Math2D.distance(e.getX(), this.getX(), e.getY(), this.getY());
-            if(dist < min){
-                min = dist;
-                next = e;
-            }
-        }
-        this.rotation = next != null ? Math2D.angleTo(getX(), next.getX(), getY(), next.getY()) : this.rotation;
-        return next;
-    }
-    
-    /**
      * Level up the tower
      */
     private void levelup() {
         this.level = Math.max(this.level+1, images.length);
         setImage(images[this.level-1]);
     }
-    
-    /**
-     * Attack enemies
-     */
-    protected abstract void attack(Enemy e);
 
     /**
      * Get the cost of purchasing the tower
