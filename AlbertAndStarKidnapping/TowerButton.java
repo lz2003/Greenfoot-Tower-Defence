@@ -38,34 +38,56 @@ public class TowerButton extends Button
         setImage(icons[towerID]);
         getImage().scale(SIZE, SIZE);
         this.towerID = towerID;
+
+        
+    }
+    
+    public void addedToWorld(World w) {
+        int cost = 0;
         /*
+         *     public static final int 
+        COST_ARCHER = 150,
+        COST_CANNON = 100,
+        COST_BARRACKS = 800,
+        COST_FIREBALL = 500,
+        COST_ICEBALL = 450,
+        COST_LASER = 650,
+        COST_MINES = 100,
+        COST_PILLBOX = 900;
+        
+         */
         switch(towerID) {
             case ARCH:
-                setImage(icons[towerID]);
+                cost = Tower.COST_ARCHER;
                 break;
             case ARTY:
-                setImage(icons[towerID]);
+                cost = Tower.COST_CANNON;
                 break;
             case BARA:
-                setImage(icons[towerID]);
+                cost = Tower.COST_BARRACKS;
                 break;
             case FIRE:
-                setImage(icons[towerID]);
+                cost = Tower.COST_FIREBALL;
                 break;
             case ICE:
-                setImage(icons[towerID]);
+                cost = Tower.COST_ICEBALL;
                 break;
-            case LASER:
-                setImage(icons[towerID]);
+            case LAZER:
+                cost = Tower.COST_LASER;
                 break;
             case MINE:
-                setImage(icons[towerID]);
+                cost = Tower.COST_MINES;
                 break;
             case PILL:
-                setImage(icons[towerID]);
+                cost = Tower.COST_PILLBOX;
                 break;
         }
-        */
+
+        int x = getX() - getImage().getWidth() / 2 + 4;
+        int y = getY() + 30;
+        String s = Integer.toString((int)cost);
+
+        getWorld().addObject(new TowerText(x, y, s), x, y);
     }
     /**
      * Act - do whatever the TowerButton wants to do. This method is called whenever
@@ -105,4 +127,17 @@ public class TowerButton extends Button
         }
         */
     }    
+}
+
+class TowerText extends TextField {
+    public TowerText(int x, int y, String pre) {
+        super(x, y, pre);
+        setValue(pre);
+    }
+    
+    public void addedToWorld(World w) {
+        updateLoc();
+    }
+    
+    public void act() {}
 }

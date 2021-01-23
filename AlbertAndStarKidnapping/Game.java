@@ -48,12 +48,17 @@ public class Game extends World
         towerLevel = new TowerLevel(400, 650);
         addObject(towerLevel, 400, 650);
         
+        addObject(new HomeButton(), 45, 705);
+        addObject(new FastForwardButton(), 45 + 75 + 10, 705);
+        addObject(new SaveButton(), 45 + 75 + 75 + 20, 705);
+        addObject(new ReadButton(), 45 + 75 + 75 + + 75 + 30, 705);
+        
         init();
     }
     
     public void init() {
         ButtonGrid b = new ButtonGrid();
-        addObject(b, 887, 50);
+        addObject(b, 887, 45);
         b.set(
             new Button[]{
             new TowerButton(TowerButton.ARCH),
@@ -64,7 +69,7 @@ public class Game extends World
             new TowerButton(TowerButton.LAZER),
             new TowerButton(TowerButton.MINE),
             new TowerButton(TowerButton.PILL),
-            }, 1, 8, 60
+            }, 1, 8, 77
         );
         
         BuildCursor.init();

@@ -16,6 +16,7 @@ public class Spawner extends Updated
         TR = "4",
         WL = "5"
     ;
+
     private int level = 0;
     private ObjectManager manager;
     /**
@@ -24,7 +25,12 @@ public class Spawner extends Updated
     public Spawner(ObjectManager manager) {
         this.manager = manager;
     }
-    
+
+    public Spawner(ObjectManager manager, int level) {
+        this.manager = manager;
+        this.level = level;
+    }
+
     public void _update(float delta) {
         if(manager.getEnemies().size() <= 0) {
             nextLevel();

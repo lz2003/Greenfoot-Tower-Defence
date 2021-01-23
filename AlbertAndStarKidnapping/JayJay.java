@@ -53,6 +53,10 @@ public class JayJay extends Sprite
         }
     }
     
+    public void destroy() {
+        removeSprite();
+    }
+    
     private void endGame() {
         
     }

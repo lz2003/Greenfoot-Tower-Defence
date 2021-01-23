@@ -89,7 +89,7 @@ public class Enemy extends Sprite {
             hp -= damage;
         } 
         updateHP();
-        Global.getManager().addMoney(damageDealed / 200f);
+        Global.getManager().addMoney(damageDealed / 400f);
         if (hp <= 0)
         {
             die();
