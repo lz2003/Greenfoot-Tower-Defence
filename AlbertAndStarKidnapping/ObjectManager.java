@@ -52,7 +52,8 @@ public class ObjectManager
     private double
         targetX = 775, targetY = 325;
         
-    private float money = 50000;
+    private static final float START_MONEY = 50000;    
+    private float money = START_MONEY;
 
     /**
      * Constructor for objects of class ObjectManager
@@ -61,6 +62,36 @@ public class ObjectManager
         mouse = new Mouse();
         spawner = new Spawner(this);
         jay = new JayJay(targetX, targetY);
+    }
+
+    public ObjectManager(ArrayList<Tower> towers, int money, int level) {
+        this.towers = towers;
+        this.money = money;
+        mouse = new Mouse();
+        spawner = new Spawner(this, level);
+        jay = new JayJay(targetX, targetY);
+    }
+    
+    public void reset() {
+        spawner = new Spawner(this);
+        jay.destroy();
+        jay = new JayJay(targetX, targetY);
+        
+        for(int i = towers.size() - 1; i >= 0; i--) {
+            towers.get(i).destroy();
+        }
+        
+        for(int i = enemies.size() - 1; i >= 0; i--) {
+            enemies.get(i).damage(10000000f, false, false);
+        }
+        
+        for(int i = projectiles.size() - 1; i >= 0; i--) {
+            projectiles.get(i).destroy();
+        }
+        
+        for(int i = minions.size() - 1; i >= 0; i--) {
+            minions.get(i).destroy();
+        }
     }
     
     public void update() {
@@ -332,6 +363,10 @@ public class ObjectManager
         money += amount;
     }
     
+    public void setMoney(float amount) {
+        money = amount;
+    }
+    
     public boolean requestMoney(float amount) {
         money -= amount;
         
@@ -345,5 +380,13 @@ public class ObjectManager
     
     public Spawner getSpawner() {
         return spawner;
+    }
+    
+    public void setLevel(int level) {
+        spawner = new Spawner(this, level);
+    }
+    
+    public void clear() {
+        
     }
 }

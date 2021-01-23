@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class TextField extends Label
+public class TextField extends Label
 {
     private int x, y;
     float value = 0;
@@ -34,10 +34,12 @@ public abstract class TextField extends Label
     }    
     
     // Keeps actor to the right of coordinates passed through constructor
-    private void updateLoc() {
+    protected void updateLoc() {
         int xLoc = x + getImage().getWidth() / 2;
         setLocation(xLoc, getY());
     }
     
-    protected abstract float getValue();
+    protected float getValue() {
+        return 0;
+    }
 }
