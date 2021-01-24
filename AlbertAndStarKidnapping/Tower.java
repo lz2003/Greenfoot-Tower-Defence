@@ -24,43 +24,30 @@ public abstract class Tower extends Sprite
     protected long lastTime;
     protected int iX, iY;
     protected double rotation = 0;
-    
-    /**
-     * Default constructor for tower.
-     * @param defaultImage the default image of the tower that is displayed
-     * @param x the x coordinate of the tower
-     * @param y the y coordinate of the tower
-     * @param iX the x index of the tower in the global grid
-     * @param iY the y index of the tower in the global grid
-     */
-    public Tower(GreenfootImage defaultImage, int x, int y, int iX, int iY){
-        this(defaultImage, x, y, iX, iY, 1);
-    }
+    protected GreenfootImage[][]image;
+    protected float[]range;
+    protected float[]cooldown;
     
     /**
      * Creates a tower.
-     * @param defaultImage the default image of the tower that is displayed
+     * @param image a 2D array of sprites
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
      * @param iY the y index of the tower in the global grid
      * @param level the level of the tower
      */
-    public Tower(GreenfootImage defaultImage, int x, int y, int iX, int iY, int level) {
-        super(x, y, new GreenfootImage("images/temp.png"), 1);
+    public Tower(GreenfootImage[][]image, float[]range, float[]cooldown, int x, int y, int iX, int iY, int level) {
+        super(x, y, image[Math2D.clamp(level, 1, Tower.MAX_LEVEL)][0], 1);
         setLocation(x, y);
+        this.image = image;
+        this.range = range;
+        this.cooldown = cooldown;
         this.iX = iX;
         this.iY = iY;
         this.level = level;
         this.lastTime = System.currentTimeMillis();
         Global.manager.addTower(this);
-    }
-    
-    /**
-     * Update the tower
-     */
-    public void _update(float delta) {
-        
     }
     
     /**
@@ -75,7 +62,7 @@ public abstract class Tower extends Sprite
      */
     private void levelup() {
         this.level = Math.max(this.level+1, MAX_LEVEL);
-        setImage(getSpriteImage()[level][0]);
+        setImage(image[level][0]);
     }
     
     /**
@@ -118,29 +105,11 @@ public abstract class Tower extends Sprite
     }
     
     /**
-     * Get the maximum cooldown of the tower
-     * @return an array containing the maximum cooldown of the tower
-     */
-    public abstract float[] getMaxCooldown();
-    
-    /**
-     * Get the maximum range of the tower
-     * @return an array containing the maximum cooldown of the tower
-     */
-    public abstract float[] getMaxRange();
-    
-    /**
-     * Get 2D array of sprite images
-     * @return 2D array of sprite images
-     */
-    public abstract GreenfootImage[][] getSpriteImage();
-    
-    /**
      * Get the cooldown at the current level
      * @return the cooldown in milliseconds of the tower
      */
     public float getCooldown(){
-        return getMaxCooldown()[level-1];
+        return cooldown[level-1];
     }
     
     /**
@@ -148,6 +117,6 @@ public abstract class Tower extends Sprite
      * @return the maximum range of the tower
      */
     public float getRange(){
-        return getMaxRange()[level-1];
+        return range[level-1];
     }
 }
