@@ -8,6 +8,9 @@ import java.util.*;
  */
 public class Barracks extends CombatTower 
 {
+    private static final float[]
+        MAX_COOLDOWN = {5000, 4200, 3800},
+        MAX_RANGE = {300, 400, 500};
     public static final int MINIONS_PER_BARRACK = 3;
     private static int numBarracks = 0;
     /**
@@ -57,5 +60,21 @@ public class Barracks extends CombatTower
      */
     public String toString(){
         return "Barracks";
+    }
+    
+    /**
+     * Get the maximum cooldown of the tower
+     * @return an array containing the maximum cooldown of the tower
+     */
+    public float[] getMaxCooldown(){
+        return MAX_COOLDOWN;
+    }
+    
+    /**
+     * Get the maximum range of the tower
+     * @return an array containing the maximum cooldown of the tower
+     */
+    public float[] getMaxRange(){
+        return MAX_RANGE;
     }
 }

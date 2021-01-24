@@ -11,7 +11,6 @@ public class CircleMask extends Sprite
     private static final String visiblePath = "images/newcircle32.png";
     private static final String hiddenPath = "images/transparent.png";
     private GreenfootImage hiddenImage;
-    private int radius = 100;
     private Tower last = null;
     
     /**
@@ -34,10 +33,11 @@ public class CircleMask extends Sprite
     public void _update(float delta){
         super._update(delta);
         //update cumulative elapsed time
-        if(Greenfoot.mouseClicked(null)){
+        Slot selectedSlot = Slot.getSelected();
+        if(Greenfoot.mouseClicked(null) && selectedSlot != null){
             //Get x index and y index of the slot that the mouse is covering
-            int ix = Slot.getSelected().getIndex().x;
-            int iy = Slot.getSelected().getIndex().y;
+            int ix = selectedSlot.getIndex().x;
+            int iy = selectedSlot.getIndex().y;
             //Get the list of towers in the world
             ArrayList<Tower>towers = Global.getManager().getTowers();
             //Iterate through towers to find the tower at the x and y index
@@ -75,8 +75,8 @@ public class CircleMask extends Sprite
     private void show(Tower selected){
         last = selected;
         GreenfootImage visibleImage = new GreenfootImage(visiblePath);
-        visibleImage.scale(2*radius, 2*radius);
-        setImage(visibleImage);
+        visibleImage.scale((int)(2*selected.getRange()), (int)(2*selected.getRange()));
+        setImage(visibleImage,false);
         setLocation(selected.getX(), selected.getY());
         Global.world.towerText.setTower(selected);
         Global.world.towerLevel.setTower(selected);
