@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class FastForwardButton extends ImageButton
 {
-    private static final GreenfootImage image = new GreenfootImage("t2.png");
+    private static final GreenfootImage image = new GreenfootImage("images/buttons/fastForward/fastForwardUnpressed.png");
     
     public FastForwardButton() {
         super(image);

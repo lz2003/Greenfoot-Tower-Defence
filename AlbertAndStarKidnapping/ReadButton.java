@@ -12,7 +12,7 @@ import java.io.File;
  */
 public class ReadButton extends ImageButton
 {
-    private static final GreenfootImage image = new GreenfootImage("t3.png");
+    private static final GreenfootImage image = new GreenfootImage("images/buttons/load/loadUnpressed.png");
     
     public ReadButton() {
         super(image);

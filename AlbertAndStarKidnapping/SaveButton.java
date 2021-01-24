@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class SaveButton extends ImageButton
 {
-    private static final GreenfootImage image = new GreenfootImage("t2.png");
+    private static final GreenfootImage image = new GreenfootImage("images/buttons/save/saveUnpressed.png");
     public static final String SAVE_DIR = "save";
     public static final String EXT = "owo";
     
