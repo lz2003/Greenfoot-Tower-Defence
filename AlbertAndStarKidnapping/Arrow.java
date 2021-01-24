@@ -21,7 +21,7 @@ public class Arrow extends Projectile
      * @param target    the reference enemy target
      */
     public Arrow(double x, double y, Enemy target) {
-        super(x, y, image, target);
+        super(x, y, image, target, 0);
         isMagic = false;
         damage = MAX_DAMAGE[0];
         speed = MAX_SPEED[0];
@@ -36,7 +36,7 @@ public class Arrow extends Projectile
      * @param level     the level of the projectile
      */
     public Arrow(double x, double y, Enemy target, int level) {
-        super(x, y, image, target);
+        super(x, y, image, target, 0);
         isMagic = false;
         if (level > 0 && level <= MAX_LEVEL) {
             damage = MAX_DAMAGE[level-1];

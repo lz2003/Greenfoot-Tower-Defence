@@ -1,4 +1,3 @@
-
 import greenfoot.*;
 import java.util.ArrayList;
 /**
@@ -25,9 +24,10 @@ public class Splash extends Projectile
      * @param y         the starting y coordinate
      * @param image     the sprite of the projectile
      * @param target    the reference enemy target
+     * @param id        the id of the projectile for sounds
      */
-    public Splash(double x, double y, GreenfootImage image, Enemy target) {
-        super(x, y, image, target);
+    public Splash(double x, double y, GreenfootImage image, Enemy target, int id) {
+        super(x, y, image, target, id);
     }
     
     /**
@@ -39,9 +39,10 @@ public class Splash extends Projectile
      * @param target    the reference enemy target
      * @param explosion animation when splash hits an enemy
      * @param explode   animation when splash hits an enemy
+     * @param id        the id of the projectile for sounds
      */
-    public Splash(double x, double y, GreenfootImage image, Enemy target, Animation explosion, GreenfootImage explode) {
-        super(x, y, image, target);
+    public Splash(double x, double y, GreenfootImage image, Enemy target, Animation explosion, GreenfootImage explode, int id) {
+        super(x, y, image, target, id);
         // Intialize animation
         this.explosion = explosion;
         this.explode = explode;
@@ -107,5 +108,19 @@ public class Splash extends Projectile
         onHit = new Effect(getX(), getY(), explode, explosion);
         setTransparency(0);
         exploding = true;
+        SoundManager.projectileSounds(5);
+    }
+    
+    /**
+     * Destroys the projectile
+     */
+    protected void destroy() {
+        if (!isRemoved()) {
+            if (onHit != null && !onHit.isRemoved()) {
+                onHit.removeSprite();
+            }
+            removeSprite();
+            Global.getManager().removeProjectile(this);
+        }
     }
 }
