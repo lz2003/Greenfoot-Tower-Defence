@@ -21,14 +21,17 @@ public class SoundManager
     private static GreenfootSound WARLOCK = new GreenfootSound("sounds/warlockDeploy.wav");
     private static GreenfootSound PEKKA = new GreenfootSound("sounds/pekka.wav");
     private static GreenfootSound GOLEM = new GreenfootSound("sounds/golem.wav");
+    private static GreenfootSound ENEMY_ATK = new GreenfootSound("sounds/swordAttack.wav");
 
     // Tower sounds
     private static GreenfootSound PLACE = new GreenfootSound("sounds/placeItem.wav");
     private static GreenfootSound UPGRADE = new GreenfootSound("sounds/towerPowerup.wav");
+    private static GreenfootSound WALL = new GreenfootSound("sounds/placeWall.wav");
     
     // UI sounds
     private static GreenfootSound BUTTON = new GreenfootSound("sounds/button.wav");
     private static GreenfootSound GOLD = new GreenfootSound("sounds/goldSmall.wav");
+    private static GreenfootSound WIN = new GreenfootSound("sounds/completeLevel.wav");
     
     /**
      * Method to adjust all volumes of sound (sound be called once at
@@ -83,6 +86,9 @@ public class SoundManager
             case 3:
                 playSound(GOLEM);
                 break;
+            case 4:
+                playSound(ENEMY_ATK);
+                break;
         }
     }
     
@@ -97,6 +103,9 @@ public class SoundManager
             case 1:
                 playSound(UPGRADE);
                 break;
+            case 2:
+                playSound(WALL);
+                break;
         }
     }
     
@@ -110,6 +119,9 @@ public class SoundManager
                 break;
             case 1:
                 playSound(GOLD);
+                break;
+            case 2:
+                playSound(WIN);
                 break;
         }
     }
