@@ -66,7 +66,7 @@ public class FireballTower extends CombatTower
      */
     public FireballTower(int x, int y, int iX, int iY, int level)
     {
-        super(sprite[Math2D.clamp(level, 1, Tower.MAX_LEVEL)][0], true, x, y, iX, iY, level);
+        super(sprite, MAX_RANGE, MAX_COOLDOWN, true, x, y, iX, iY, level);
             
         setDimensions(50, 120);
         setY(getY() - 25);     
@@ -87,29 +87,5 @@ public class FireballTower extends CombatTower
      */
     public String toString(){
         return "Fireball Tower";
-    }
-    
-    /**
-     * Get the maximum cooldown of the tower
-     * @return an array containing the maximum cooldown of the tower
-     */
-    public float[] getMaxCooldown(){
-        return MAX_COOLDOWN;
-    }
-    
-    /**
-     * Get the maximum range of the tower
-     * @return an array containing the maximum cooldown of the tower
-     */
-    public float[] getMaxRange(){
-        return MAX_RANGE;
-    }
-    
-    /**
-     * Get 2D array of sprite images
-     * @return 2D array of sprite images
-     */
-    public GreenfootImage[][] getSpriteImage(){
-        return sprite;
     }
 }

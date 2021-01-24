@@ -8,33 +8,18 @@ import greenfoot.*;
 public abstract class CombatTower extends Tower 
 {
     private boolean rotate;
-    
-    /**
-     * Constructor for objects of class CombatTower
-     * @param defaultImage the image that is shown when the tower is first constructed
-     * @param rotate is the tower capable of rotating in eight directions to face the enemy
-     * @param x the x coordinate of the tower
-     * @param y the y coordinate of the tower
-     * @param iX the x index of the tower in the global grid
-     * @param iY the y index of the tower in the global grid
-     */
-    public CombatTower(GreenfootImage defaultImage, boolean rotate, int x, int y, int iX, int iY)
-    {
-        this(defaultImage, rotate, x, y, iX, iY, 1);
-    }
-    
+
     /**
      * Constructor for objects of class CombatTower with a custom level
-     * @param defaultImage the image that is shown when the tower is first constructed
+     * @param image a 2D array of sprite images
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
      * @param iY the y index of the tower in the global grid
      * @param level the level of the tower
      */
-    public CombatTower(GreenfootImage defaultImage, boolean rotate, int x, int y, int iX, int iY, int level)
-    {
-        super(defaultImage, x, y, iX, iY, level);
+    public CombatTower(GreenfootImage[][]image, float[]range, float[]cooldown, boolean rotate, int x, int y, int iX, int iY, int level){
+        super(image, range, cooldown, x, y, iX, iY, level);
         this.rotate = rotate;
     }
     
@@ -48,7 +33,7 @@ public abstract class CombatTower extends Tower
         degrees += 22; // 45 / 2
         degrees = degrees / 45;
         degrees = degrees % 8;
-        setImage(getSpriteImage()[level-1][degrees]);
+        setImage(image[level-1][degrees]);
     }
     
     /**
@@ -68,7 +53,7 @@ public abstract class CombatTower extends Tower
      * Determines if the cooldown timer has expired
      */
     protected boolean canAct(){
-        return System.currentTimeMillis() - this.lastTime >= getMaxCooldown()[level-1];
+        return System.currentTimeMillis() - this.lastTime >= cooldown[level-1];
     }
     
     /**
@@ -76,11 +61,11 @@ public abstract class CombatTower extends Tower
      * @return Enemy the closest enemy to the tower, null if no enemies exist
      */
     protected Enemy getNextEnemy() {
-        double min = getMaxRange()[level-1];
+        double min = range[level-1];
         Enemy next = null;
         for(Enemy e: Global.manager.getEnemies()){
             double dist = Math2D.distance(e.getX(), this.getX(), e.getY(), this.getY());
-            if(dist < getMaxRange()[level-1]){
+            if(dist < range[level-1]){
                 min = dist;
                 next = e;
             }
