@@ -23,9 +23,11 @@ public class SaveButton extends ImageButton
     public void onPress() {
         SavedInstance s = new SavedInstance(Global.getManager());
         try {
-            s.save(SAVE_DIR + File.separator + "save-" + getTime() + "." + EXT);
+            String name = SAVE_DIR + File.separator + "save-" + getTime() + "." + EXT;
+            s.save(name);
+            new DissappearingText("Saved progress in " + name, 425, 30);
         } catch (IOException e) {
-            e.printStackTrace();
+            new DissappearingText("Unable to save progress.", 425, 30);
         }
     }
     

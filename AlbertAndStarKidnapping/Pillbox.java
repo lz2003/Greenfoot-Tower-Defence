@@ -8,20 +8,41 @@ import greenfoot.*;
 public class Pillbox extends CombatTower 
 {
     private static final float[]
-        MAX_COOLDOWN = {1000, 900, 800},
-        MAX_RANGE = {100, 150, 200};
+        MAX_COOLDOWN = {4000, 3800, 3500},
+        MAX_RANGE = {200, 220, 250};
         
     private static final GreenfootImage[][]sprite = {
         {
-            new GreenfootImage("images/Cannon/cannon1.png")
+            new GreenfootImage("images/tower/Pillbox/L1/0001.png"),
+            new GreenfootImage("images/tower/Pillbox/L1/0002.png"),
+            new GreenfootImage("images/tower/Pillbox/L1/0003.png"),
+            new GreenfootImage("images/tower/Pillbox/L1/0004.png"),
+            new GreenfootImage("images/tower/Pillbox/L1/0005.png"),
+            new GreenfootImage("images/tower/Pillbox/L1/0006.png"),
+            new GreenfootImage("images/tower/Pillbox/L1/0007.png"),
+            new GreenfootImage("images/tower/Pillbox/L1/0008.png")
         },
         {
-            new GreenfootImage("images/Cannon/cannon2.png")
+            new GreenfootImage("images/tower/Pillbox/L2/0001.png"),
+            new GreenfootImage("images/tower/Pillbox/L2/0002.png"),
+            new GreenfootImage("images/tower/Pillbox/L2/0003.png"),
+            new GreenfootImage("images/tower/Pillbox/L2/0004.png"),
+            new GreenfootImage("images/tower/Pillbox/L2/0005.png"),
+            new GreenfootImage("images/tower/Pillbox/L2/0006.png"),
+            new GreenfootImage("images/tower/Pillbox/L2/0007.png"),
+            new GreenfootImage("images/tower/Pillbox/L2/0008.png")
         },
         {
-            new GreenfootImage("images/Cannon/cannon3.png")
+            new GreenfootImage("images/tower/Pillbox/L3/0001.png"),
+            new GreenfootImage("images/tower/Pillbox/L3/0002.png"),
+            new GreenfootImage("images/tower/Pillbox/L3/0003.png"),
+            new GreenfootImage("images/tower/Pillbox/L3/0004.png"),
+            new GreenfootImage("images/tower/Pillbox/L3/0005.png"),
+            new GreenfootImage("images/tower/Pillbox/L3/0006.png"),
+            new GreenfootImage("images/tower/Pillbox/L3/0007.png"),
+            new GreenfootImage("images/tower/Pillbox/L3/0008.png")
         }
-    };
+    };    
     
     /**
      * Creates a basic Pillbox.
@@ -45,7 +66,8 @@ public class Pillbox extends CombatTower
      */
     public Pillbox(int x, int y, int iX, int iY, int level)
     {
-        super(sprite, MAX_RANGE, MAX_COOLDOWN, false, x, y, iX, iY, level);
+        super(sprite, MAX_RANGE, MAX_COOLDOWN, true, x, y, iX, iY, level);
+        setDimensions(72, 74);
     }
     
     /**
@@ -54,7 +76,7 @@ public class Pillbox extends CombatTower
     protected void attack(Enemy e)
     {
         //do something
-        new Cannonball(getX(), getY(), e, level);
+        new RPG(getX(), getY(), e, level);
     }
     
     /**

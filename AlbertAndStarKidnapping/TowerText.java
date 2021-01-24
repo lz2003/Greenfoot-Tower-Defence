@@ -11,12 +11,12 @@ public class TowerText extends TowerLabel
     public TowerText(int x, int y){
         super(x, y, "Tower: ");
     }
-    public void act(){
-        super.act();
+    
+    public void updateTower(Tower tower) {
         if(tower == null){
             setValue("Tower: ");
         } else {
-            setValue("Tower: "+tower);
+            setValue("Tower: "+ tower);
         }
     }
 }
