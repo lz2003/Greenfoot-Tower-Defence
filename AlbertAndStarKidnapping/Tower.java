@@ -75,7 +75,7 @@ public abstract class Tower extends Sprite
      * Level up the tower
      */
     private void levelup() {
-        this.level = Math.max(this.level+1, images.length);
+        this.level = Math.max(this.level+1, MAX_LEVEL);
         setImage(images[this.level-1]);
     }
 
