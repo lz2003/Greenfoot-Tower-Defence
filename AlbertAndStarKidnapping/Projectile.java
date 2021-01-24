@@ -30,7 +30,6 @@ public abstract class Projectile extends Sprite
         setLocation(x, y);
         turnTowards(target.getX(), target.getY());
         Global.getManager().addProjectile(this);
-        System.out.println(id);
         SoundManager.projectileSounds(id);
     }
     
