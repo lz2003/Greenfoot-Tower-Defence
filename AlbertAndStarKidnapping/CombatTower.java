@@ -1,25 +1,62 @@
 import greenfoot.*;
 /**
- * Write a description of class CombatTower here.
+ * A tower that shoots projectiles.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ryan Lin
+ * @version (version)
  */
 public abstract class CombatTower extends Tower 
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
+    private boolean rotate;
+    
     /**
      * Constructor for objects of class CombatTower
+     * @param defaultImage the image that is shown when the tower is first constructed
+     * @param rotate is the tower capable of rotating in eight directions to face the enemy
+     * @param x the x coordinate of the tower
+     * @param y the y coordinate of the tower
+     * @param iX the x index of the tower in the global grid
+     * @param iY the y index of the tower in the global grid
      */
-    public CombatTower(int x, int y, int iX, int iY, int cost, int range, int cooldown, GreenfootImage[]images)
+    public CombatTower(GreenfootImage defaultImage, boolean rotate, int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, cost, range, cooldown, images);
+        this(defaultImage, rotate, x, y, iX, iY, 1);
     }
-
+    
+    /**
+     * Constructor for objects of class CombatTower with a custom level
+     * @param defaultImage the image that is shown when the tower is first constructed
+     * @param x the x coordinate of the tower
+     * @param y the y coordinate of the tower
+     * @param iX the x index of the tower in the global grid
+     * @param iY the y index of the tower in the global grid
+     * @param level the level of the tower
+     */
+    public CombatTower(GreenfootImage defaultImage, boolean rotate, int x, int y, int iX, int iY, int level)
+    {
+        super(defaultImage, x, y, iX, iY, level);
+        this.rotate = rotate;
+    }
+    
+    /**
+     * Set Rotation
+     */
+    private void setRotation() {
+        int degrees = (int) Math.toDegrees(this.rotation);
+        degrees += 720;
+        degrees = degrees % 360;
+        degrees += 22; // 45 / 2
+        degrees = degrees / 45;
+        degrees = degrees % 8;
+        setImage(getSpriteImage()[level-1][degrees]);
+    }
+    
+    /**
+     * Update the CombatTower
+     */
     public void _update(float delta){
         super._update(delta);
+        if(rotate) setRotation();
         Enemy enemy = getNextEnemy();
         if(canAct() && enemy != null){
             attack(enemy);
@@ -39,7 +76,7 @@ public abstract class CombatTower extends Tower
      * @return Enemy the closest enemy to the tower, null if no enemies exist
      */
     protected Enemy getNextEnemy() {
-        double min = range;
+        double min = getMaxRange()[level-1];
         Enemy next = null;
         for(Enemy e: Global.manager.getEnemies()){
             double dist = Math2D.distance(e.getX(), this.getX(), e.getY(), this.getY());

@@ -10,9 +10,21 @@ public class Mines extends Tower
     private static final float[]
         MAX_COOLDOWN = {1000, 1000, 1000},
         MAX_RANGE = {0, 0, 0};
+    
+    private static GreenfootImage[][] sprite = {
+        {
+            new GreenfootImage("images/Gold Mine/goldMine1.png")
+        },
+        {
+            new GreenfootImage("images/Gold Mine/goldMine2.png")
+        },
+        {
+            new GreenfootImage("images/Gold Mine/goldMine3.png")
+        }
+    };
     private float goldPerSecond;
     /**
-     * Creates a gold mine.
+     * Creates a basic gold mine.
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
@@ -20,13 +32,22 @@ public class Mines extends Tower
      */
     public Mines(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 0, 1000, new GreenfootImage[]{
-            new GreenfootImage("images/Gold Mine/goldMine1.png"),
-            new GreenfootImage("images/Gold Mine/goldMine2.png"),
-            new GreenfootImage("images/Gold Mine/goldMine3.png")});
-        goldPerSecond = 1;
+        this(x, y, iX, iY, 1);
     }
 
+    /**
+     * Creates a gold mine with a custom level.
+     * @param x the x coordinate of the tower
+     * @param y the y coordinate of the tower
+     * @param iX the x index of the tower in the global grid
+     * @param iY the y index of the tower in the global grid
+     */
+    public Mines(int x, int y, int iX, int iY, int level)
+    {
+        super(sprite[Math2D.clamp(level, 1, Tower.MAX_LEVEL)][0], x, y, iX, iY, level);
+        goldPerSecond = 1;
+    }
+    
     /**
      * Attack enemies
      */
@@ -59,5 +80,13 @@ public class Mines extends Tower
      */
     public float[] getMaxRange(){
         return MAX_RANGE;
+    }
+    
+    /**
+     * Get 2D array of sprite images
+     * @return 2D array of sprite images
+     */
+    public GreenfootImage[][] getSpriteImage(){
+        return sprite;
     }
 }

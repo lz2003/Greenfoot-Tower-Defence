@@ -19,40 +19,39 @@ public abstract class Tower extends Sprite
         COST_LASER = 850,
         COST_MINES = 150,
         COST_PILLBOX = 975;
-        
-    protected int cost;
-    protected int range;
+    
     protected int level;
-    protected int cooldown;
     protected long lastTime;
     protected int iX, iY;
     protected double rotation = 0;
-    private GreenfootImage[]images;
-    protected CircleMask mask;
-    protected long lastClicked = 0;
-    protected long timeDelay = 500;
     
     /**
-     * Creates a tower.
+     * Default constructor for tower.
+     * @param defaultImage the default image of the tower that is displayed
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
      * @param iY the y index of the tower in the global grid
-     * @param cost the cost to upgrade the tower
-     * @param range the range of the tower
-     * @param cooldown the number of milliseconds after which a tower will complete an action
-     * @param images an array of greenfoot images for each level of the tower
      */
-    public Tower(int x, int y, int iX, int iY, int cost, int range, int cooldown, GreenfootImage[]images) {
-        super(x, y, images[0], 1);
+    public Tower(GreenfootImage defaultImage, int x, int y, int iX, int iY){
+        this(defaultImage, x, y, iX, iY, 1);
+    }
+    
+    /**
+     * Creates a tower.
+     * @param defaultImage the default image of the tower that is displayed
+     * @param x the x coordinate of the tower
+     * @param y the y coordinate of the tower
+     * @param iX the x index of the tower in the global grid
+     * @param iY the y index of the tower in the global grid
+     * @param level the level of the tower
+     */
+    public Tower(GreenfootImage defaultImage, int x, int y, int iX, int iY, int level) {
+        super(x, y, new GreenfootImage("images/temp.png"), 1);
         setLocation(x, y);
         this.iX = iX;
         this.iY = iY;
-        this.cost = cost;
-        this.range = range;
-        this.level = 1;
-        this.cooldown = cooldown;
-        this.images = images;
+        this.level = level;
         this.lastTime = System.currentTimeMillis();
         Global.manager.addTower(this);
     }
@@ -76,22 +75,7 @@ public abstract class Tower extends Sprite
      */
     private void levelup() {
         this.level = Math.max(this.level+1, MAX_LEVEL);
-        setImage(images[this.level-1]);
-    }
-
-    /**
-     * Get the cost of purchasing the tower
-     * @return int cost
-     */
-    public int getCost() {
-        return this.cost;
-    }
-    
-    /**
-     * Set the range of the tower
-     */
-    public void setRange(int range) {
-        this.range = range;
+        setImage(getSpriteImage()[level][0]);
     }
     
     /**
@@ -144,6 +128,12 @@ public abstract class Tower extends Sprite
      * @return an array containing the maximum cooldown of the tower
      */
     public abstract float[] getMaxRange();
+    
+    /**
+     * Get 2D array of sprite images
+     * @return 2D array of sprite images
+     */
+    public abstract GreenfootImage[][] getSpriteImage();
     
     /**
      * Get the cooldown at the current level
