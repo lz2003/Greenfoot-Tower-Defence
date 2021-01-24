@@ -16,7 +16,7 @@ public class TowerText extends TowerLabel
         if(tower == null){
             setValue("Tower: ");
         } else {
-            setValue("Tower: "+tower.getClass().toString().substring(6));
+            setValue("Tower: "+tower);
         }
     }
 }

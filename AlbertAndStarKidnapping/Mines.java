@@ -7,6 +7,9 @@ import greenfoot.*;
  */
 public class Mines extends Tower 
 {
+    private static final float[]
+        MAX_COOLDOWN = {1000, 1000, 1000},
+        MAX_RANGE = {0, 0, 0};
     private float goldPerSecond;
     /**
      * Creates a gold mine.
@@ -32,5 +35,29 @@ public class Mines extends Tower
         //produce gold
         System.out.println(goldPerSecond * delta);
         Global.getManager().addMoney(goldPerSecond * delta);
+    }
+    
+    /**
+     * Returns the string representation of Mine
+     * @return name of Mine
+     */
+    public String toString(){
+        return "Gold Mine";
+    }
+    
+    /**
+     * Get the maximum cooldown of the tower
+     * @return an array containing the maximum cooldown of the tower
+     */
+    public float[] getMaxCooldown(){
+        return MAX_COOLDOWN;
+    }
+    
+    /**
+     * Get the maximum range of the tower
+     * @return an array containing the maximum cooldown of the tower
+     */
+    public float[] getMaxRange(){
+        return MAX_RANGE;
     }
 }

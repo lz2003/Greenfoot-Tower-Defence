@@ -7,6 +7,10 @@ import greenfoot.*;
  */
 public class ArcherTower extends CombatTower 
 {
+    private static final float[]
+        MAX_COOLDOWN = {1000, 900, 850},
+        MAX_RANGE = {150, 200, 250};
+    
     private static GreenfootImage[] sprite1 = {
         new GreenfootImage("images/tower/Archer/L1/0001.png"),
         new GreenfootImage("images/tower/Archer/L1/0002.png"),
@@ -64,6 +68,7 @@ public class ArcherTower extends CombatTower
                 break;
         }
     }
+    
     /**
      * Creates a tower than shoots Arrows at physical Enemies.
      * @param x the x coordinate of the Archer Tower
@@ -85,5 +90,29 @@ public class ArcherTower extends CombatTower
     protected void attack(Enemy e) {
         //Fire an arrow
         new Arrow(getX(), getY(), e, level);
+    }
+    
+    /**
+     * Returns the string representation of ArcherTower
+     * @return name of ArcherTower
+     */
+    public String toString(){
+        return "Archer Tower";
+    }
+    
+    /**
+     * Get the maximum cooldown of the tower
+     * @return an array containing the maximum cooldown of the tower
+     */
+    public float[] getMaxCooldown(){
+        return MAX_COOLDOWN;
+    }
+    
+    /**
+     * Get the maximum range of the tower
+     * @return an array containing the maximum cooldown of the tower
+     */
+    public float[] getMaxRange(){
+        return MAX_RANGE;
     }
 }

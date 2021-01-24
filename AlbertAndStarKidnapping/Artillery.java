@@ -7,6 +7,10 @@ import greenfoot.*;
  */
 public class Artillery extends CombatTower 
 {
+    private static final float[]
+        MAX_COOLDOWN = {1000, 900, 800},
+        MAX_RANGE = {100, 150, 200};
+        
     private static GreenfootImage[] sprite1 = {
         new GreenfootImage("images/tower/Cannon/L1/0001.png"),
         new GreenfootImage("images/tower/Cannon/L1/0002.png"),
@@ -87,5 +91,29 @@ public class Artillery extends CombatTower
     protected void attack(Enemy e) {
         //fire cannonball
         new Cannonball(getX(), getY(), e, level);
+    }
+    
+    /**
+     * Returns the string representation of Artillery
+     * @return name of Artillery
+     */
+    public String toString(){
+        return "Artillery";
+    }
+    
+    /**
+     * Get the maximum cooldown of the tower
+     * @return an array containing the maximum cooldown of the tower
+     */
+    public float[] getMaxCooldown(){
+        return MAX_COOLDOWN;
+    }
+    
+    /**
+     * Get the maximum range of the tower
+     * @return an array containing the maximum cooldown of the tower
+     */
+    public float[] getMaxRange(){
+        return MAX_RANGE;
     }
 }

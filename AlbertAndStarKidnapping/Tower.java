@@ -8,6 +8,8 @@ import greenfoot.*;
  */
 public abstract class Tower extends Sprite 
 {
+    protected static final int MAX_LEVEL = 3;
+    
     public static final int 
         COST_ARCHER = 250,
         COST_CANNON = 200,
@@ -59,33 +61,7 @@ public abstract class Tower extends Sprite
      * Update the tower
      */
     public void _update(float delta) {
-        checkClick();
-    }
-    
-    private void checkClick(){
-        if(Global.getManager().mouseDown() && System.currentTimeMillis() - lastClicked >= timeDelay){
-            if(mask == null){
-                if(isSelectedTower()){
-                    mask = new CircleMask(getX(), getY(), range);
-                    lastClicked = System.currentTimeMillis();
-                    Global.world.towerText.setTower(this);
-                    Global.world.towerLevel.setTower(this);
-                }
-            } else if(Global.getManager().mouseX() <= Global.world.canvasWidth && Global.getManager().mouseY() <= Global.world.canvasHeight){
-                mask.removeSprite();
-                mask = null;
-                lastClicked = System.currentTimeMillis();
-                Global.world.towerText.unlinkTower(this);
-                Global.world.towerLevel.unlinkTower(this);
-            }
-        }
-    }
-    
-    /**
-     * Determines if the cooldown timer has expired
-     */
-    protected boolean canAct(){
-        return System.currentTimeMillis() - this.lastTime >= cooldown;
+        
     }
     
     /**
@@ -99,7 +75,7 @@ public abstract class Tower extends Sprite
      * Level up the tower
      */
     private void levelup() {
-        this.level = Math.max(this.level+1, images.length);
+        this.level = Math.max(this.level+1, MAX_LEVEL);
         setImage(images[this.level-1]);
     }
 
@@ -155,5 +131,33 @@ public abstract class Tower extends Sprite
      */
     public boolean isSelectedTower(){
         return Slot.getSelected().getIndex().x == iX && Slot.getSelected().getIndex().y == iY;
+    }
+    
+    /**
+     * Get the maximum cooldown of the tower
+     * @return an array containing the maximum cooldown of the tower
+     */
+    public abstract float[] getMaxCooldown();
+    
+    /**
+     * Get the maximum range of the tower
+     * @return an array containing the maximum cooldown of the tower
+     */
+    public abstract float[] getMaxRange();
+    
+    /**
+     * Get the cooldown at the current level
+     * @return the cooldown in milliseconds of the tower
+     */
+    public float getCooldown(){
+        return getMaxCooldown()[level-1];
+    }
+    
+    /**
+     * Get the maximum range at the current level
+     * @return the maximum range of the tower
+     */
+    public float getRange(){
+        return getMaxRange()[level-1];
     }
 }

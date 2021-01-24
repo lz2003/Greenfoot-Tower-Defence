@@ -7,6 +7,10 @@ import greenfoot.*;
  */
 public class FireballTower extends CombatTower 
 {
+    private static final float[]
+        MAX_COOLDOWN = {1000, 900, 800},
+        MAX_RANGE = {100, 150, 200};
+    
     private static GreenfootImage[] sprite1 = {
         new GreenfootImage("images/tower/Fire/L1/0001.png"),
         new GreenfootImage("images/tower/Fire/L1/0002.png"),
@@ -87,5 +91,29 @@ public class FireballTower extends CombatTower
     protected void attack(Enemy e) {
         //fire fireball
         new Fireball(getX(), getY(), e, level);
+    }
+    
+    /**
+     * Returns the string representation of FireballTower
+     * @return name of FireballTower
+     */
+    public String toString(){
+        return "Fireball Tower";
+    }
+    
+    /**
+     * Get the maximum cooldown of the tower
+     * @return an array containing the maximum cooldown of the tower
+     */
+    public float[] getMaxCooldown(){
+        return MAX_COOLDOWN;
+    }
+    
+    /**
+     * Get the maximum range of the tower
+     * @return an array containing the maximum cooldown of the tower
+     */
+    public float[] getMaxRange(){
+        return MAX_RANGE;
     }
 }

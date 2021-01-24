@@ -28,6 +28,13 @@ public abstract class CombatTower extends Tower
     }
     
     /**
+     * Determines if the cooldown timer has expired
+     */
+    protected boolean canAct(){
+        return System.currentTimeMillis() - this.lastTime >= getMaxCooldown()[level-1];
+    }
+    
+    /**
      * Get the next enemy targeted by this tower
      * @return Enemy the closest enemy to the tower, null if no enemies exist
      */
@@ -36,7 +43,7 @@ public abstract class CombatTower extends Tower
         Enemy next = null;
         for(Enemy e: Global.manager.getEnemies()){
             double dist = Math2D.distance(e.getX(), this.getX(), e.getY(), this.getY());
-            if(dist < min){
+            if(dist < getMaxRange()[level-1]){
                 min = dist;
                 next = e;
             }
