@@ -23,6 +23,7 @@ public class Fireball extends Splash
     });     
     private static GreenfootImage explode = new GreenfootImage("images/explosion/0001.png");
     private static GreenfootImage image = new GreenfootImage("projectiles/fireball.png");
+    
     /**
      * Constructor for Fireball class
      * 
@@ -31,7 +32,7 @@ public class Fireball extends Splash
      * @param target    the reference enemy target
      */
     public Fireball(double x, double y, Enemy target) {
-        super(x, y, image, target, explosion, explode);
+        super(x, y, image, target, explosion, explode, 2);
         isMagic = true;
         damage = MAX_DAMAGE[0];
         speed = MAX_SPEED[0];
@@ -47,7 +48,7 @@ public class Fireball extends Splash
      * @param level     the level of the projectile
      */
     public Fireball(double x, double y, Enemy target, int level) {
-        super(x, y, image, target, explosion, explode);
+        super(x, y, image, target, explosion, explode, 2);
         isMagic = true;
         if (level > 0 && level <= MAX_LEVEL) {
             damage = MAX_DAMAGE[level-1];
