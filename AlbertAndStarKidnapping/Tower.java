@@ -59,10 +59,10 @@ public abstract class Tower extends Sprite
      * Update the tower
      */
     public void _update(float delta) {
-        checkClick();
+        //checkClick();
     }
     
-    private void checkClick(){
+    /*private void checkClick(){
         if(Global.getManager().mouseDown() && System.currentTimeMillis() - lastClicked >= timeDelay){
             if(mask == null){
                 if(isSelectedTower()){
@@ -79,7 +79,7 @@ public abstract class Tower extends Sprite
                 Global.world.towerLevel.unlinkTower(this);
             }
         }
-    }
+    }*/
     
     /**
      * Determines if the cooldown timer has expired
