@@ -24,7 +24,7 @@ public class Mines extends Tower
     };
     private float goldPerSecond;
     /**
-     * Creates a gold mine.
+     * Creates a basic gold mine.
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
@@ -36,7 +36,7 @@ public class Mines extends Tower
     }
 
     /**
-     * Creates a gold mine.
+     * Creates a gold mine with a custom level.
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid

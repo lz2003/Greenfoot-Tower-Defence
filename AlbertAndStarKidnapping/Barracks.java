@@ -26,7 +26,7 @@ public class Barracks extends CombatTower
     public static final int MINIONS_PER_BARRACK = 3;
     private static int numBarracks = 0;
     /**
-     * Creates a tower that spawns characters to fight enemies.
+     * Creates a basic Barracks.
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
@@ -38,15 +38,16 @@ public class Barracks extends CombatTower
     }
     
     /**
-     * Creates a tower that spawns characters to fight enemies.
+     * Creates a Barracks with a custom level.
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
      * @param iY the y index of the tower in the global grid
+     * @param level the level of the tower
      */
     public Barracks(int x, int y, int iX, int iY, int level)
     {
-        super(sprite[Math2D.clamp(level, 1, Tower.MAX_LEVEL)][0], x, y, iX, iY, level);
+        super(sprite[Math2D.clamp(level, 1, Tower.MAX_LEVEL)][0], false, x, y, iX, iY, level);
         numBarracks++;
     }
 

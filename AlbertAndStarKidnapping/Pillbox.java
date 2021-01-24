@@ -24,7 +24,7 @@ public class Pillbox extends CombatTower
     };
     
     /**
-     * Creates a Pillbox.
+     * Creates a basic Pillbox.
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
@@ -36,15 +36,16 @@ public class Pillbox extends CombatTower
     }
 
     /**
-     * Creates a Pillbox.
+     * Creates a Pillbox with a custom level.
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
      * @param iY the y index of the tower in the global grid
+     * @param level the level of the tower
      */
     public Pillbox(int x, int y, int iX, int iY, int level)
     {
-        super(sprite[level][0], x, y, iX, iY);
+        super(sprite[level][0], false, x, y, iX, iY);
     }
     
     /**
