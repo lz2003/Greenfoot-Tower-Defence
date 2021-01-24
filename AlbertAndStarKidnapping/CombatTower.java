@@ -1,23 +1,32 @@
 import greenfoot.*;
 /**
- * Write a description of class CombatTower here.
+ * A tower that shoots projectiles.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ryan Lin
+ * @version (version)
  */
 public abstract class CombatTower extends Tower 
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
     /**
      * Constructor for objects of class CombatTower
      */
-    public CombatTower(int x, int y, int iX, int iY, int cost, int range, int cooldown, GreenfootImage[]images)
+    public CombatTower(GreenfootImage defaultImage, int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, cost, range, cooldown, images);
+        this(defaultImage, x, y, iX, iY, 1);
+    }
+    
+    /**
+     * Constructor for objects of class CombatTower
+     * 
+     */
+    public CombatTower(GreenfootImage defaultImage, int x, int y, int iX, int iY, int level)
+    {
+        super(defaultImage, x, y, iX, iY, level);
     }
 
+    /**
+     * Update the CombatTower
+     */
     public void _update(float delta){
         super._update(delta);
         Enemy enemy = getNextEnemy();
@@ -39,7 +48,7 @@ public abstract class CombatTower extends Tower
      * @return Enemy the closest enemy to the tower, null if no enemies exist
      */
     protected Enemy getNextEnemy() {
-        double min = range;
+        double min = getMaxRange()[level-1];
         Enemy next = null;
         for(Enemy e: Global.manager.getEnemies()){
             double dist = Math2D.distance(e.getX(), this.getX(), e.getY(), this.getY());

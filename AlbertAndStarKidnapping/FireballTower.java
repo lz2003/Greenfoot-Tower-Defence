@@ -10,38 +10,38 @@ public class FireballTower extends CombatTower
     private static final float[]
         MAX_COOLDOWN = {1000, 900, 800},
         MAX_RANGE = {100, 150, 200};
-    
-    private static GreenfootImage[] sprite1 = {
-        new GreenfootImage("images/tower/Fire/L1/0001.png"),
-        new GreenfootImage("images/tower/Fire/L1/0002.png"),
-        new GreenfootImage("images/tower/Fire/L1/0003.png"),
-        new GreenfootImage("images/tower/Fire/L1/0004.png"),
-        new GreenfootImage("images/tower/Fire/L1/0005.png"),
-        new GreenfootImage("images/tower/Fire/L1/0006.png"),
-        new GreenfootImage("images/tower/Fire/L1/0007.png"),
-        new GreenfootImage("images/tower/Fire/L1/0008.png")
-    };
-    
-    private static GreenfootImage[] sprite2 = {
-        new GreenfootImage("images/tower/Fire/L2/0001.png"),
-        new GreenfootImage("images/tower/Fire/L2/0002.png"),
-        new GreenfootImage("images/tower/Fire/L2/0003.png"),
-        new GreenfootImage("images/tower/Fire/L2/0004.png"),
-        new GreenfootImage("images/tower/Fire/L2/0005.png"),
-        new GreenfootImage("images/tower/Fire/L2/0006.png"),
-        new GreenfootImage("images/tower/Fire/L2/0007.png"),
-        new GreenfootImage("images/tower/Fire/L2/0008.png")
-    };
-    
-    private static GreenfootImage[] sprite3 = {
-        new GreenfootImage("images/tower/Fire/L3/0001.png"),
-        new GreenfootImage("images/tower/Fire/L3/0002.png"),
-        new GreenfootImage("images/tower/Fire/L3/0003.png"),
-        new GreenfootImage("images/tower/Fire/L3/0004.png"),
-        new GreenfootImage("images/tower/Fire/L3/0005.png"),
-        new GreenfootImage("images/tower/Fire/L3/0006.png"),
-        new GreenfootImage("images/tower/Fire/L3/0007.png"),
-        new GreenfootImage("images/tower/Fire/L3/0008.png")
+        
+    private static final GreenfootImage[][]sprite = {
+        {
+            new GreenfootImage("images/tower/Fire/L1/0001.png"),
+            new GreenfootImage("images/tower/Fire/L1/0002.png"),
+            new GreenfootImage("images/tower/Fire/L1/0003.png"),
+            new GreenfootImage("images/tower/Fire/L1/0004.png"),
+            new GreenfootImage("images/tower/Fire/L1/0005.png"),
+            new GreenfootImage("images/tower/Fire/L1/0006.png"),
+            new GreenfootImage("images/tower/Fire/L1/0007.png"),
+            new GreenfootImage("images/tower/Fire/L1/0008.png")
+        },
+        {
+            new GreenfootImage("images/tower/Fire/L1/0001.png"),
+            new GreenfootImage("images/tower/Fire/L1/0002.png"),
+            new GreenfootImage("images/tower/Fire/L1/0003.png"),
+            new GreenfootImage("images/tower/Fire/L1/0004.png"),
+            new GreenfootImage("images/tower/Fire/L1/0005.png"),
+            new GreenfootImage("images/tower/Fire/L1/0006.png"),
+            new GreenfootImage("images/tower/Fire/L1/0007.png"),
+            new GreenfootImage("images/tower/Fire/L1/0008.png")
+        },
+        {
+            new GreenfootImage("images/tower/Fire/L3/0001.png"),
+            new GreenfootImage("images/tower/Fire/L3/0002.png"),
+            new GreenfootImage("images/tower/Fire/L3/0003.png"),
+            new GreenfootImage("images/tower/Fire/L3/0004.png"),
+            new GreenfootImage("images/tower/Fire/L3/0005.png"),
+            new GreenfootImage("images/tower/Fire/L3/0006.png"),
+            new GreenfootImage("images/tower/Fire/L3/0007.png"),
+            new GreenfootImage("images/tower/Fire/L3/0008.png")
+        }
     };
     
     public void _update(float delta) {
@@ -56,18 +56,9 @@ public class FireballTower extends CombatTower
         degrees += 22; // 45 / 2
         degrees = degrees / 45;
         degrees = degrees % 8;
-        switch(getLevel()) {
-            case 1:
-                setImage(sprite1[degrees]);
-                break;
-            case 2:
-                setImage(sprite2[degrees]);
-                break;
-            case 3:
-                setImage(sprite3[degrees]);
-                break;
-        }
+        setImage(sprite[level-1][degrees]);
     }
+    
     /**
      * Creates a tower that shoots fireballs at enemies.
      * @param x the x coordinate of the tower
@@ -77,8 +68,19 @@ public class FireballTower extends CombatTower
      */
     public FireballTower(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{
-            sprite1[0]});
+        this(x, y, iX, iY, 1);   
+    }
+    
+    /**
+     * Creates a tower that shoots fireballs at enemies.
+     * @param x the x coordinate of the tower
+     * @param y the y coordinate of the tower
+     * @param iX the x index of the tower in the global grid
+     * @param iY the y index of the tower in the global grid
+     */
+    public FireballTower(int x, int y, int iX, int iY, int level)
+    {
+        super(sprite[Math2D.clamp(level, 1, Tower.MAX_LEVEL)][0], x, y, iX, iY, level);
             
         setDimensions(50, 120);
         setY(getY() - 25);     
@@ -115,5 +117,13 @@ public class FireballTower extends CombatTower
      */
     public float[] getMaxRange(){
         return MAX_RANGE;
+    }
+    
+    /**
+     * Get 2D array of sprite images
+     * @return 2D array of sprite images
+     */
+    public GreenfootImage[][] getSpriteImage(){
+        return sprite;
     }
 }

@@ -11,6 +11,18 @@ public class Pillbox extends CombatTower
         MAX_COOLDOWN = {1000, 900, 800},
         MAX_RANGE = {100, 150, 200};
         
+    private static final GreenfootImage[][]sprite = {
+        {
+            new GreenfootImage("images/Cannon/cannon1.png")
+        },
+        {
+            new GreenfootImage("images/Cannon/cannon2.png")
+        },
+        {
+            new GreenfootImage("images/Cannon/cannon3.png")
+        }
+    };
+    
     /**
      * Creates a Pillbox.
      * @param x the x coordinate of the tower
@@ -20,9 +32,21 @@ public class Pillbox extends CombatTower
      */
     public Pillbox(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/Cannon/cannon1.png"),new GreenfootImage("images/Cannon/cannon2.png"),new GreenfootImage("images/Cannon/cannon3.png")});
+        this(x, y, iX, iY, 1);
     }
 
+    /**
+     * Creates a Pillbox.
+     * @param x the x coordinate of the tower
+     * @param y the y coordinate of the tower
+     * @param iX the x index of the tower in the global grid
+     * @param iY the y index of the tower in the global grid
+     */
+    public Pillbox(int x, int y, int iX, int iY, int level)
+    {
+        super(sprite[level][0], x, y, iX, iY);
+    }
+    
     /**
      * Attack enemies
      */
@@ -54,5 +78,13 @@ public class Pillbox extends CombatTower
      */
     public float[] getMaxRange(){
         return MAX_RANGE;
+    }
+    
+    /**
+     * Get 2D array of sprite images
+     * @return 2D array of sprite images
+     */
+    public GreenfootImage[][] getSpriteImage(){
+        return sprite;
     }
 }
