@@ -86,4 +86,12 @@ public class ArcherTower extends CombatTower
         //Fire an arrow
         new Arrow(getX(), getY(), e, level);
     }
+    
+    /**
+     * Returns the string representation of ArcherTower
+     * @return name of ArcherTower
+     */
+    public String toString(){
+        return "Archer Tower";
+    }
 }

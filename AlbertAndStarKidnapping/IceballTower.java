@@ -89,4 +89,12 @@ public class IceballTower extends CombatTower
         //fire iceballs
         new Iceball(getX(), getY(), e, level);
     }
+    
+    /**
+     * Returns the string representation of IceballTower
+     * @return name of IceballTower
+     */
+    public String toString(){
+        return "Iceball Tower";
+    }
 }

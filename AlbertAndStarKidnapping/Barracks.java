@@ -50,4 +50,12 @@ public class Barracks extends CombatTower
         super.destroy();
         numBarracks--;
     }
+    
+    /**
+     * Returns the string representation of Barracks
+     * @return name of Barracks
+     */
+    public String toString(){
+        return "Barracks";
+    }
 }

@@ -88,4 +88,12 @@ public class Artillery extends CombatTower
         //fire cannonball
         new Cannonball(getX(), getY(), e, level);
     }
+    
+    /**
+     * Returns the string representation of Artillery
+     * @return name of Artillery
+     */
+    public String toString(){
+        return "Artillery";
+    }
 }

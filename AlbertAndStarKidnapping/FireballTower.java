@@ -88,4 +88,12 @@ public class FireballTower extends CombatTower
         //fire fireball
         new Fireball(getX(), getY(), e, level);
     }
+    
+    /**
+     * Returns the string representation of FireballTower
+     * @return name of FireballTower
+     */
+    public String toString(){
+        return "Fireball Tower";
+    }
 }

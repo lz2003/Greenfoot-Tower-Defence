@@ -88,4 +88,12 @@ public class LazerTower extends CombatTower
         //shoot lazers
         new Zap(getX(), getY(), e, level);
     }
+    
+    /**
+     * Return the string representation of LazerTower
+     * @return name of LazerTower
+     */
+    public String toString(){
+        return "Lazer Tower";
+    }
 }

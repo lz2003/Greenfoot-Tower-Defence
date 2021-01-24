@@ -27,4 +27,12 @@ public class Pillbox extends CombatTower
         //do something
         new Cannonball(getX(), getY(), e, level);
     }
+    
+    /**
+     * Returns the string representation of Pillbox
+     * @return name of Pillbox
+     */
+    public String toString(){
+        return "Pillbox";
+    }
 }

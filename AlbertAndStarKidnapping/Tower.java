@@ -59,27 +59,8 @@ public abstract class Tower extends Sprite
      * Update the tower
      */
     public void _update(float delta) {
-        //checkClick();
+        
     }
-    
-    /*private void checkClick(){
-        if(Global.getManager().mouseDown() && System.currentTimeMillis() - lastClicked >= timeDelay){
-            if(mask == null){
-                if(isSelectedTower()){
-                    mask = new CircleMask(getX(), getY(), range);
-                    lastClicked = System.currentTimeMillis();
-                    Global.world.towerText.setTower(this);
-                    Global.world.towerLevel.setTower(this);
-                }
-            } else if(Global.getManager().mouseX() <= Global.world.canvasWidth && Global.getManager().mouseY() <= Global.world.canvasHeight){
-                mask.removeSprite();
-                mask = null;
-                lastClicked = System.currentTimeMillis();
-                Global.world.towerText.unlinkTower(this);
-                Global.world.towerLevel.unlinkTower(this);
-            }
-        }
-    }*/
     
     /**
      * Determines if the cooldown timer has expired
