@@ -79,5 +79,13 @@ public class Game extends World
     
     public void act() {
         manager.update();
+        
+        /**
+         * This is to show how to call a specific cutscene after a wave
+            if (Greenfoot.isKeyDown("space")) 
+            {
+                Greenfoot.setWorld(new Cutscene(1));
+            }
+        */
     }
 }
