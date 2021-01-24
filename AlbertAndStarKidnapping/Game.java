@@ -21,7 +21,7 @@ public class Game extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(925, 750, 1, false); 
         
-        setPaintOrder(BuildCursor.class, Canvas.class);
+        setPaintOrder(DissappearingText.class, BuildCursor.class, Canvas.class);
         
         Global.setWorld(this);
         

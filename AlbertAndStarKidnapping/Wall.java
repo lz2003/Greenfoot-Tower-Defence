@@ -1,11 +1,11 @@
 import greenfoot.*;
 /**
- * Generates gold currency for the player.
+ * Wall that does nothing
  * 
  * @author Ryan Lin
  * @version (a version number or a date)
  */
-public class Mines extends Tower 
+public class Wall extends Tower 
 {
     private static final float[]
         MAX_COOLDOWN = {1000, 1000, 1000},
@@ -22,46 +22,44 @@ public class Mines extends Tower
             new GreenfootImage("images/Gold Mine/goldMine3.png")
         }
     };
-    private float goldPerSecond;
+
     /**
-     * Creates a basic gold mine.
+     * Creates a basic wall
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
      * @param iY the y index of the tower in the global grid
      */
-    public Mines(int x, int y, int iX, int iY)
+    public Wall(int x, int y, int iX, int iY)
     {
         this(x, y, iX, iY, 1);
     }
 
     /**
-     * Creates a gold mine with a custom level.
+     * Creates a wall
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
      * @param iY the y index of the tower in the global grid
      */
-    public Mines(int x, int y, int iX, int iY, int level)
+    public Wall(int x, int y, int iX, int iY, int level)
     {
         super(sprite, MAX_RANGE, MAX_COOLDOWN, x, y, iX, iY, level);
-        goldPerSecond = 1;
     }
     
     /**
-     * Attack enemies
+     * Be a nice wall and do nothing
      */
     public void _update(float delta)
     {
-        //produce gold
-        Global.getManager().addMoney(goldPerSecond * delta);
+
     }
     
     /**
-     * Returns the string representation of Mine
-     * @return name of Mine
+     * Returns the string representation of Wall
+     * @return name of Wall
      */
     public String toString(){
-        return "Gold Mine";
+        return "Wall";
     }
 }

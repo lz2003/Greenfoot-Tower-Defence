@@ -22,4 +22,6 @@ public class TowerRemove extends TowerLabel
             
         }
     }    
+    
+    public void updateTower(Tower t) {}
 }

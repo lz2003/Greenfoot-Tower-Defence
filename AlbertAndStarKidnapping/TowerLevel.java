@@ -11,13 +11,12 @@ public class TowerLevel extends TowerLabel
     public TowerLevel(int x, int y){
         super(x, y, "Level: ");
     }
-    public void act() 
-    {
-        super.act();
+    
+    public void updateTower(Tower tower) {
         if(tower == null){
             setValue("Level: ");
         } else {
-            setValue("Level: "+tower.getLevel());
+            setValue("Level: "+ tower.getLevel());
         }
-    }    
+    }
 }

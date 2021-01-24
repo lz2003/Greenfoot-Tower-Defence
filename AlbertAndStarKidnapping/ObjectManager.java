@@ -63,15 +63,18 @@ public class ObjectManager
         spawner = new Spawner(this);
         jay = new JayJay(targetX, targetY);
     }
-
-    public ObjectManager(ArrayList<Tower> towers, int money, int level) {
-        this.towers = towers;
-        this.money = money;
+    
+    public ObjectManager(boolean editor) {
         mouse = new Mouse();
-        spawner = new Spawner(this, level);
+        
+        if(!editor)
+            spawner = new Spawner(this);
+        else
+            spawner = new DummySpawner(this);
+            
         jay = new JayJay(targetX, targetY);
     }
-    
+
     public void reset() {
         spawner = new Spawner(this);
         jay.destroy();
@@ -104,10 +107,8 @@ public class ObjectManager
         for(int i = objects.size() - 1; i >= 0; i--)
             objects.get(i)._update(delta);
 
-        
         for(int i = enemies.size() - 1; i >= 0; i--)
             enemies.get(i)._update(delta);
-        
         
         for(int i = towers.size() - 1; i >= 0; i--)
             towers.get(i)._update(delta);
@@ -267,13 +268,15 @@ public class ObjectManager
         
         // If no path found, dont set enemy path to new path
         if(path == null) return false;
-        
+
         this.path = path;
         broadcast(BROADCAST_REBUILD);
         return true;
     }
     
     public boolean updatePath(int x, int y, boolean blocked) {
+        if(x == startIndexX && y == startIndexY) return false;
+        
         boolean original = nodes[x][y].isBlocked();
         
         nodes[x][y].setBlocked(blocked);

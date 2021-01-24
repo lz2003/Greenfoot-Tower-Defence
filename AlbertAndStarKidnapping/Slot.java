@@ -67,49 +67,5 @@ public class Slot extends Sprite {
                 selected = this;
             }
         } 
-        /*
-        if(getNode().isBlocked()) {
-            setTransparency(0);
-
-            return;
-        } else {
-            setWidth(50);
-            //getImage().scale(Global.SLOT_SIZE, Global.SLOT_SIZE);
-        }    
-        
-        if(Global.manager.mouseDown()) {
-            if(selected) {
-                if(!Greenfoot.isKeyDown("q")) 
-                    setBlocked(true);
-                else
-                    setBlocked(false);
-            }
-        }
-        
-        selected = false;
-        int half = Global.SLOT_SIZE / 2;
-        if(Global.manager.mouseX() > this.getX() - half && Global.manager.mouseX() < this.getX() + half) {
-            if(Global.manager.mouseY() > this.getY() - half && Global.manager.mouseY() < this.getY() + half) {
-                setTransparency(ALPHA_ACTIVE);
-                //setWidth(10);
-                selected = true;
-            }
-            else
-                //setWidth(20);
-                setTransparency(ALPHA_NEAR);
-        } else if(Global.manager.mouseY() > this.getY() - half && Global.manager.mouseY() < this.getY() + half) {
-            setTransparency(ALPHA_NEAR);
-            //setWidth(20);
-        }
-        else {
-            //setWidth(50);
-            setTransparency(ALPHA_IDLE);
-        } 
-        
-        if(getNode().isOnPath()) {
-            //setWidth(30);
-            setTransparency(255);
-        }
-        */
     }
 }

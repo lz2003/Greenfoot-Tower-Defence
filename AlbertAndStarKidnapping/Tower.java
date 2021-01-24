@@ -18,7 +18,7 @@ public abstract class Tower extends Sprite
         COST_ICEBALL = 550,
         COST_LASER = 850,
         COST_MINES = 150,
-        COST_PILLBOX = 975;
+        COST_PILLBOX = 1525;
     
     protected int level;
     protected long lastTime;
@@ -38,7 +38,7 @@ public abstract class Tower extends Sprite
      * @param level the level of the tower
      */
     public Tower(GreenfootImage[][]image, float[]range, float[]cooldown, int x, int y, int iX, int iY, int level) {
-        super(x, y, image[Math2D.clamp(level, 1, Tower.MAX_LEVEL)][0], 1);
+        super(x, y, image[Math2D.clamp(level, 1, Tower.MAX_LEVEL) - 1][0], 1);
         setLocation(x, y);
         this.image = image;
         this.range = range;

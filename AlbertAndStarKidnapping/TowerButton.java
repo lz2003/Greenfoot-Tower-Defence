@@ -9,14 +9,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class TowerButton extends Button
 {
     public static final GreenfootImage[] icons = {
-        new GreenfootImage("images/shop/ArchersCard.png"),
-        new GreenfootImage("images/shop/CannonCard.png"),
+        new GreenfootImage("images/shop/ArcherIcon.png"),
+        new GreenfootImage("images/shop/CannonIcon.png"),
         new GreenfootImage("images/shop/BarbarianHutCard.png"),
-        new GreenfootImage("images/shop/WizardCard.png"),
-        new GreenfootImage("images/shop/IceWizardCard.png"),
-        new GreenfootImage("images/shop/TeslaCard.png"),
+        new GreenfootImage("images/shop/WizardIcon.png"),
+        new GreenfootImage("images/shop/IceWizardIcon.png"),
+        new GreenfootImage("images/shop/TeslaIcon.png"),
         new GreenfootImage("images/shop/GoldMineCard.png"),
-        new GreenfootImage("images/shop/MortarCard.png"),
+        new GreenfootImage("images/shop/PillBoxIcon.png"),
     };
     
     public static final int SIZE = 60;
@@ -36,7 +36,7 @@ public class TowerButton extends Button
         
     public TowerButton(int towerID) {
         setImage(icons[towerID]);
-        getImage().scale(SIZE, SIZE);
+        getImage().scale(SIZE + 6, SIZE + 13);
         this.towerID = towerID;
 
         
@@ -83,10 +83,11 @@ public class TowerButton extends Button
                 break;
         }
 
-        int x = getX() - getImage().getWidth() / 2 + 4;
-        int y = getY() + 30;
         String s = Integer.toString((int)cost);
 
+        int x = s.length() == 3 ? getX() - getImage().getWidth() / 2 + 7 : getX() - getImage().getWidth() / 2 - 1;
+        int y = getY() + 32;
+        
         getWorld().addObject(new TowerTextDisplay(x, y, s), x, y);
     }
     /**

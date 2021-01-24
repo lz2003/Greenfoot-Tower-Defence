@@ -75,7 +75,7 @@ public class CircleMask extends Sprite
     private void show(Tower selected){
         last = selected;
         GreenfootImage visibleImage = new GreenfootImage(visiblePath);
-        visibleImage.scale((int)(2*selected.getRange()), (int)(2*selected.getRange()));
+        visibleImage.scale(Math.max((int)(2*selected.getRange()), 1), Math.max((int)(int)(2*selected.getRange()), 1));
         setImage(visibleImage,false);
         setLocation(selected.getX(), selected.getY());
         Global.world.towerText.setTower(selected);
