@@ -164,4 +164,3 @@ public class Textbox extends Actor
         getWorld().removeObject(this);
     }
 }
-
