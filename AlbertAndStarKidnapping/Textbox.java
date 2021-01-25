@@ -153,7 +153,7 @@ public class Textbox extends Actor
         
         //draw String to be displayed
         textbox.setFont(myFont);
-        textbox.drawString(boxText,(borderThickness * 2), height/2 - (borderThickness * 2));
+        textbox.drawString(boxText,(borderThickness * 2), height/2 - (borderThickness * 2) - 5);
     }
     
     /**

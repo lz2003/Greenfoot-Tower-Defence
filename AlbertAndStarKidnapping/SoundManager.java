@@ -26,7 +26,7 @@ public class SoundManager
     // Tower sounds
     private static GreenfootSound PLACE = new GreenfootSound("sounds/placeItem.wav");
     private static GreenfootSound UPGRADE = new GreenfootSound("sounds/towerPowerup.wav");
-    private static GreenfootSound WALL = new GreenfootSound("sounds/placeWall.wav");
+    private static GreenfootSound WALL = new GreenfootSound("sounds/wallPlace.wav");
     
     // UI sounds
     private static GreenfootSound BUTTON = new GreenfootSound("sounds/button.wav");

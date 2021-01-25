@@ -90,9 +90,9 @@ public class Cutscene extends World
     public void act()
     {
         //changes string text
-        String key = Greenfoot.getKey();   
+        String key = Greenfoot.getKey();
         
-        if ("enter".equals(key))
+        if ("enter".equals(key) || "space".equals(key))
         {
             textBox.updateText();
             textBox2.updateText();

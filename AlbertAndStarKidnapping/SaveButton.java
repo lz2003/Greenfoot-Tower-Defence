@@ -23,7 +23,7 @@ public class SaveButton extends ImageButton
     public void onPress() {
         SavedInstance s = new SavedInstance(Global.getManager());
         try {
-            String name = SAVE_DIR + File.separator + "save-" + getTime() + "." + EXT;
+            String name = SAVE_DIR + File.separator + "save_" + getTime() + "." + EXT;
             s.save(name);
             new DissappearingText("Saved progress in " + name, 425, 30);
         } catch (IOException e) {
@@ -32,7 +32,7 @@ public class SaveButton extends ImageButton
     }
     
     public static String getTime() {
-        DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm:ss");
+        DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
         LocalDateTime currentDate = LocalDateTime.now();
         return currentDate.format(date);
     }
