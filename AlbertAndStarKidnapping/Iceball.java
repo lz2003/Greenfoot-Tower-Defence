@@ -33,7 +33,7 @@ public class Iceball extends Splash
      * @param level     the level of the projectile
      */
     public Iceball(double x, double y, Enemy target) {
-        super(x, y, image, target, explosion, explode);
+        super(x, y, image, target, explosion, explode, 3);
         isMagic = true;
         damage = MAX_DAMAGE[0];
         speed = MAX_SPEED[0];
@@ -49,7 +49,7 @@ public class Iceball extends Splash
      * @param level     the level of the projectile
      */
     public Iceball(double x, double y, Enemy target, int level) {
-        super(x, y, image, target, explosion, explode);
+        super(x, y, image, target, explosion, explode, 3);
         isMagic = true;
         if (level > 0 && level <= MAX_LEVEL) {
             damage = MAX_DAMAGE[level-1];

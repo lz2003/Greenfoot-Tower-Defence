@@ -8,6 +8,8 @@ import greenfoot.*;
  */
 public abstract class Tower extends Sprite 
 {
+    protected static final int MAX_LEVEL = 3;
+    
     public static final int 
         COST_ARCHER = 250,
         COST_CANNON = 200,
@@ -16,76 +18,36 @@ public abstract class Tower extends Sprite
         COST_ICEBALL = 550,
         COST_LASER = 850,
         COST_MINES = 150,
-        COST_PILLBOX = 975;
-        
-    protected int cost;
-    protected int range;
+        COST_PILLBOX = 1525;
+    
     protected int level;
-    protected int cooldown;
     protected long lastTime;
     protected int iX, iY;
     protected double rotation = 0;
-    private GreenfootImage[]images;
-    protected CircleMask mask;
-    protected long lastClicked = 0;
-    protected long timeDelay = 500;
+    protected GreenfootImage[][]image;
+    protected float[]range;
+    protected float[]cooldown;
     
     /**
      * Creates a tower.
+     * @param image a 2D array of sprites
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
      * @param iY the y index of the tower in the global grid
-     * @param cost the cost to upgrade the tower
-     * @param range the range of the tower
-     * @param cooldown the number of milliseconds after which a tower will complete an action
-     * @param images an array of greenfoot images for each level of the tower
+     * @param level the level of the tower
      */
-    public Tower(int x, int y, int iX, int iY, int cost, int range, int cooldown, GreenfootImage[]images) {
-        super(x, y, images[0], 1);
+    public Tower(GreenfootImage[][]image, float[]range, float[]cooldown, int x, int y, int iX, int iY, int level) {
+        super(x, y, image[Math2D.clamp(level, 1, Tower.MAX_LEVEL) - 1][0], 1);
         setLocation(x, y);
+        this.image = image;
+        this.range = range;
+        this.cooldown = cooldown;
         this.iX = iX;
         this.iY = iY;
-        this.cost = cost;
-        this.range = range;
-        this.level = 1;
-        this.cooldown = cooldown;
-        this.images = images;
+        this.level = level;
         this.lastTime = System.currentTimeMillis();
         Global.manager.addTower(this);
-    }
-    
-    /**
-     * Update the tower
-     */
-    public void _update(float delta) {
-        checkClick();
-    }
-    
-    private void checkClick(){
-        if(Global.getManager().mouseDown() && System.currentTimeMillis() - lastClicked >= timeDelay){
-            if(mask == null){
-                if(isSelectedTower()){
-                    mask = new CircleMask(getX(), getY(), range);
-                    lastClicked = System.currentTimeMillis();
-                    Global.world.towerText.setTower(this);
-                    Global.world.towerLevel.setTower(this);
-                }
-            } else if(Global.getManager().mouseX() <= Global.world.canvasWidth && Global.getManager().mouseY() <= Global.world.canvasHeight){
-                mask.removeSprite();
-                mask = null;
-                lastClicked = System.currentTimeMillis();
-                Global.world.towerText.unlinkTower(this);
-                Global.world.towerLevel.unlinkTower(this);
-            }
-        }
-    }
-    
-    /**
-     * Determines if the cooldown timer has expired
-     */
-    protected boolean canAct(){
-        return System.currentTimeMillis() - this.lastTime >= cooldown;
     }
     
     /**
@@ -99,23 +61,8 @@ public abstract class Tower extends Sprite
      * Level up the tower
      */
     private void levelup() {
-        this.level = Math.max(this.level+1, images.length);
-        setImage(images[this.level-1]);
-    }
-
-    /**
-     * Get the cost of purchasing the tower
-     * @return int cost
-     */
-    public int getCost() {
-        return this.cost;
-    }
-    
-    /**
-     * Set the range of the tower
-     */
-    public void setRange(int range) {
-        this.range = range;
+        this.level = Math.max(this.level+1, MAX_LEVEL);
+        setImage(image[level][0]);
     }
     
     /**
@@ -155,5 +102,21 @@ public abstract class Tower extends Sprite
      */
     public boolean isSelectedTower(){
         return Slot.getSelected().getIndex().x == iX && Slot.getSelected().getIndex().y == iY;
+    }
+    
+    /**
+     * Get the cooldown at the current level
+     * @return the cooldown in milliseconds of the tower
+     */
+    public float getCooldown(){
+        return cooldown[level-1];
+    }
+    
+    /**
+     * Get the maximum range at the current level
+     * @return the maximum range of the tower
+     */
+    public float getRange(){
+        return range[level-1];
     }
 }

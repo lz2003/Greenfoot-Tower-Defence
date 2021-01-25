@@ -1,0 +1,65 @@
+import greenfoot.*;
+/**
+ * Wall that does nothing
+ * 
+ * @author Ryan Lin
+ * @version (a version number or a date)
+ */
+public class Wall extends Tower 
+{
+    private static final float[]
+        MAX_COOLDOWN = {1000, 1000, 1000},
+        MAX_RANGE = {0, 0, 0};
+    
+    private static GreenfootImage[][] sprite = {
+        {
+            new GreenfootImage("images/Gold Mine/goldMine1.png")
+        },
+        {
+            new GreenfootImage("images/Gold Mine/goldMine2.png")
+        },
+        {
+            new GreenfootImage("images/Gold Mine/goldMine3.png")
+        }
+    };
+
+    /**
+     * Creates a basic wall
+     * @param x the x coordinate of the tower
+     * @param y the y coordinate of the tower
+     * @param iX the x index of the tower in the global grid
+     * @param iY the y index of the tower in the global grid
+     */
+    public Wall(int x, int y, int iX, int iY)
+    {
+        this(x, y, iX, iY, 1);
+    }
+
+    /**
+     * Creates a wall
+     * @param x the x coordinate of the tower
+     * @param y the y coordinate of the tower
+     * @param iX the x index of the tower in the global grid
+     * @param iY the y index of the tower in the global grid
+     */
+    public Wall(int x, int y, int iX, int iY, int level)
+    {
+        super(sprite, MAX_RANGE, MAX_COOLDOWN, x, y, iX, iY, level);
+    }
+    
+    /**
+     * Be a nice wall and do nothing
+     */
+    public void _update(float delta)
+    {
+
+    }
+    
+    /**
+     * Returns the string representation of Wall
+     * @return name of Wall
+     */
+    public String toString(){
+        return "Wall";
+    }
+}

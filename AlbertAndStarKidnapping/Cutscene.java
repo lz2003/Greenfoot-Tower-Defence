@@ -181,4 +181,3 @@ public class Cutscene extends World
         textBox7.addText("Yup", jayjay);
     }
 }
-

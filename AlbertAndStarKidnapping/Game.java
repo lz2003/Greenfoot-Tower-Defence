@@ -13,6 +13,7 @@ public class Game extends World
     public static final int canvasWidth = 850, canvasHeight = 600;
     private ObjectManager manager;
     private Canvas canvas;
+    private CircleMask mask;
     TowerText towerText;
     TowerLevel towerLevel;
     public Game()
@@ -20,7 +21,7 @@ public class Game extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(925, 750, 1, false); 
         
-        setPaintOrder(BuildCursor.class, Canvas.class);
+        setPaintOrder(DissappearingText.class, BuildCursor.class, Canvas.class);
         
         Global.setWorld(this);
         
@@ -53,6 +54,7 @@ public class Game extends World
         addObject(new SaveButton(), 45 + 75 + 75 + 20, 705);
         addObject(new ReadButton(), 45 + 75 + 75 + + 75 + 30, 705);
         
+        mask = new CircleMask();
         init();
     }
     
@@ -77,5 +79,13 @@ public class Game extends World
     
     public void act() {
         manager.update();
+        
+        /**
+         * This is to show how to call a specific cutscene after a wave
+            if (Greenfoot.isKeyDown("space")) 
+            {
+                Greenfoot.setWorld(new Cutscene(1));
+            }
+        */
     }
 }

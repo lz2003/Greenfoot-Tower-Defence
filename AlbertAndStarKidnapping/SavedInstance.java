@@ -19,7 +19,8 @@ public class SavedInstance
         END = "}",
         SEP = "=",
         LOC_SEP = ",",
-        TOWER_SEP = ":"
+        TOWER_SEP = ":",
+        FIELD_SEP = ";"
     ;
 
     public static final String
@@ -31,6 +32,7 @@ public class SavedInstance
         LASER = "LaserTower",
         MINES = "Mines",
         PILLBOX = "PillBox",
+        WALL = "Wall",
         EMPTY = "Empty"
     ;
 
@@ -77,11 +79,15 @@ public class SavedInstance
 
                 Tower t = getTowerAtIndex(towers, x, y);
 
-                writer.print(FIELD_LOC + SEP + x + LOC_SEP + y + TOWER_SEP);
-
+                // writer.print(FIELD_LOC + SEP + x + LOC_SEP + y + TOWER_SEP);
+                writer.print(FIELD_LOC + SEP + x + LOC_SEP + y + FIELD_SEP);
+  
+                
                 if(t == null) {
+                    writer.print(FIELD_LEVEL + SEP + 0 + TOWER_SEP);
                     writer.print(EMPTY);
                 } else {
+                    writer.print(FIELD_LEVEL + SEP + t.getLevel() + TOWER_SEP);
                     if(t instanceof ArcherTower) {
                         writer.print(ARCHER);
                     }
@@ -105,7 +111,11 @@ public class SavedInstance
                     }
                     else if(t instanceof Pillbox) {
                         writer.print(PILLBOX);
-                    } else {
+                    }
+                    else if(t instanceof Wall) {
+                        writer.print(WALL);
+                    } 
+                    else {
                         writer.print(EMPTY);
                     }
                 }
@@ -167,60 +177,50 @@ public class SavedInstance
                         break;
                     }
                     // writer.print(FIELD_LOC + SEP + x + LOC_SEP + y + TOWER_SEP);
-                    String locFull = line.substring(line.indexOf(SEP) + 1, line.indexOf(TOWER_SEP)); // x + LOC_SEP + y
+                    String locFull = line.substring(line.indexOf(SEP) + 1, line.indexOf(FIELD_SEP)); // x + LOC_SEP + y
 
                     String[] split = locFull.split(LOC_SEP);
+
                     int x = Integer.parseInt(split[0]);
                     int y = Integer.parseInt(split[1]);
 
+                    String levelField = FIELD_LEVEL + SEP;
+                    
+                    String levelStr = line.substring(line.indexOf(levelField) + levelField.length(), line.indexOf(TOWER_SEP));
+
+                    int towerLevel = Integer.parseInt(levelStr);
+                    
                     String tower = line.substring(line.indexOf(TOWER_SEP) + 1);
 
                     boolean valid = false;
 
-                    /*
-                        ARCHER = "Arch",
-                        CANNON = "Can",
-                        BARRACKS = "Bar",
-                        FIREBALL = "Fire",
-                        ICEBALL = "Ice",
-                        LASER = "Las",
-                        MINES = "Mine",
-                        PILLBOX = "Pill",
-                        EMPTY = "Empt"
-                     */
-                    /*
-                        for(int x = 0, index_x = 0; x < width; x += Global.SLOT_SIZE, index_x++) {
-                        for(int y = 0, index_y = 0; y < height; y += Global.SLOT_SIZE, index_y++) {
-                            Slot s = new Slot(x + Global.SLOT_SIZE / 2, y  + Global.SLOT_SIZE / 2, index_x, index_y, false);
-                            nodes[index_x][index_y] = s.getNode();
-                            slots[index_x][index_y] = s;
-                        }
-                    }
-                     */
                     switch(tower) {
                         case ARCHER:
-                            new ArcherTower(getLoc(x), getLoc(y), x, y);
+                            new ArcherTower(getLoc(x), getLoc(y), x, y, towerLevel);
                             break;
                         case CANNON:
-                            new Artillery(getLoc(x), getLoc(y), x, y);
+                            new Artillery(getLoc(x), getLoc(y), x, y, towerLevel);
                             break;
                         case BARRACKS:
-                            new Barracks(getLoc(x), getLoc(y), x, y);
+                            new Barracks(getLoc(x), getLoc(y), x, y, towerLevel);
                             break;
                         case FIREBALL:
-                            new FireballTower(getLoc(x), getLoc(y), x, y);
+                            new FireballTower(getLoc(x), getLoc(y), x, y, towerLevel);
                             break;
                         case ICEBALL:
-                            new IceballTower(getLoc(x), getLoc(y), x, y);
+                            new IceballTower(getLoc(x), getLoc(y), x, y, towerLevel);
                             break;
                         case LASER:
-                            new LazerTower(getLoc(x), getLoc(y), x, y);
+                            new LazerTower(getLoc(x), getLoc(y), x, y, towerLevel);
                             break;
                         case MINES:
-                            new Mines(getLoc(x), getLoc(y), x, y);
+                            new Mines(getLoc(x), getLoc(y), x, y, towerLevel);
                             break;
                         case PILLBOX:
-                            new Pillbox(getLoc(x), getLoc(y), x, y);
+                            new Pillbox(getLoc(x), getLoc(y), x, y, towerLevel);
+                            break;
+                        case WALL:
+                            new Wall(getLoc(x), getLoc(y), x, y, towerLevel);
                             break;
                     }
                     break;

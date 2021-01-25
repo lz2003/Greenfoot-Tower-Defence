@@ -8,10 +8,25 @@ import java.util.*;
  */
 public class Barracks extends CombatTower 
 {
+    private static final float[]
+        MAX_COOLDOWN = {5000, 4200, 3800},
+        MAX_RANGE = {300, 400, 500};
+    
+    private static final GreenfootImage[][]sprite = {
+        {
+            new GreenfootImage("images/Barracks/barracks1.png")
+        },
+        {
+            new GreenfootImage("images/Barracks/barracks2.png")
+        },
+        {
+            new GreenfootImage("images/Barracks/barracks3.png")
+        }
+    };
     public static final int MINIONS_PER_BARRACK = 3;
     private static int numBarracks = 0;
     /**
-     * Creates a tower that spawns characters to fight enemies.
+     * Creates a basic Barracks.
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
@@ -19,7 +34,20 @@ public class Barracks extends CombatTower
      */
     public Barracks(int x, int y, int iX, int iY)
     {
-        super(x, y, iX, iY, 1, 200, 3000, new GreenfootImage[]{new GreenfootImage("images/Barracks/barracks1.png"), new GreenfootImage("images/Barracks/barracks2.png"), new GreenfootImage("images/Barracks/barracks3.png")});
+        this(x, y, iX, iY, 1);
+    }
+    
+    /**
+     * Creates a Barracks with a custom level.
+     * @param x the x coordinate of the tower
+     * @param y the y coordinate of the tower
+     * @param iX the x index of the tower in the global grid
+     * @param iY the y index of the tower in the global grid
+     * @param level the level of the tower
+     */
+    public Barracks(int x, int y, int iX, int iY, int level)
+    {
+        super(sprite, MAX_RANGE, MAX_COOLDOWN, false, x, y, iX, iY, level);
         numBarracks++;
     }
 
@@ -49,5 +77,13 @@ public class Barracks extends CombatTower
     public void destroy() {
         super.destroy();
         numBarracks--;
+    }
+    
+    /**
+     * Returns the string representation of Barracks
+     * @return name of Barracks
+     */
+    public String toString(){
+        return "Barracks";
     }
 }

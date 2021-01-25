@@ -23,12 +23,14 @@ public abstract class Projectile extends Sprite
      * @param y         the starting y coordinate
      * @param image     the sprite of the projectile
      * @param target    the reference enemy target
+     * @param id        the id of the projectile for sounds
      */
-    public Projectile(double x, double y, GreenfootImage image, Enemy target) {
+    public Projectile(double x, double y, GreenfootImage image, Enemy target, int id) {
         super(x, y, image, image.getWidth(), image.getHeight(), 1);
         setLocation(x, y);
         turnTowards(target.getX(), target.getY());
         Global.getManager().addProjectile(this);
+        SoundManager.projectileSounds(id);
     }
     
     /**
