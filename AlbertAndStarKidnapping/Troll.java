@@ -9,6 +9,18 @@ import greenfoot.*;
 public class Troll extends Enemy 
 {
     static GreenfootImage idle = new GreenfootImage("images/enemy/Troll/0/0001.png");
+    
+    /**
+     * Constructor for Troll
+     * 
+     * @param x         the x coordinate of Troll
+     * @param y         the y coordinate of Troll
+     */
+    public Troll(double x, double y) {
+        super(x, y, idle, 1500, 50, 3, .2f, false, true);
+        range = 150;
+        rangeSquared = range * range;
+    }
 
     private static Animation[] a0 = new Animation[] {
         new Animation(new GreenfootImage[]{
@@ -196,18 +208,6 @@ public class Troll extends Enemy
     
     private static double overPi = 180./Math.PI;
     private boolean canAttack = false;
-    
-    /**
-     * Constructor for Troll
-     * 
-     * @param x         the x coordinate of Troll
-     * @param y         the y coordinate of Troll
-     */
-    public Troll(double x, double y) {
-        super(x, y, idle, 1500, 50, 3, .2f, false, true);
-        range = 150;
-        rangeSquared = range * range;
-    }
     
     public void _update(float delta) {
         if(!canAttack) {
