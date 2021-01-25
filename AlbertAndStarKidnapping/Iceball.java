@@ -9,7 +9,7 @@ public class Iceball extends Splash
 {
     // Change these later on
     private static final float[]
-        MAX_DAMAGE = {100, 150, 300},
+        MAX_DAMAGE = {40, 50, 65},
         MAX_RADIUS = {3000, 3000, 3000},
         MAX_SPEED = {7, 7, 9};
     

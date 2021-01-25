@@ -1,5 +1,6 @@
-
 import java.util.*;
+import greenfoot.*;
+import java.io.IOException;
 /**
  * Write a description of class Spawner here.
  * 
@@ -16,7 +17,7 @@ public class Spawner extends Updated
         TR = "4",
         WL = "5"
     ;
-
+    
     private int level = 0;
     private ObjectManager manager;
     /**
@@ -37,12 +38,32 @@ public class Spawner extends Updated
         }
     }
     
-    public void nextLevel() {
-        spawnLevel(++level);
+    public boolean hasCutscene(int level) {
+        int cutscene = level / Cutscene.LEVELS_PER_CUTSCENE;
+        int check = level % Cutscene.LEVELS_PER_CUTSCENE;
+        
+        return check == 0 && cutscene > 0 && cutscene <= Cutscene.TOTAL_CUTSCENES && Global.getWorld().isCampaign();
     }
     
-    private void spawnLevel(int level) {
-
+    public void nextLevel() {
+        int cutscene = ++level / Cutscene.LEVELS_PER_CUTSCENE;
+        int check = level % Cutscene.LEVELS_PER_CUTSCENE;
+        if(check == 0 && cutscene > 0 && cutscene <= Cutscene.TOTAL_CUTSCENES && Global.getWorld().isCampaign()) {
+            try {
+                SavedInstance s = new SavedInstance(Global.getManager());
+                s.save(SavedInstance.AUTO_SAVE_PATH);
+            } catch (IOException e) {
+                // Player's progress is worth more than a cutscene
+                return;
+            }
+            Greenfoot.setWorld(new Cutscene(cutscene));
+            return;
+        }
+        
+        spawnLevel(level);
+    }
+    
+    public void spawnLevel(int level) {
         switch(level) {
             case 1: {
                 ArrayList<String> e = new ArrayList<String>();
@@ -50,8 +71,7 @@ public class Spawner extends Updated
                 for(i = 0; i < 1; i++) {
                     e.add(MN);
                 }
-                e.add(BP);
-                e.add(BP);
+                e.add(WL);
                 spawn(e);
                 break;
             }

@@ -119,8 +119,8 @@ public class Textbox extends Actor
             }
             else
             {
-                finish();
                 character.finish();
+                finish();
             }
         }
     }
@@ -162,5 +162,6 @@ public class Textbox extends Actor
     private void finish()
     {
         getWorld().removeObject(this);
+        Greenfoot.setWorld(new Game(true, true));
     }
 }

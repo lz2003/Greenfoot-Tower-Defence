@@ -12,6 +12,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Cutscene extends World
 {
+    public static final int LEVELS_PER_CUTSCENE = 5;
+    public static final int TOTAL_CUTSCENES = 7;
     //Background images
     GreenfootImage lightCastle = new GreenfootImage("images/cutscene/lc.jpeg");
     GreenfootImage insideCastle = new GreenfootImage("images/cutscene/ic.jpeg");
@@ -92,7 +94,7 @@ public class Cutscene extends World
         //changes string text
         String key = Greenfoot.getKey();
         
-        if ("enter".equals(key) || "space".equals(key))
+        if ("enter".equals(key) || "space".equals(key) || Greenfoot.mouseClicked(null))
         {
             textBox.updateText();
             textBox2.updateText();

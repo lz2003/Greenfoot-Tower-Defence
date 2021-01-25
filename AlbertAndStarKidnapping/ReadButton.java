@@ -19,10 +19,13 @@ public class ReadButton extends ImageButton
     }
     
     public void onPress() {
+        read();
+    }
+    
+    public static void read() {
         try {
             File save = new File(SaveButton.SAVE_DIR);
-            //save.mkdir();
-            
+
             File f = chooseFile(save);
             if(f != null) {
                 Global.getManager().reset();

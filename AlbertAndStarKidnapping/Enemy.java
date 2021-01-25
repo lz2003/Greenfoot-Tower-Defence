@@ -8,6 +8,7 @@ import java.awt.Color;
  * @version (a version number or a date)
  */
 public class Enemy extends Sprite {
+
     public static final float 
         DEFAULT_HP = 1000,
         DEFAULT_RANGE = 50;
@@ -16,8 +17,8 @@ public class Enemy extends Sprite {
     private Node[] reroutedPath;
     private float hp, maxHp;
     private double distTravelled = 0;
-    private float range = 50, rangeSquared = 50 * 50;
-    private float coolDown = 1, coolDownTime;
+    protected float range = 50, rangeSquared = 50 * 50;
+    protected float coolDown = 0, coolDownTime;
     private boolean magRes = false, phyRes = false;
     
     private HPBar hpBar;
@@ -62,7 +63,6 @@ public class Enemy extends Sprite {
         this.maxHp = hp;
         this.range = range;
         this.rangeSquared = (float) Math.pow(range, 2);
-        this.coolDown = coolDown;
         this.coolDownTime = coolDown;
         this.speed = speed;
         this.magRes = magRes;
@@ -123,7 +123,7 @@ public class Enemy extends Sprite {
     /**
      * Updates the health bar to represent the current hp
      */
-    private void updateHP() {
+    protected void updateHP() {
         hpBar.setHP(hp);
     }
     
@@ -140,7 +140,7 @@ public class Enemy extends Sprite {
         }
     }
     
-    private void checkCanAttack(float delta) {
+    protected void checkCanAttack(float delta) {
         coolDown -= delta;
         if(Math2D.distanceSquared(Global.manager.getTargetX(), getX(), Global.manager.getTargetY(), getY()) < rangeSquared) {
             if(coolDown < 0) {

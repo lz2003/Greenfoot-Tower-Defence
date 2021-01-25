@@ -9,7 +9,7 @@ public class FireballTower extends CombatTower
 {
     private static final float[]
         MAX_COOLDOWN = {1000, 900, 800},
-        MAX_RANGE = {100, 150, 200};
+        MAX_RANGE = {170, 190, 210};
         
     private static final GreenfootImage[][]sprite = {
         {

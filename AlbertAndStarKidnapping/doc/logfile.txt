@@ -1,6 +1,6 @@
 Class documentation
 <---- javadoc command: ---->
-C:\Program Files\Greenfoot\jdk\bin\javadoc.exe
+/usr/lib/jvm/java-11-openjdk-amd64/bin/javadoc
 -author
 -version
 -nodeprecated
@@ -13,22 +13,30 @@ C:\Program Files\Greenfoot\jdk\bin\javadoc.exe
 -source
 11
 -classpath
-C:\Program Files\Greenfoot\lib\extensions\greenfoot.jar;C:\Program Files\Greenfoot\lib\bluejcore.jar;C:\Program Files\Greenfoot\lib\bluejeditor.jar;C:\Program Files\Greenfoot\lib\bluejext.jar;C:\Program Files\Greenfoot\lib\junit-4.11.jar;C:\Program Files\Greenfoot\lib\hamcrest-core-1.3.jar;C:\Program Files\Greenfoot\lib\bluej.jar;C:\Program Files\Greenfoot\lib\classgraph-4.2.6.jar;C:\Program Files\Greenfoot\lib\diffutils-1.2.1.jar;C:\Program Files\Greenfoot\lib\commons-logging-api-1.1.2.jar;C:\Program Files\Greenfoot\lib\jl1.0.1.jar;C:\Program Files\Greenfoot\lib\opencsv-2.3.jar;C:\Program Files\Greenfoot\lib\xom-1.2.9.jar;C:\Program Files\Greenfoot\lib\lang-stride.jar;C:\Program Files\Greenfoot\lib\nsmenufx-2.1.4.jar;C:\Program Files\Greenfoot\lib\richtextfx-fat-0.9.0.jar;C:\Program Files\Greenfoot\lib\guava-17.0.jar;C:\Program Files\Greenfoot\lib\httpclient-4.1.1.jar;C:\Program Files\Greenfoot\lib\httpcore-4.1.jar;C:\Program Files\Greenfoot\lib\httpmime-4.1.1.jar;C:\Program Files\Greenfoot\lib\javafx\lib\javafx.base.jar;C:\Program Files\Greenfoot\lib\javafx\lib\javafx.controls.jar;C:\Program Files\Greenfoot\lib\javafx\lib\javafx.fxml.jar;C:\Program Files\Greenfoot\lib\javafx\lib\javafx.graphics.jar;C:\Program Files\Greenfoot\lib\javafx\lib\javafx.media.jar;C:\Program Files\Greenfoot\lib\javafx\lib\javafx.properties.jar;C:\Program Files\Greenfoot\lib\javafx\lib\javafx.swing.jar;C:\Program Files\Greenfoot\lib\javafx\lib\javafx.web.jar;C:\Users\ryanl\grid\Greenfoot-Tower-Defence\AlbertAndStarKidnapping
+/home/user/files_/greenfoot/lib/extensions/greenfoot.jar:/home/user/files_/greenfoot/lib/bluejcore.jar:/home/user/files_/greenfoot/lib/bluejeditor.jar:/home/user/files_/greenfoot/lib/bluejext.jar:/home/user/files_/greenfoot/lib/junit-4.11.jar:/home/user/files_/greenfoot/lib/hamcrest-core-1.3.jar:/home/user/files_/greenfoot/lib/bluej.jar:/home/user/files_/greenfoot/lib/classgraph-4.2.6.jar:/home/user/files_/greenfoot/lib/diffutils-1.2.1.jar:/home/user/files_/greenfoot/lib/commons-logging-api-1.1.2.jar:/home/user/files_/greenfoot/lib/jl1.0.1.jar:/home/user/files_/greenfoot/lib/opencsv-2.3.jar:/home/user/files_/greenfoot/lib/xom-1.2.9.jar:/home/user/files_/greenfoot/lib/lang-stride.jar:/home/user/files_/greenfoot/lib/nsmenufx-2.1.4.jar:/home/user/files_/greenfoot/lib/richtextfx-fat-0.9.0.jar:/home/user/files_/greenfoot/lib/guava-17.0.jar:/home/user/files_/greenfoot/lib/httpclient-4.1.1.jar:/home/user/files_/greenfoot/lib/httpcore-4.1.jar:/home/user/files_/greenfoot/lib/httpmime-4.1.1.jar:/home/user/files_/javafx-sdk-11.0.2/lib/javafx.base.jar:/home/user/files_/javafx-sdk-11.0.2/lib/javafx.controls.jar:/home/user/files_/javafx-sdk-11.0.2/lib/javafx.fxml.jar:/home/user/files_/javafx-sdk-11.0.2/lib/javafx.graphics.jar:/home/user/files_/javafx-sdk-11.0.2/lib/javafx.media.jar:/home/user/files_/javafx-sdk-11.0.2/lib/javafx.properties.jar:/home/user/files_/javafx-sdk-11.0.2/lib/javafx.swing.jar:/home/user/files_/javafx-sdk-11.0.2/lib/javafx.web.jar:/home/user/projects/greenfootbad/tree/Greenfoot-Tower-Defence/AlbertAndStarKidnapping
 -d
-C:\Users\ryanl\grid\Greenfoot-Tower-Defence\AlbertAndStarKidnapping\doc
+/home/user/projects/greenfootbad/tree/Greenfoot-Tower-Defence/AlbertAndStarKidnapping/doc
 -encoding
 UTF-8
 -charset
 UTF-8
-C:\Users\ryanl\grid\Greenfoot-Tower-Defence\AlbertAndStarKidnapping\ObjectManager.java
+/home/user/projects/greenfootbad/tree/Greenfoot-Tower-Defence/AlbertAndStarKidnapping/Cutscene.java
 <---- end of javadoc command ---->
-Loading source file C:\Users\ryanl\grid\Greenfoot-Tower-Defence\AlbertAndStarKidnapping\ObjectManager.java...
+Loading source file /home/user/projects/greenfootbad/tree/Greenfoot-Tower-Defence/AlbertAndStarKidnapping/Cutscene.java...
 Constructing Javadoc information...
-C:\Users\ryanl\grid\Greenfoot-Tower-Defence\AlbertAndStarKidnapping\Tower.java:65: error: illegal start of expression
-    }
-    ^
 warning: unknown enum constant Tag.Any
   reason: class file for threadchecker.Tag not found
 warning: unknown enum constant Tag.Any
-1 error
-2 warnings
+warning: unknown enum constant Tag.Any
+warning: unknown enum constant Tag.Any
+Standard Doclet version 11.0.9.1
+Building tree for all the packages and classes...
+Generating /home/user/projects/greenfootbad/tree/Greenfoot-Tower-Defence/AlbertAndStarKidnapping/doc/Cutscene.html...
+Generating /home/user/projects/greenfootbad/tree/Greenfoot-Tower-Defence/AlbertAndStarKidnapping/doc/package-summary.html...
+Generating /home/user/projects/greenfootbad/tree/Greenfoot-Tower-Defence/AlbertAndStarKidnapping/doc/constant-values.html...
+Building index for all the packages and classes...
+Building index for all classes...
+Generating /home/user/projects/greenfootbad/tree/Greenfoot-Tower-Defence/AlbertAndStarKidnapping/doc/allclasses.html...
+Generating /home/user/projects/greenfootbad/tree/Greenfoot-Tower-Defence/AlbertAndStarKidnapping/doc/allclasses.html...
+Generating /home/user/projects/greenfootbad/tree/Greenfoot-Tower-Defence/AlbertAndStarKidnapping/doc/index.html...
+4 warnings

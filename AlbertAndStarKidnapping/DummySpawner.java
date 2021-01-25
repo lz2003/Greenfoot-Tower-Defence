@@ -13,4 +13,8 @@ public class DummySpawner extends Spawner
     public void _update(float delta) {
 
     }
+    
+    public void nextLevel() {
+    
+    }
 }
