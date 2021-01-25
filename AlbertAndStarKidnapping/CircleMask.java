@@ -63,7 +63,8 @@ public class CircleMask extends Sprite
     /**
      * Make the Circular Mask Disappear
      */
-    private void hide(){
+    public void hide(){
+        Global.world.towerDisplay.hide(last);
         last = null;
         setImage(hiddenImage);
     }
@@ -78,7 +79,7 @@ public class CircleMask extends Sprite
         visibleImage.scale(Math.max((int)(2*selected.getRange()), 1), Math.max((int)(int)(2*selected.getRange()), 1));
         setImage(visibleImage,false);
         setLocation(selected.getX(), selected.getY());
-        Global.world.towerDisplay.setTower(selected);
+        Global.world.towerDisplay.show(selected);
     }
     
     /**

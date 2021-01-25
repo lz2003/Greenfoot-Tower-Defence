@@ -32,6 +32,7 @@ public class RemoveTowerButton extends ImageButton
         if(tower != null && Greenfoot.mouseClicked(this))
         {
             tower.destroy();
+            Global.world.mask.hide();
         }
     }    
 }

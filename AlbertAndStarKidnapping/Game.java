@@ -13,7 +13,7 @@ public class Game extends World
     public static final int canvasWidth = 850, canvasHeight = 600;
     private ObjectManager manager;
     private Canvas canvas;
-    private CircleMask mask;
+    public CircleMask mask;
     //TowerText towerText;
     //TowerLevel towerLevel;
     TowerDisplay towerDisplay;
