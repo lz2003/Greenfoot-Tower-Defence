@@ -34,6 +34,23 @@ public abstract class Projectile extends Sprite
     }
     
     /**
+     * Constructor for Projectile class
+     * 
+     * @param x         the starting x coordinate
+     * @param y         the starting y coordinate
+     * @param image     the sprite of the projectile
+     * @param angle     angle of projectile
+     * @param id        the id of the projectile for sounds
+     */
+    public Projectile(double x, double y, GreenfootImage image, double angle, int id) {
+        super(x, y, image, image.getWidth(), image.getHeight(), 1);
+        setLocation(x, y);
+        setRotation(angle);
+        Global.getManager().addProjectile(this);
+        SoundManager.projectileSounds(id);
+    }
+    
+    /**
      * Update method
      */
     public void _update(float delta) {

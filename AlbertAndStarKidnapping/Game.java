@@ -1,5 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import greenfoot.core.WorldHandler;  
+import java.io.IOException;
+import java.io.File;
 import java.util.*;
 
 /**
@@ -64,7 +66,11 @@ public class Game extends World
         init();
         
         if(autoload) {
-            
+            try {
+                SavedInstance.read(SavedInstance.AUTO_SAVE_PATH);
+                Global.getManager().getSpawner().spawnLevel(Global.getManager().getSpawner().getLevel());
+            } catch(IOException e) {
+            }
         }
     }
     

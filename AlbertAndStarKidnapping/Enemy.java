@@ -8,6 +8,7 @@ import java.awt.Color;
  * @version (a version number or a date)
  */
 public class Enemy extends Sprite {
+
     public static final float 
         DEFAULT_HP = 1000,
         DEFAULT_RANGE = 50;
@@ -17,7 +18,7 @@ public class Enemy extends Sprite {
     private float hp, maxHp;
     private double distTravelled = 0;
     private float range = 50, rangeSquared = 50 * 50;
-    private float coolDown = 1, coolDownTime;
+    protected float coolDown = 1, coolDownTime;
     private boolean magRes = false, phyRes = false;
     
     private HPBar hpBar;

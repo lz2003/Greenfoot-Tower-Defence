@@ -28,13 +28,16 @@ public class SavedInstance
         CANNON = "Cannon",
         BARRACKS = "Barracks",
         FIREBALL = "FireballTower",
-        ICEBALL = "IceeballTower",
+        ICEBALL = "IceballTower",
         LASER = "LaserTower",
         MINES = "Mines",
         PILLBOX = "PillBox",
         WALL = "Wall",
         EMPTY = "Empty"
     ;
+    
+    public static final String 
+        AUTO_SAVE_PATH = SaveButton.SAVE_DIR + File.separator + "autosave" + "." + SaveButton.EXT;
 
     private int level;
     private float money;
