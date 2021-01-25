@@ -1,5 +1,5 @@
-Level=35}
-Money=48600.0}
+Level=5}
+Money=48542.61}
 Towers={
 Location=0,0;Level=0:Empty
 Location=0,1;Level=0:Empty
@@ -28,11 +28,11 @@ Location=1,11;Level=0:Empty
 Location=2,0;Level=0:Empty
 Location=2,1;Level=0:Empty
 Location=2,2;Level=0:Empty
-Location=2,3;Level=0:Empty
+Location=2,3;Level=1:Archer
 Location=2,4;Level=0:Empty
-Location=2,5;Level=0:Empty
+Location=2,5;Level=1:Archer
 Location=2,6;Level=0:Empty
-Location=2,7;Level=0:Empty
+Location=2,7;Level=1:Archer
 Location=2,8;Level=0:Empty
 Location=2,9;Level=0:Empty
 Location=2,10;Level=0:Empty
@@ -43,7 +43,7 @@ Location=3,2;Level=0:Empty
 Location=3,3;Level=0:Empty
 Location=3,4;Level=0:Empty
 Location=3,5;Level=0:Empty
-Location=3,6;Level=1:IceballTower
+Location=3,6;Level=0:Empty
 Location=3,7;Level=0:Empty
 Location=3,8;Level=0:Empty
 Location=3,9;Level=0:Empty
@@ -67,7 +67,7 @@ Location=5,2;Level=0:Empty
 Location=5,3;Level=0:Empty
 Location=5,4;Level=0:Empty
 Location=5,5;Level=0:Empty
-Location=5,6;Level=0:Empty
+Location=5,6;Level=1:Barracks
 Location=5,7;Level=0:Empty
 Location=5,8;Level=0:Empty
 Location=5,9;Level=0:Empty
@@ -115,7 +115,7 @@ Location=9,2;Level=0:Empty
 Location=9,3;Level=0:Empty
 Location=9,4;Level=0:Empty
 Location=9,5;Level=0:Empty
-Location=9,6;Level=1:LaserTower
+Location=9,6;Level=0:Empty
 Location=9,7;Level=0:Empty
 Location=9,8;Level=0:Empty
 Location=9,9;Level=0:Empty
