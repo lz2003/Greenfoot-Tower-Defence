@@ -389,6 +389,10 @@ public class ObjectManager
         spawner = new Spawner(this, level);
     }
     
+    public JayJay getJayJay() {
+        return jay;
+    }
+    
     public void clear() {
         
     }
