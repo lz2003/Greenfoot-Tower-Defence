@@ -9,14 +9,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class TowerText extends TowerLabel
 {
     public TowerText(int x, int y){
-        super(x, y, "Tower: ");
+        super(x, y, "[Select Tower]");
     }
     
     public void updateTower(Tower tower) {
         if(tower == null){
-            setValue("Tower: ");
+            setValue("[Select Tower]");
         } else {
-            setValue("Tower: "+ tower);
+            setValue(tower+"");
         }
     }
 }

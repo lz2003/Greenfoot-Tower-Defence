@@ -49,7 +49,7 @@ public class CircleMask extends Sprite
             }
             //change the location
             if(selected == null){
-                if(isVisible()) hide();
+                if(isVisible() && Greenfoot.getMouseInfo().getX() <= Global.world.canvasWidth && Greenfoot.getMouseInfo().getY() <= Global.world.canvasHeight) hide();
             } else {
                 if(isVisible() && selected == last){
                     hide();
@@ -63,7 +63,8 @@ public class CircleMask extends Sprite
     /**
      * Make the Circular Mask Disappear
      */
-    private void hide(){
+    public void hide(){
+        Global.world.towerDisplay.hide(last);
         last = null;
         setImage(hiddenImage);
     }
@@ -72,14 +73,13 @@ public class CircleMask extends Sprite
      * Make the Circular Mask appear for a tower
      * @param selected The tower whose range is to be displayed
      */
-    private void show(Tower selected){
+    public void show(Tower selected){
         last = selected;
         GreenfootImage visibleImage = new GreenfootImage(visiblePath);
         visibleImage.scale(Math.max((int)(2*selected.getRange()), 1), Math.max((int)(int)(2*selected.getRange()), 1));
         setImage(visibleImage,false);
         setLocation(selected.getX(), selected.getY());
-        Global.world.towerText.setTower(selected);
-        Global.world.towerLevel.setTower(selected);
+        Global.world.towerDisplay.show(selected);
     }
     
     /**

@@ -37,7 +37,7 @@ public abstract class TowerLabel extends Label
             this.tower = null;
         }
         updateTower(this.tower);
-        updateLoc();
+        //updateLoc();
     }
     
     public abstract void updateTower(Tower t);
