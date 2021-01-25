@@ -59,6 +59,10 @@ public class SavedInstance
 
         this.level = level;
         this.money = money;
+        
+        if(Global.getWorld().isEditor())
+            this.money = ObjectManager.START_MONEY;
+            
         this.towers = towers;
     }
 

@@ -35,14 +35,16 @@ public class Boulder extends EnemyProjectile
      * Constructor for objects of class Boulder
      */
     public Boulder(double x, double y, double angle) {
-        super(x, y, images[0], angle, 1, 100, 3);
+        super(x, y, images[0], angle, 1, 100, 0.8f);
+        setAnimation(anim, 0.1f);
+        scale(100, 100);
+
     }
     
     public void _update(float delta) {
         if (isRemoved()) return;
-        setRotation(getRotation() + 90);
+
         move(speed);
-        setRotation(getRotation() - 90);
         checkCollision();
         checkWorldBounds();
         animate(delta);

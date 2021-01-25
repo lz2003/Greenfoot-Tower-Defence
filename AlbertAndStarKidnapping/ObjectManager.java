@@ -52,7 +52,7 @@ public class ObjectManager
     private double
         targetX = 775, targetY = 325;
         
-    private static final float START_MONEY = 50000;    
+    public static final float START_MONEY = 50000;    
     private float money = START_MONEY;
 
     /**
@@ -69,9 +69,10 @@ public class ObjectManager
         
         if(!editor)
             spawner = new Spawner(this);
-        else
+        else {
             spawner = new DummySpawner(this);
-            
+            money = 1000000;
+        }
         jay = new JayJay(targetX, targetY);
     }
 
@@ -180,6 +181,10 @@ public class ObjectManager
     
     public void removeMinion(Minion m) {
         towers.remove(m);
+    }
+    
+    public void removeObject(Updated u) {
+        towers.remove(u);
     }
     
     public void addObject(Updated u) {

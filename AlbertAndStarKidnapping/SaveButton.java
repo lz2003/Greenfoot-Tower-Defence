@@ -21,6 +21,10 @@ public class SaveButton extends ImageButton
     }
     
     public void onPress() {
+        save();
+    }
+    
+    public static void save() {
         SavedInstance s = new SavedInstance(Global.getManager());
         try {
             String name = SAVE_DIR + File.separator + "save_" + getTime() + "." + EXT;

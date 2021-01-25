@@ -33,7 +33,7 @@ public class EnemyProjectile extends Projectile
      */
     protected void checkCollision() {
         // Can be changed if needed
-        double smallestDist = getHeight() * getHeight() * 2;
+        double smallestDist = 50;
         JayJay e = Global.getManager().getJayJay();
         
         double dist = Math2D.distanceSquared(getX(), e.getX(), getY(), e.getY());
