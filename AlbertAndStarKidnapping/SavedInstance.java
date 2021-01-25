@@ -36,10 +36,10 @@ public class SavedInstance
         EMPTY = "Empty"
     ;
 
-    int level;
-    float money;
-    ArrayList<Tower> towers;
-    int width, height;
+    private int level;
+    private float money;
+    private ArrayList<Tower> towers;
+    private int width, height;
     /**
      * Constructor for objects of class SaveGame
      */

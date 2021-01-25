@@ -16,8 +16,13 @@ public class Game extends World
     private CircleMask mask;
     TowerText towerText;
     TowerLevel towerLevel;
-    public Game()
-    {    
+    
+    
+    public Game() {    
+        this(false);
+    }
+    
+    public Game(boolean autoload) {
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(925, 750, 1, false); 
         
@@ -55,7 +60,12 @@ public class Game extends World
         addObject(new ReadButton(), 45 + 75 + 75 + + 75 + 30, 705);
         
         mask = new CircleMask();
+        
         init();
+        
+        if(autoload) {
+            
+        }
     }
     
     public void init() {
@@ -76,7 +86,7 @@ public class Game extends World
         
         BuildCursor.init();
     }
-    
+
     public void act() {
         manager.update();
         

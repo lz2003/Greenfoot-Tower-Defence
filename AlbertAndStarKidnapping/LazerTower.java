@@ -85,6 +85,6 @@ public class LazerTower extends CombatTower
      * @return name of LazerTower
      */
     public String toString(){
-        return "Lazer Tower";
+        return "Laser Tower";
     }
 }
