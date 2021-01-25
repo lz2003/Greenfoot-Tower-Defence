@@ -8,6 +8,7 @@ import greenfoot.*;
  */
 public class SoundManager  
 {
+    private static int volume = 70;
     // Projectile sounds
     private static GreenfootSound ARROW = new GreenfootSound("sounds/arrow.wav");
     private static GreenfootSound CANNON = new GreenfootSound("sounds/cannon.wav");
@@ -47,6 +48,7 @@ public class SoundManager
      * Plays projectile sounds
      */
     public static void projectileSounds(int id) {
+        /*
         switch (id) {
             case 0:
                 playSound(ARROW);
@@ -65,6 +67,27 @@ public class SoundManager
                 break;
             case 5:
                 playSound(EXPLODE);
+                break;
+        }
+        */
+       switch (id) {
+            case 0:
+                playSound(new GreenfootSound("sounds/arrow.wav"));
+                break;
+            case 1:
+                playSound(new GreenfootSound("sounds/cannon.wav"));
+                break;
+            case 2:
+                playSound(new GreenfootSound("sounds/fire.wav"));
+                break;
+            case 3:
+                playSound(new GreenfootSound("sounds/ice.wav"));
+                break;
+            case 4:
+                playSound(new GreenfootSound("sounds/zap.wav"));
+                break;
+            case 5:
+                playSound(new GreenfootSound("sounds/explosion.wav"));
                 break;
         }
     }
@@ -132,6 +155,7 @@ public class SoundManager
     public static void playSound(GreenfootSound sound) {
         try { 
             if (!sound.isPlaying()) {
+                sound.setVolume(volume);
                 sound.play();
             }
         } catch (Exception e) {

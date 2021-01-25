@@ -13,20 +13,25 @@ import java.util.*;
 public class Game extends World
 {
     public static final int canvasWidth = 850, canvasHeight = 600;
+    public static final int worldWidth = 925, worldHeight = 750;
     private ObjectManager manager;
     private Canvas canvas;
-    public CircleMask mask;
-    //TowerText towerText;
-    //TowerLevel towerLevel;
+    CircleMask mask;
     TowerDisplay towerDisplay;
+    private boolean isCampaign;
+    private boolean isEditor;
     
     public Game() {    
-        this(false);
+        this(false, true);
     }
     
-    public Game(boolean autoload) {
+    public Game(boolean autoLoad, boolean isCampaign) {
+        this(autoLoad, isCampaign, false);
+    }
+    
+    public Game(boolean autoload, boolean isCampaign, boolean editor) {
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(925, 750, 1, false); 
+        super(worldWidth, worldHeight, 1, false); 
         
         setPaintOrder(DissappearingText.class, BuildCursor.class, Canvas.class);
         
@@ -36,7 +41,7 @@ public class Game extends World
         
         Sprite.setGlobalCanvas(canvas);
         
-        manager = new ObjectManager();
+        manager = new ObjectManager(editor);
         
         Global.manager = manager;
         
@@ -50,6 +55,14 @@ public class Game extends World
         
         labelY += 30;
         addObject(new LevelText(5, labelY), 5 , labelY);
+
+        //towerText = new TowerText(400, 620);
+        //addObject(towerText, 400, 620);
+        //towerLevel = new TowerLevel(400, 650);
+        //addObject(towerLevel, 400, 650);
+        
+        towerDisplay = new TowerDisplay();
+        addObject(towerDisplay, 600, 660);
         
         addObject(new HomeButton(), 45, 705);
         addObject(new FastForwardButton(), 45 + 75 + 10, 705);
@@ -58,10 +71,10 @@ public class Game extends World
         
         mask = new CircleMask();
         
-        towerDisplay = new TowerDisplay();
-        addObject(towerDisplay, 600, 660);
-        
         init();
+        
+        this.isCampaign = isCampaign;
+        this.isEditor = editor;
         
         if(autoload) {
             try {
@@ -93,17 +106,17 @@ public class Game extends World
 
     public void act() {
         manager.update();
-        
-        /**
-         * This is to show how to call a specific cutscene after a wave
-            if (Greenfoot.isKeyDown("space")) 
-            {
-                Greenfoot.setWorld(new Cutscene(1));
-            }
-        */
     }
     
-    public void updateMask(Tower tower){
+    public boolean isCampaign() {
+        return isCampaign;
+    }
+    
+    public boolean isEditor() {
+        return isEditor;
+    }
+    
+   public void updateMask(Tower tower){
         mask.show(tower);
     }
 }

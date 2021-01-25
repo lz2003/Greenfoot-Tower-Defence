@@ -9,16 +9,8 @@ import greenfoot.*;
 public class Warlock extends Enemy 
 {
     static GreenfootImage idle = new GreenfootImage("images/enemy/Warlock/0/0001.png");
-    /**
-     * Constructor for Warlock
-     * 
-     * @param x         the x coordinate of Warlock
-     * @param y         the y coordinate of Warlock
-     */
-    public Warlock(double x, double y) {
-        super(x, y, idle, 125, 50, 1, 0.15f, true, false);
-    }
-    
+    private static int damage = 300;
+
     private static Animation[] a0 = new Animation[] {
         new Animation(new GreenfootImage[]{
         new GreenfootImage("images/enemy/Warlock/0/0001.png"),
@@ -204,9 +196,29 @@ public class Warlock extends Enemy
     })}; 
     
     private static double overPi = 180./Math.PI;
-
+    boolean canAttack = false;
+    
+        /**
+     * Constructor for Warlock
+     * 
+     * @param x         the x coordinate of Warlock
+     * @param y         the y coordinate of Warlock
+     */
+    public Warlock(double x, double y) {
+        super(x, y, idle, 125, 50, 8, 0.15f, true, false);
+        range = 600;
+        rangeSquared = range * range;
+    }
+    
+    
     public void _update(float delta) {
-        super._update(delta);
+        if(!canAttack) {
+            super._update(delta);
+        } else {
+            coolDown -= delta;
+            checkCanAttack(delta);
+            updateHP();
+        }
         int angle = (int) (this.angle * overPi);
         angle += 720 + 45;
         angle = angle % 360;
@@ -217,28 +229,47 @@ public class Warlock extends Enemy
             index = 1;
         }
         
+        float dur = canAttack ? coolDownTime / 40f : 0.1f;
+
         switch(angle) {
             case 0:
-                setAnimation(a0[index], 0.1f);
+                setAnimation(a0[index], dur);
                 break;
             case 1:
-                setAnimation(a90[index], 0.1f);
+                setAnimation(a90[index], dur);
                 break;
             case 2:
-                setAnimation(a180[index], 0.1f);
+                setAnimation(a180[index], dur);
                 break;
             case 3:
-                setAnimation(a270[index], 0.1f);
+                setAnimation(a270[index], dur);
                 break;
         }
          
+        if(getFrameIndex() == 11 && canAttack) {
+            attack();
+            setFrameIndex(12);
+        }
         animate(delta);
+    }
+    
+    protected void checkCanAttack(float delta) {
+        coolDown -= delta;
+        if(Math2D.distanceSquared(Global.manager.getTargetX(), getX(), Global.manager.getTargetY(), getY()) < rangeSquared) {
+            canAttack = true;
+            if(coolDown < 0) {
+                setFrameIndex(0);
+                //attack();
+                coolDown = coolDownTime;
+            }   
+        } else canAttack = false;
     }
     
     /**
      * Attack to damage JayJay the Dragon
      */
     public void attack() {
-        
+        Global.getManager().damageJayJay(damage);
+        //new Explosion(Global.getManager().getJayJay().getX(), Global.getManager().getJayJay().getY());
     }
 }

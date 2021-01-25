@@ -42,13 +42,13 @@ public class Spawner extends Updated
         int cutscene = level / Cutscene.LEVELS_PER_CUTSCENE;
         int check = level % Cutscene.LEVELS_PER_CUTSCENE;
         
-        return check == 0 && cutscene > 0 && cutscene <= Cutscene.TOTAL_CUTSCENES;
+        return check == 0 && cutscene > 0 && cutscene <= Cutscene.TOTAL_CUTSCENES && Global.getWorld().isCampaign();
     }
     
     public void nextLevel() {
         int cutscene = ++level / Cutscene.LEVELS_PER_CUTSCENE;
         int check = level % Cutscene.LEVELS_PER_CUTSCENE;
-        if(check == 0 && cutscene > 0 && cutscene <= Cutscene.TOTAL_CUTSCENES) {
+        if(check == 0 && cutscene > 0 && cutscene <= Cutscene.TOTAL_CUTSCENES && Global.getWorld().isCampaign()) {
             try {
                 SavedInstance s = new SavedInstance(Global.getManager());
                 s.save(SavedInstance.AUTO_SAVE_PATH);
@@ -71,8 +71,7 @@ public class Spawner extends Updated
                 for(i = 0; i < 1; i++) {
                     e.add(MN);
                 }
-                e.add(BP);
-                e.add(BP);
+                e.add(WL);
                 spawn(e);
                 break;
             }

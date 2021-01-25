@@ -9,7 +9,7 @@ public class Fireball extends Splash
 {
     // Change these later on
     private static final float[]
-        MAX_DAMAGE = {100, 250, 350},
+        MAX_DAMAGE = {120, 190, 260},
         MAX_RADIUS = {3000, 3000, 3000},
         MAX_SPEED = {7, 7, 9};
     

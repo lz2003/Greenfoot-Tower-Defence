@@ -162,6 +162,6 @@ public class Textbox extends Actor
     private void finish()
     {
         getWorld().removeObject(this);
-        Greenfoot.setWorld(new Game(true));
+        Greenfoot.setWorld(new Game(true, true));
     }
 }

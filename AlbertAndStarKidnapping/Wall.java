@@ -13,13 +13,13 @@ public class Wall extends Tower
     
     private static GreenfootImage[][] sprite = {
         {
-            new GreenfootImage("images/Gold Mine/goldMine1.png")
+            new GreenfootImage("images/tower/wall.png")
         },
         {
-            new GreenfootImage("images/Gold Mine/goldMine2.png")
+            new GreenfootImage("images/tower/wall.png")
         },
         {
-            new GreenfootImage("images/Gold Mine/goldMine3.png")
+            new GreenfootImage("images/tower/wall.png")
         }
     };
 
