@@ -11,6 +11,7 @@ public class TowerRemove extends TowerLabel
     public TowerRemove(int x, int y){
         super(x, y, "Remove Tower");
     }
+    
     /**
      * Act - do whatever the TowerRemove wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

@@ -14,9 +14,9 @@ public class Game extends World
     private ObjectManager manager;
     private Canvas canvas;
     private CircleMask mask;
-    TowerText towerText;
-    TowerLevel towerLevel;
-    
+    //TowerText towerText;
+    //TowerLevel towerLevel;
+    TowerDisplay towerDisplay;
     
     public Game() {    
         this(false);
@@ -48,11 +48,6 @@ public class Game extends World
         
         labelY += 30;
         addObject(new LevelText(5, labelY), 5 , labelY);
-
-        towerText = new TowerText(400, 620);
-        addObject(towerText, 400, 620);
-        towerLevel = new TowerLevel(400, 650);
-        addObject(towerLevel, 400, 650);
         
         addObject(new HomeButton(), 45, 705);
         addObject(new FastForwardButton(), 45 + 75 + 10, 705);
@@ -60,6 +55,9 @@ public class Game extends World
         addObject(new ReadButton(), 45 + 75 + 75 + + 75 + 30, 705);
         
         mask = new CircleMask();
+        
+        towerDisplay = new TowerDisplay();
+        addObject(towerDisplay, 600, 660);
         
         init();
         
@@ -97,5 +95,9 @@ public class Game extends World
                 Greenfoot.setWorld(new Cutscene(1));
             }
         */
+    }
+    
+    public void updateMask(Tower tower){
+        mask.show(tower);
     }
 }
