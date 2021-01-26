@@ -9,7 +9,7 @@ public class Mines extends Tower
 {
     private static final float[]
         MAX_COOLDOWN = {1000, 1000, 1000},
-        MAX_RANGE = {0, 0, 0};
+        MAX_RANGE = {30, 30, 30};
     
     private static GreenfootImage[][] sprite = {
         {
@@ -48,6 +48,11 @@ public class Mines extends Tower
         goldPerSecond = 1;
     }
     
+    public void levelup() {
+        super.levelup();
+        goldPerSecond = level * 1;
+    }
+    
     /**
      * Attack enemies
      */
@@ -63,5 +68,9 @@ public class Mines extends Tower
      */
     public String toString(){
         return "Gold Mine";
+    }
+    
+    public float getCost() {
+        return Tower.COST_MINES;
     }
 }

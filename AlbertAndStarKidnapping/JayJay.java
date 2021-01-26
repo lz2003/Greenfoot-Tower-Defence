@@ -9,7 +9,7 @@ import java.awt.Color;
 public class JayJay extends Sprite 
 {
     private HPBar hpBar;
-    private float hp = 1000;
+    private float hp = 1500;
     private static final Color HPBKG = new Color(255, 0, 0), HPFOR = new Color(0, 255, 0);
     private boolean damaged = false, dying = false, dead = false;
     

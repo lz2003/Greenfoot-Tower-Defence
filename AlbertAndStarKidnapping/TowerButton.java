@@ -17,6 +17,7 @@ public class TowerButton extends Button
         new GreenfootImage("images/shop/TeslaIcon.png"),
         new GreenfootImage("images/shop/GoldMineCard.png"),
         new GreenfootImage("images/shop/PillBoxIcon.png"),
+        new GreenfootImage("images/shop/WallIcon.png")
     };
     
     public static final int SIZE = 60;
@@ -30,7 +31,8 @@ public class TowerButton extends Button
         ICE = 4,
         LAZER = 5,
         MINE = 6,
-        PILL = 7;
+        PILL = 7,
+        WALL = 8;
         
     private int towerID;
         
@@ -38,8 +40,6 @@ public class TowerButton extends Button
         setImage(icons[towerID]);
         getImage().scale(SIZE + 6, SIZE + 13);
         this.towerID = towerID;
-
-        
     }
     
     public void addedToWorld(World w) {
@@ -80,6 +80,9 @@ public class TowerButton extends Button
                 break;
             case PILL:
                 cost = Tower.COST_PILLBOX;
+                break;
+            case WALL:
+                cost = 0;
                 break;
         }
 

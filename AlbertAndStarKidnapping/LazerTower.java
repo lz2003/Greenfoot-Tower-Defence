@@ -87,4 +87,8 @@ public class LazerTower extends CombatTower
     public String toString(){
         return "Laser Tower";
     }
+    
+    public float getCost() {
+        return Tower.COST_LASER;
+    }
 }

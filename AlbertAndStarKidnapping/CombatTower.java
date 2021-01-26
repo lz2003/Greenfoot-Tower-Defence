@@ -61,12 +61,13 @@ public abstract class CombatTower extends Tower
      * @return Enemy the closest enemy to the tower, null if no enemies exist
      */
     protected Enemy getNextEnemy() {
-        double min = range[level-1];
+        double maxNodeIndex = -1;
         Enemy next = null;
         for(Enemy e: Global.manager.getEnemies()){
             double dist = Math2D.distance(e.getX(), this.getX(), e.getY(), this.getY());
-            if(dist < range[level-1]){
-                min = dist;
+            int nodeIndex = e.getNodeIndex();
+            if(dist < range[level-1] && nodeIndex > maxNodeIndex){
+                maxNodeIndex = nodeIndex;
                 next = e;
             }
         }

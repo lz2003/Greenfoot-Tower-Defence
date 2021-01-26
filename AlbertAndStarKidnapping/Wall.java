@@ -45,6 +45,7 @@ public class Wall extends Tower
     public Wall(int x, int y, int iX, int iY, int level)
     {
         super(sprite, MAX_RANGE, MAX_COOLDOWN, x, y, iX, iY, level);
+        scale(70, 70);
     }
     
     /**
@@ -61,5 +62,9 @@ public class Wall extends Tower
      */
     public String toString(){
         return "Wall";
+    }
+    
+    public float getCost() {
+        return 0;
     }
 }

@@ -30,7 +30,10 @@ public class UpgradeTowerButton extends ImageButton
     public void onclick() 
     {
         if(tower != null && Greenfoot.mouseClicked(this)){
-            tower.levelup();
+            float cost = tower.getCost();
+            float costAdjusted = cost * 1.3f;
+            if(Global.getManager().requestMoney(cost))
+                tower.levelup();
         }
     }    
 }

@@ -9,7 +9,7 @@ import greenfoot.*;
 public class Warlock extends Enemy 
 {
     static GreenfootImage idle = new GreenfootImage("images/enemy/Warlock/0/0001.png");
-    private static int damage = 300;
+    private static int damage = 120;
 
     private static Animation[] a0 = new Animation[] {
         new Animation(new GreenfootImage[]{
@@ -206,7 +206,7 @@ public class Warlock extends Enemy
      */
     public Warlock(double x, double y) {
         super(x, y, idle, 125, 50, 8, 0.15f, true, false);
-        range = 600;
+        range = 550;
         rangeSquared = range * range;
     }
     
@@ -270,6 +270,6 @@ public class Warlock extends Enemy
      */
     public void attack() {
         Global.getManager().damageJayJay(damage);
-        //new Explosion(Global.getManager().getJayJay().getX(), Global.getManager().getJayJay().getY());
+        new Explosion(Global.getManager().getJayJay().getX(), Global.getManager().getJayJay().getY());
     }
 }
