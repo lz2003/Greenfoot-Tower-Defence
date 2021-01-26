@@ -9,7 +9,7 @@ public class ArcherTower extends CombatTower
 {
     private static final float[]
         MAX_COOLDOWN = {1000, 900, 850},
-        MAX_RANGE = {240, 260, 300};
+        MAX_RANGE = {300, 340, 400};
     
     private static final GreenfootImage[][]sprite = {
         {

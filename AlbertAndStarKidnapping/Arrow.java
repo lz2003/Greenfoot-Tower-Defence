@@ -9,7 +9,7 @@ public class Arrow extends Projectile
 {
     // Change these later on
     private static final float[]
-        MAX_DAMAGE = {30, 55, 95},
+        MAX_DAMAGE = {70, 85, 110},
         MAX_SPEED = {7, 7, 9};
     
     private static GreenfootImage image = new GreenfootImage("projectiles/arrow1.png");

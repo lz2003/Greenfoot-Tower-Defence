@@ -16,6 +16,7 @@ public class Splash extends Projectile
     protected Effect onHit;
     protected GreenfootImage explode;
     protected boolean hasExplosion = false;
+    private static final int SPLASH_LIMIT = 8;
 
     /**
      * Constructor for Splash class
@@ -93,8 +94,8 @@ public class Splash extends Projectile
     protected void damageEnemy() {
         // If the projectile directly hits an enemy, then hurt everyone in the radius
         if (target != null && !isRemoved()) {
-            for (Enemy e: targets) {
-                e.damage(damage, isMagic, !isMagic);
+            for (int i = 0; i < targets.size() && i < SPLASH_LIMIT; i++) {
+                targets.get(i).damage(damage, isMagic, !isMagic);
             }
             if (hasExplosion) explode();
             else destroy();

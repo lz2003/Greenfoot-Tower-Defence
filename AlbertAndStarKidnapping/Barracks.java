@@ -9,7 +9,7 @@ import java.util.*;
 public class Barracks extends CombatTower 
 {
     private static final float[]
-        MAX_COOLDOWN = {5000, 4200, 3800},
+        MAX_COOLDOWN = {5000, 4000, 3000},
         MAX_RANGE = {300, 400, 500};
     
     private static final GreenfootImage[][]sprite = {

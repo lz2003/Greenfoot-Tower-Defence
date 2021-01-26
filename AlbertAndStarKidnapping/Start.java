@@ -18,7 +18,7 @@ public class Start extends World
     {    
         super(Game.worldWidth, Game.worldHeight, 1); 
         
-        campaign = new TextButton(" Campaign ", 50);
+        campaign = new TextButton(" Story Mode ", 50);
         regular = new TextButton(" Regular Game ", 40);
         editor = new TextButton(" Map Editor ", 40);
         info = new TextButton(" Controls & Info ", 40);

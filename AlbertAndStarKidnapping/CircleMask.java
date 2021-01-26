@@ -34,7 +34,12 @@ public class CircleMask extends Sprite
         super._update(delta);
         //update cumulative elapsed time
         Slot selectedSlot = Slot.getSelected();
-        if(Greenfoot.mouseClicked(null) && selectedSlot != null){
+        
+        // Check if the mouse is clicked and mouse is within world (so it doesn't select another tower when upgrading or deleting)
+        if(Greenfoot.mouseClicked(null) && selectedSlot != null && 
+           !(Global.getManager().mouseX() > Game.canvasWidth || Global.getManager().mouseX() < 0 ||
+           Global.getManager().mouseY() > Game.canvasHeight || Global.getManager().mouseY() < 0)
+        ){
             //Get x index and y index of the slot that the mouse is covering
             int ix = selectedSlot.getIndex().x;
             int iy = selectedSlot.getIndex().y;

@@ -100,8 +100,7 @@ public class ObjectManager
     
     public void update() {
         mouse.update();
-        updateLoop(getDelta()); 
-        //updateSpriteLocs();
+        updateLoop(getDelta());
     }
     
     private void updateLoop(float delta) {
@@ -180,15 +179,15 @@ public class ObjectManager
     }
     
     public void removeMinion(Minion m) {
-        towers.remove(m);
+        minions.remove(m);
     }
     
     public void removeObject(Updated u) {
-        towers.remove(u);
+        objects.remove(u);
     }
     
     public void addObject(Updated u) {
-        this.objects.add(u);
+        objects.add(u);
     }
     
     private long last;

@@ -13,6 +13,8 @@ public class TextButton extends Actor
     // Declare private variables
     private GreenfootImage myImage;
     private String buttonText;
+    private Color textColour = Color.BLACK,
+    backgroundColour = new Color(120, 190, 255);
     private int textSize;
 
     /**
@@ -38,7 +40,7 @@ public class TextButton extends Actor
     public TextButton (String text, int textSize)
     {
         buttonText = text;
-        GreenfootImage tempTextImage = new GreenfootImage (text, textSize, Color.BLACK, Color.GRAY);
+        GreenfootImage tempTextImage = new GreenfootImage (text, textSize, textColour, backgroundColour);
         myImage = new GreenfootImage (tempTextImage.getWidth() + 4, tempTextImage.getHeight() + 4);
         myImage.setColor (new Color(40, 40, 130));
         myImage.fill();
@@ -58,7 +60,7 @@ public class TextButton extends Actor
     public void update (String text)
     {
         buttonText = text;
-        GreenfootImage tempTextImage = new GreenfootImage (text, textSize, Color.BLACK, Color.GRAY);
+        GreenfootImage tempTextImage = new GreenfootImage (text, textSize, textColour, backgroundColour);
         myImage = new GreenfootImage (tempTextImage.getWidth() + 4, tempTextImage.getHeight() + 4);
         myImage.setColor (new Color(40, 40, 130));
         myImage.fill();
@@ -78,7 +80,7 @@ public class TextButton extends Actor
     public void update (Color fill)
     {
         String text = buttonText;
-        GreenfootImage tempTextImage = new GreenfootImage (text, textSize, Color.BLACK, fill);
+        GreenfootImage tempTextImage = new GreenfootImage (text, textSize, textColour, backgroundColour);
         myImage = new GreenfootImage (tempTextImage.getWidth() + 4, tempTextImage.getHeight() + 4);
         myImage.setColor (new Color(40, 40, 130));
         myImage.fill();

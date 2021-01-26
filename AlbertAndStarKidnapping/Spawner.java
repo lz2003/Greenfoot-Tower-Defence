@@ -147,10 +147,10 @@ public class Spawner extends Updated
             case 8: {
                 ArrayList<String> e = new ArrayList<String>();
                 int i;
-                for(i = 0; i < 25; i++) {
+                for(i = 0; i < 20; i++) {
                     e.add(BP);
                 }
-                spawn(e, 30);
+                spawn(e, 100);
                 break;
             }
 
@@ -284,21 +284,21 @@ public class Spawner extends Updated
                     e.add(TR);
                 }
                 
-                spawn(e, 30);
+                spawn(e, 20);
                 break;
             }
             
             case 19: {
                 ArrayList<String> e = new ArrayList<String>();
                 int i;
-                for(i = 0; i < 40; i++) {
+                for(i = 0; i < 20; i++) {
                     e.add(MN);
                     e.add(WL);
                     e.add(TR);
                     e.add(TR); 
                 }
                 
-                spawn(e, 25);
+                spawn(e, 15);
                 break;
             }
             
@@ -346,7 +346,7 @@ public class Spawner extends Updated
                     e.add(BP);
                 }
                 
-                spawn(e, 10);
+                spawn(e, 8);
                 break;
             }
             
@@ -413,7 +413,7 @@ public class Spawner extends Updated
             case 28: {
                 ArrayList<String> e = new ArrayList<String>();
                 int i;
-                for(i = 0; i < 5; i++) {
+                for(i = 0; i < 4; i++) {
                     e.add(PK);
                     e.add(WL);
                     e.add(TR);
@@ -431,7 +431,7 @@ public class Spawner extends Updated
                     e.add(WL);
                 }
                 
-                spawn(e, 75);
+                spawn(e, 100);
                 break;
             }
             
