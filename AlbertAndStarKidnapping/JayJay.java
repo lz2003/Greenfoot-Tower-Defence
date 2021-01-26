@@ -58,7 +58,7 @@ public class JayJay extends Sprite
     }
     
     private void endGame() {
-        
+        Greenfoot.setWorld(new Death());
     }
     
     private void deathAnimation() {
