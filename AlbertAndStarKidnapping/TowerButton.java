@@ -89,6 +89,8 @@ public class TowerButton extends Button
         String s = Integer.toString((int)cost);
 
         int x = s.length() == 3 ? getX() - getImage().getWidth() / 2 + 7 : getX() - getImage().getWidth() / 2 - 1;
+        x = s.length() == 2 ? getX() - getImage().getWidth() / 2 + 14: x;
+        
         int y = getY() + 32;
         
         getWorld().addObject(new TowerTextDisplay(x, y, s), x, y);

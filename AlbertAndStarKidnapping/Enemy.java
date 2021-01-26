@@ -212,7 +212,7 @@ public class Enemy extends Sprite {
     /**
      * Called when enemy hp hits 0. Removes the enemy and hp bar from the game.
      */
-    private void die() {
+    public void die() {
         Global.manager.removeEnemy(this);
         removeSprite();
         hpBar.remove();

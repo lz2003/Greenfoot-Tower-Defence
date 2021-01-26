@@ -477,10 +477,12 @@ public abstract class Sprite extends Updated{
     }
     
     public void nextFrameLooped() {
-        animFrame++;
-        if(animFrame >= animation.getFrameCount()) animFrame = 0;
-        
-        setImage(animation.getFrame(this.animFrame));
+        if(animation != null) {
+            animFrame++;
+            if(animFrame >= animation.getFrameCount()) animFrame = 0;
+            
+            setImage(animation.getFrame(this.animFrame));
+        }
     }
 }
 

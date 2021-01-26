@@ -17,7 +17,7 @@ public class BabyPekka extends Enemy
      * @param y         the y coordinate of BabyPekka
      */
     public BabyPekka(double x, double y) {
-        super(x, y, idle, 2500, 100, 2, 0.35f, false, false);
+        super(x, y, idle, 2500, 100, 2, 0.35f, true, false);
     }
     
     private static Animation[] a0 = new Animation[] {

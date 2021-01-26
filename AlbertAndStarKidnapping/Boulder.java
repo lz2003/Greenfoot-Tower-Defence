@@ -29,6 +29,7 @@ public class Boulder extends EnemyProjectile
         new GreenfootImage("images/projectiles/rock/0019.png"),
         new GreenfootImage("images/projectiles/rock/0020.png")
     };
+    
     private static final Animation anim = new Animation(images);
 
     /**

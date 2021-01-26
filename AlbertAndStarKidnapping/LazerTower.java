@@ -8,7 +8,7 @@ import greenfoot.*;
 public class LazerTower extends CombatTower 
 {
     private static final float[]
-        MAX_COOLDOWN = {1000, 900, 800},
+        MAX_COOLDOWN = {2000, 1800, 1600},
         MAX_RANGE = {190, 220, 250};
         
     private static final GreenfootImage[][]sprite = {
