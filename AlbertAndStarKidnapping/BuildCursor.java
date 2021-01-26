@@ -44,8 +44,7 @@ public class BuildCursor extends Actor
             diffX /= 3; diffY /= 3;
             
             setLocation(getX() + (int) diffX, getY() + (int) diffY);
-            
-            
+
             inWorld = true;
             setImage(TowerButton.icons[state]);
         } else {
@@ -103,6 +102,11 @@ public class BuildCursor extends Actor
                          new Pillbox(getX(), getY(), Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y);
                     }
                     break;
+                case TowerButton.WALL:
+                    if(validate(Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y)) {
+                         new Wall(getX(), getY(), Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y);
+                    }
+                    break;
                 default:
                     throw new Error("Invalid tower ID passed to BuildCursor");
             }
@@ -136,6 +140,8 @@ public class BuildCursor extends Actor
                 return Global.getManager().requestMoney(Tower.COST_MINES);
             case TowerButton.PILL:
                 return Global.getManager().requestMoney(Tower.COST_PILLBOX);
+            case TowerButton.WALL:
+                return true;
             default:
                 return false;
         }

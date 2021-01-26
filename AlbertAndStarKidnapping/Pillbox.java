@@ -84,6 +84,10 @@ public class Pillbox extends CombatTower
      * @return name of Pillbox
      */
     public String toString(){
-        return "Pillbox";
+        return "RPG";
+    }
+    
+    public float getCost() {
+        return Tower.COST_PILLBOX;
     }
 }

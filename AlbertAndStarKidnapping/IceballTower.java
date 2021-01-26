@@ -87,4 +87,8 @@ public class IceballTower extends CombatTower
     public String toString(){
         return "Iceball Tower";
     }
+    
+    public float getCost() {
+        return Tower.COST_ICEBALL;
+    }
 }

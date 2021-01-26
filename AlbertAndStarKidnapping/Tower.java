@@ -119,4 +119,6 @@ public abstract class Tower extends Sprite
     public float getRange(){
         return range[level-1];
     }
+    
+    public abstract float getCost();
 }

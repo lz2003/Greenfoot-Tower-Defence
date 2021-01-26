@@ -85,6 +85,10 @@ public class Artillery extends CombatTower
      * @return name of Artillery
      */
     public String toString(){
-        return "Artillery";
+        return "Cannon";
+    }
+    
+    public float getCost() {
+        return Tower.COST_CANNON;
     }
 }

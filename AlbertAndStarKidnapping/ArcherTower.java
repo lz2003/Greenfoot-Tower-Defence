@@ -86,4 +86,8 @@ public class ArcherTower extends CombatTower
     public String toString(){
         return "Archer Tower";
     }
+    
+    public float getCost() {
+        return Tower.COST_ARCHER;
+    }
 }

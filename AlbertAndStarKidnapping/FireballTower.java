@@ -88,4 +88,8 @@ public class FireballTower extends CombatTower
     public String toString(){
         return "Fireball Tower";
     }
+    
+    public float getCost() {
+        return Tower.COST_FIREBALL;
+    }
 }

@@ -84,9 +84,9 @@ public abstract class Projectile extends Sprite
      * Might have to change this if we have a moving camera.
      */
     protected void checkWorldBounds() {
-        if (getX() < 0 || getX() > Global.getWorld().getWidth()) {
+        if (getX() < 0 - 50|| getX() > Game.canvasWidth + 50) {
             destroy();
-        } else if (getY() < 0 || getY() > Global.getWorld().getHeight()) {
+        } else if (getY() < 0 - 50|| getY() > Game.canvasHeight + 50) {
             destroy();
         }
     }

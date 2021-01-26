@@ -200,34 +200,44 @@ public class SavedInstance
                     String tower = line.substring(line.indexOf(TOWER_SEP) + 1);
 
                     boolean valid = false;
+                    
 
                     switch(tower) {
                         case ARCHER:
                             new ArcherTower(getLoc(x), getLoc(y), x, y, towerLevel);
+                            Global.getManager().updatePath(x, y, true);
                             break;
                         case CANNON:
                             new Artillery(getLoc(x), getLoc(y), x, y, towerLevel);
+                            Global.getManager().updatePath(x, y, true);
                             break;
                         case BARRACKS:
                             new Barracks(getLoc(x), getLoc(y), x, y, towerLevel);
+                            Global.getManager().updatePath(x, y, true);
                             break;
                         case FIREBALL:
                             new FireballTower(getLoc(x), getLoc(y), x, y, towerLevel);
+                            Global.getManager().updatePath(x, y, true);
                             break;
                         case ICEBALL:
                             new IceballTower(getLoc(x), getLoc(y), x, y, towerLevel);
+                            Global.getManager().updatePath(x, y, true);
                             break;
                         case LASER:
                             new LazerTower(getLoc(x), getLoc(y), x, y, towerLevel);
+                            Global.getManager().updatePath(x, y, true);
                             break;
                         case MINES:
                             new Mines(getLoc(x), getLoc(y), x, y, towerLevel);
+                            Global.getManager().updatePath(x, y, true);
                             break;
                         case PILLBOX:
                             new Pillbox(getLoc(x), getLoc(y), x, y, towerLevel);
+                            Global.getManager().updatePath(x, y, true);
                             break;
                         case WALL:
                             new Wall(getLoc(x), getLoc(y), x, y, towerLevel);
+                            Global.getManager().updatePath(x, y, true);
                             break;
                     }
                     break;

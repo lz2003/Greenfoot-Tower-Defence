@@ -64,17 +64,21 @@ public class Game extends World
         towerDisplay = new TowerDisplay();
         addObject(towerDisplay, 600, 660);
         
-        addObject(new HomeButton(), 45, 705);
-        addObject(new FastForwardButton(), 45 + 75 + 10, 705);
-        addObject(new SaveButton(), 45 + 75 + 75 + 20, 705);
-        addObject(new ReadButton(), 45 + 75 + 75 + + 75 + 30, 705);
+        int y = 715;
+        
+        addObject(new HomeButton(), 45, y);
+        addObject(new FastForwardButton(), 45 + 75 + 10, y);
+        addObject(new SaveButton(), 45 + 75 + 75 + 20, y);
+        addObject(new ReadButton(), 45 + 75 + 75 + + 75 + 30, y);
         
         mask = new CircleMask();
         
-        init();
+        setBackground("bkg.png");
         
         this.isCampaign = isCampaign;
         this.isEditor = editor;
+        
+        init();
         
         if(autoload) {
             try {
@@ -88,17 +92,35 @@ public class Game extends World
     public void init() {
         ButtonGrid b = new ButtonGrid();
         addObject(b, 887, 45);
+        
+        Button[] buttons;
+        
+        if(!isEditor)
+            buttons = new Button[]{
+                new TowerButton(TowerButton.ARCH),
+                new TowerButton(TowerButton.ARTY),
+                new TowerButton(TowerButton.BARA),
+                new TowerButton(TowerButton.FIRE),
+                new TowerButton(TowerButton.ICE),
+                new TowerButton(TowerButton.LAZER),
+                new TowerButton(TowerButton.MINE),
+                new TowerButton(TowerButton.PILL),
+            };
+        else 
+            buttons = new Button[]{
+                new TowerButton(TowerButton.ARCH),
+                new TowerButton(TowerButton.ARTY),
+                new TowerButton(TowerButton.BARA),
+                new TowerButton(TowerButton.FIRE),
+                new TowerButton(TowerButton.ICE),
+                new TowerButton(TowerButton.LAZER),
+                new TowerButton(TowerButton.MINE),
+                new TowerButton(TowerButton.PILL),
+                new TowerButton(TowerButton.WALL)
+            };
+
         b.set(
-            new Button[]{
-            new TowerButton(TowerButton.ARCH),
-            new TowerButton(TowerButton.ARTY),
-            new TowerButton(TowerButton.BARA),
-            new TowerButton(TowerButton.FIRE),
-            new TowerButton(TowerButton.ICE),
-            new TowerButton(TowerButton.LAZER),
-            new TowerButton(TowerButton.MINE),
-            new TowerButton(TowerButton.PILL),
-            }, 1, 8, 77
+            buttons, 1, 10, 77
         );
         
         BuildCursor.init();

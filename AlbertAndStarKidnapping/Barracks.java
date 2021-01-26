@@ -86,4 +86,8 @@ public class Barracks extends CombatTower
     public String toString(){
         return "Barracks";
     }
+    
+    public float getCost() {
+        return Tower.COST_BARRACKS;
+    }
 }
