@@ -9,7 +9,7 @@ public class Artillery extends CombatTower
 {
     private static final float[]
         MAX_COOLDOWN = {1000, 900, 800},
-        MAX_RANGE = {230, 250, 270};
+        MAX_RANGE = {200, 220, 250};
     
     private static final GreenfootImage[][] sprite = {
         {

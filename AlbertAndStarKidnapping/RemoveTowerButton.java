@@ -31,8 +31,14 @@ public class RemoveTowerButton extends ImageButton
     {
         if(tower != null && Greenfoot.mouseClicked(this))
         {
+            if(tower instanceof Wall) {
+                if(!Global.getWorld().isEditor()) return;
+            }
+            int x = tower.getIX();
+            int y = tower.getIY();
+            Global.getManager().updatePath(x, y, false);
             tower.destroy();
-            Global.world.mask.hide();
+            Global.getWorld().mask.hide();
         }
     }    
 }

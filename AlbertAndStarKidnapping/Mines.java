@@ -58,6 +58,8 @@ public class Mines extends Tower
      */
     public void _update(float delta)
     {
+        // Delta is a very large number when game is first instantiated
+        delta = Math.min(delta, 0.1f);
         //produce gold
         Global.getManager().addMoney(goldPerSecond * delta);
     }

@@ -52,7 +52,7 @@ public class ObjectManager
     private double
         targetX = 775, targetY = 325;
         
-    public static final float START_MONEY = 50000;    
+    public static final float START_MONEY = 1000;    
     private float money = START_MONEY;
 
     /**
@@ -86,7 +86,7 @@ public class ObjectManager
         }
         
         for(int i = enemies.size() - 1; i >= 0; i--) {
-            enemies.get(i).damage(10000000f, false, false);
+            enemies.get(i).die();
         }
         
         for(int i = projectiles.size() - 1; i >= 0; i--) {
@@ -124,7 +124,7 @@ public class ObjectManager
             //    projectiles.remove(i);
             //}
         }
-        
+
         jay._update(delta);
         spawner._update(delta);
     }
@@ -245,24 +245,6 @@ public class ObjectManager
         x = Math2D.clamp(x, 0, this.maxNodesX);
         y = Math2D.clamp(y, 0, this.maxNodesY);
         
-        /*
-        float lowestDist = 999999;
-        Node closest = null;
-        
-        for(int xx =  Math.max(x - 1, 0); xx < Math.min(xx + 2, this.maxNodesX); xx++) {
-            for(int yy = Math.max(y - 1, 0); yy < Math.min(yy + 2, this.maxNodesY); yy++) {
-                if(nodes[xx][yy].isBlocked()) continue;
-                
-                Point nodeLoc = nodes[xx][yy].getWorldLoc();
-                float dist = Math2D.distanceSquared(loc.x, nodeLoc.x, loc.y, nodeLoc.y);
-                if(dist < lowestDist) {
-                    lowestDist = dist;
-                    closest = nodes[xx][yy];
-                }
-            }
-        }
-        */
-       
         return nodes[x][y];
     }
     

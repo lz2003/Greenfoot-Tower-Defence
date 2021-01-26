@@ -15,9 +15,9 @@ public abstract class Tower extends Sprite
         COST_CANNON = 200,
         COST_BARRACKS = 800,
         COST_FIREBALL = 600,
-        COST_ICEBALL = 550,
+        COST_ICEBALL = 400,
         COST_LASER = 850,
-        COST_MINES = 150,
+        COST_MINES = 75,
         COST_PILLBOX = 1525;
     
     protected int level;

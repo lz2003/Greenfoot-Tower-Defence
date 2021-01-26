@@ -40,7 +40,7 @@ public class TowerDisplay extends Actor
         removeTowerButton = new RemoveTowerButton();
         upgradeTowerButton = new UpgradeTowerButton();
         range = new Bar(150, 20, 0, 400, Color.GREEN, Color.WHITE, true);
-        cooldown = new Bar(150, 20, 0, 1000, Color.ORANGE, Color.WHITE, true);
+        cooldown = new Bar(150, 20, 0, 4000, Color.ORANGE, Color.WHITE, true);
         rangeLabel = new Label("Range: ", 18);
         cooldownLabel = new Label("Cooldown: ", 18);
         defaultLabel = new Label("Tower stats", 40);
