@@ -23,7 +23,7 @@ public class Start extends World
         editor = new TextButton(" Map Editor ", 40);
         info = new TextButton(" Controls & Info ", 40);
         bg = new Character(new GreenfootImage("images/start.png"));
-        
+
         addObject(bg, getWidth() / 2, getHeight() / 2);
         addObject(campaign, getWidth() / 2, getHeight() / 2);
         addObject(regular, getWidth() / 2, getHeight() / 2 + 70);
