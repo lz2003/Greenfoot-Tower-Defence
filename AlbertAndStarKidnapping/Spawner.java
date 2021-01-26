@@ -65,6 +65,8 @@ public class Spawner extends Updated
     
     public void spawnLevel(int level) {
         switch(level) {
+            case 0:
+                break;
             case 1: {
                 ArrayList<String> e = new ArrayList<String>();
                 int i;
