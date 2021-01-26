@@ -246,6 +246,7 @@ public class SavedInstance
         }
         Global.getManager().setLevel(level);
         Global.getManager().setMoney(money);
+        Global.getManager().getSpawner().spawnLevel(level);
         scan.close();
     }
 

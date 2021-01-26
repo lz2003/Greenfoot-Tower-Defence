@@ -9,7 +9,7 @@ public class RPG extends Splash
 {
     // Change these later on
     private static final float[]
-        MAX_DAMAGE = {400, 550, 700},
+        MAX_DAMAGE = {400, 650, 1000},
         MAX_RADIUS = {4000, 4000, 4000},
         MAX_SPEED = {9, 9, 9};
     
@@ -32,7 +32,7 @@ public class RPG extends Splash
      */
     public RPG(double x, double y, Enemy target) {
         super(x, y, image, target, explosion, explode, 1);
-        isMagic = true;
+        isMagic = false;
         damage = MAX_DAMAGE[0];
         speed = MAX_SPEED[0];
         radius = MAX_RADIUS[0];
@@ -48,7 +48,7 @@ public class RPG extends Splash
      */
     public RPG(double x, double y, Enemy target, int level) {
         super(x, y, image, target, explosion, explode, 1);
-        isMagic = true;
+        isMagic = false;
         if (level > 0 && level <= MAX_LEVEL) {
             damage = MAX_DAMAGE[level-1];
             speed = MAX_SPEED[level-1];

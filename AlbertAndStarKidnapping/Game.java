@@ -83,9 +83,7 @@ public class Game extends World
         if(autoload) {
             try {
                 SavedInstance.read(SavedInstance.AUTO_SAVE_PATH);
-                Global.getManager().getSpawner().spawnLevel(Global.getManager().getSpawner().getLevel());
-            } catch(IOException e) {
-            }
+            } catch(IOException e) {}
         }
     }
     
@@ -138,7 +136,7 @@ public class Game extends World
         return isEditor;
     }
     
-   public void updateMask(Tower tower){
+    public void updateMask(Tower tower){
         mask.show(tower);
     }
 }

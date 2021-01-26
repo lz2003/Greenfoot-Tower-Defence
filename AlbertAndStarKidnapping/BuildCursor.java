@@ -65,46 +65,64 @@ public class BuildCursor extends Actor
                 case TowerButton.ARCH:
                     if(validate(Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y)) {
                          new ArcherTower(getX(), getY(), Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y);
+                    } else {
+                        Slot.getSelected().setBlocked(false);
                     }
                     break;
                 case TowerButton.ARTY:
                     if(validate(Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y)) {
                          new Artillery(getX(), getY(), Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y);
+                    } else {
+                        Slot.getSelected().setBlocked(false);
                     }
                     break;
                 case TowerButton.BARA:
                     if(validate(Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y)) {
                          new Barracks(getX(), getY(), Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y);
+                    } else {
+                        Slot.getSelected().setBlocked(false);
                     }
                     break;
                 case TowerButton.FIRE:
                     if(validate(Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y)) {
                          new FireballTower(getX(), getY(), Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y);
+                    } else {
+                        Slot.getSelected().setBlocked(false);
                     }
                     break;
                 case TowerButton.ICE:
                     if(validate(Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y)) {
                          new IceballTower(getX(), getY(), Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y);
+                    } else {
+                        Slot.getSelected().setBlocked(false);
                     }
                     break;
                 case TowerButton.LAZER:
                     if(validate(Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y)) {
                          new LazerTower(getX(), getY(), Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y);
+                    } else {
+                        Slot.getSelected().setBlocked(false);
                     }
                     break;
                 case TowerButton.MINE:
                     if(validate(Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y)) {
                          new Mines(getX(), getY(), Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y);
+                    } else {
+                        Slot.getSelected().setBlocked(false);
                     }
                     break;
                 case TowerButton.PILL:
                     if(validate(Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y)) {
                          new Pillbox(getX(), getY(), Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y);
+                    } else {
+                        Slot.getSelected().setBlocked(false);
                     }
                     break;
                 case TowerButton.WALL:
                     if(validate(Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y)) {
                          new Wall(getX(), getY(), Slot.getSelected().getIndex().x, Slot.getSelected().getIndex().y);
+                    } else {
+                        Slot.getSelected().setBlocked(false);
                     }
                     break;
                 default:

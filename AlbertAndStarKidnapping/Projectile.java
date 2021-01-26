@@ -31,6 +31,7 @@ public abstract class Projectile extends Sprite
         turnTowards(target.getX(), target.getY());
         Global.getManager().addProjectile(this);
         SoundManager.projectileSounds(id);
+        move(5);
     }
     
     /**
