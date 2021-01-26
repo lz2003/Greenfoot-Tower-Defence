@@ -23,11 +23,12 @@ public class Info extends World
         next = new TextButton(" Continue ", 30);
         displays = new ArrayList<GreenfootImage>();
         // Placeholders
-        displays.add(new GreenfootImage("images/start.png"));
-        displays.add(new GreenfootImage("images/god.png"));
+        displays.add(new GreenfootImage("images/info/info1.png"));
+        displays.add(new GreenfootImage("images/info/info2.png"));
+         displays.add(new GreenfootImage("images/info/info3.png"));
         currDisplay = new Character(displays.get(0));
         addObject(currDisplay, getWidth() / 2, getHeight() / 2);
-        addObject(next, getWidth() / 2, getHeight() - 100);
+        addObject(next, getWidth() - 100, getHeight() - 50);
         
     }
     
