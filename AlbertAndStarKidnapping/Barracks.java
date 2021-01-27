@@ -14,13 +14,13 @@ public class Barracks extends CombatTower
     
     private static final GreenfootImage[][]sprite = {
         {
-            new GreenfootImage("images/Barracks/barracks1.png")
+            new GreenfootImage("images/tower/Barracks/barracks1.png")
         },
         {
-            new GreenfootImage("images/Barracks/barracks2.png")
+            new GreenfootImage("images/tower/Barracks/barracks2.png")
         },
         {
-            new GreenfootImage("images/Barracks/barracks3.png")
+            new GreenfootImage("images/tower/Barracks/barracks3.png")
         }
     };
     public static final int MINIONS_PER_BARRACK = 3;

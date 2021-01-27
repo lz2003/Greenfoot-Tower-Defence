@@ -2,9 +2,9 @@ import greenfoot.*;
 import java.util.ArrayList;
 /**
  * Projectiles that can deal area of effect damage
- * 
+ *
  * @author Lucy Zhao
- * @version (a version number or a date)
+ * @version 2021
  */
 public class Splash extends Projectile 
 {

@@ -2,13 +2,13 @@ import greenfoot.*;
 /**
  * Write a description of class EnemyProjectile here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Young Chen
+ * @version 2021
  */
 public class EnemyProjectile extends Projectile 
 {
     /**
-     * Constructor for Projectile class
+     * Constructor for EnemyProjectile class
      * 
      * @param x         the starting x coordinate
      * @param y         the starting y coordinate
@@ -29,7 +29,7 @@ public class EnemyProjectile extends Projectile
     }
     
     /**
-     * Checks if projectile has reached an enemy
+     * Checks if EnemyProjectile has reached an enemy
      */
     protected void checkCollision() {
         // Can be changed if needed

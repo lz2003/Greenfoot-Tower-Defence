@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * A projectile that hits enemies
  * 
  * @author Lucy Zhao
- * @version (a version number or a date)
+ * @version 2021
  */
 public abstract class Projectile extends Sprite 
 {

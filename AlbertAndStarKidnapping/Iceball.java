@@ -1,9 +1,9 @@
 import greenfoot.*;
 /**
- * Write a description of class Iceball here.
+ * A magical iceball that deals AOE damage
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Lucy Zhao
+ * @version 2021
  */
 public class Iceball extends Splash 
 {

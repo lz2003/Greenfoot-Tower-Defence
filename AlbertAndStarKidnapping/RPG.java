@@ -1,9 +1,9 @@
 import greenfoot.*;
 /**
- * Write a description of class Fireball here.
+ * A RPG that deals AOE damage
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Young Chen
+ * @version 2021
  */
 public class RPG extends Splash 
 {
@@ -24,7 +24,7 @@ public class RPG extends Splash
     private static GreenfootImage explode = new GreenfootImage("images/explosion/0001.png");
     private static GreenfootImage image = new GreenfootImage("projectiles/rpg.png");
     /**
-     * Constructor for Fireball class
+     * Constructor for RPG class
      * 
      * @param x         the starting x coordinate
      * @param y         the starting y coordinate
@@ -39,7 +39,7 @@ public class RPG extends Splash
     }
     
     /**
-     * Constructor for Fireball class
+     * Constructor for RPG class
      * 
      * @param x         the starting x coordinate
      * @param y         the starting y coordinate
