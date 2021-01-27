@@ -1,10 +1,11 @@
 import greenfoot.*;
 
 /**
- * The Golem is a tank unit with lots of health that has the abilty to split into two smaller versions of itself (one time) when it is defeated. 
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * The Golem is a tank unit with lots of health
+ *
+ * @author Rachel Tong
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Golem extends Enemy 
 {
@@ -195,7 +196,11 @@ public class Golem extends Enemy
     private static GreenfootImage idle = new GreenfootImage("images/enemy/Golem/0/0001.png");
     private static double overPi = 180./Math.PI;
     private static int damage = 250;
-    
+
+    /**
+     * Golem update method
+     * @param delta Change in time since last update
+     */
     public void _update(float delta) {
         super._update(delta);
         int angle = (int) (this.angle * overPi);
@@ -234,7 +239,7 @@ public class Golem extends Enemy
     }
 
     /**
-     * Constructor for Golem
+     * Creates a golem
      * 
      * @param x         the x coordinate of Golem
      * @param y         the y coordinate of Golem

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 /**
- * Write a description of class Info here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Instructions and general info about enemies and towers
+ *
+ * @author Lucy Zhao
+ * @version 2021-01-26
  */
 public class Info extends World
 {
@@ -12,9 +12,9 @@ public class Info extends World
     private int index = 0;
     private TextButton next;
     private Character currDisplay;
+
     /**
-     * Constructor for objects of class Info.
-     * 
+     * Creates information world
      */
     public Info()
     {    
@@ -31,7 +31,10 @@ public class Info extends World
         addObject(next, getWidth() - 100, getHeight() - 50);
         
     }
-    
+
+    /**
+     * Actor act method
+     */
     public void act() {
         if(Greenfoot.mouseClicked(next)) {
             index++;

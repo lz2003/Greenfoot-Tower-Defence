@@ -1,10 +1,11 @@
 import greenfoot.*;
 
 /**
- * The Troll is decently speedy and has resistance to physical damage. 
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * The Troll is decently speedy and has resistance to physical damage. It can also attack from a distance.
+ *
+ * @author Rachel Tong
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Troll extends Enemy 
 {
@@ -198,7 +199,7 @@ public class Troll extends Enemy
     private boolean canAttack = false;
     
     /**
-     * Constructor for Troll
+     * Creates a troll
      * 
      * @param x         the x coordinate of Troll
      * @param y         the y coordinate of Troll
@@ -208,7 +209,11 @@ public class Troll extends Enemy
         range = 150;
         rangeSquared = range * range;
     }
-    
+
+    /**
+     * Troll update method
+     * @param delta Change in time since last update
+     */
     public void _update(float delta) {
         if(!canAttack) {
             super._update(delta);
@@ -252,8 +257,12 @@ public class Troll extends Enemy
          
         animate(delta);
     }
-    
-        protected void checkCanAttack(float delta) {
+
+    /**
+     * Checks whether or not it can attack
+     * @param delta change in time since last update
+     */
+    protected void checkCanAttack(float delta) {
         if(Math2D.distanceSquared(Global.manager.getTargetX(), getX(), Global.manager.getTargetY(), getY()) < rangeSquared) {
             canAttack = true;
             if(coolDown < 0) {
@@ -271,6 +280,5 @@ public class Troll extends Enemy
         new Boulder(getX(), getY(), Math2D.angleTo(
             getX(), Global.getManager().getJayJay().getX(), getY(), Global.manager.getJayJay().getY()
         ));
-        //new Explosion(Global.getManager().getJayJay().getX(), Global.getManager().getJayJay().getY());
     }
 }

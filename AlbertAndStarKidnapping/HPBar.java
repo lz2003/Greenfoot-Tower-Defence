@@ -7,19 +7,25 @@ import java.awt.Composite;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 /**
- * Write a description of class HPBar here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Health bar
+ *
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class HPBar extends Sprite 
 {
     private float full, current;
     private Color frg, bkg;
+
     /**
-     * Constructor for objects of class HPBar
-     * 
-     * @param full Full hitpoint value
+     * Creates a health bar
+     * @param x x location
+     * @param y y location
+     * @param width width
+     * @param height height
+     * @param full full hitpoint value
+     * @param background background colour
+     * @param foreground foreground colour
      */
     public HPBar(double x, double y, int width, int height, float full, Color background, Color foreground) {
         super(x, y, new GreenfootImage(width, height), 10);
@@ -30,15 +36,25 @@ public class HPBar extends Sprite
         draw();
     }
 
+    /**
+     * Set hitpoints
+     * @param hp new hitpoint value
+     */
     public void setHP(float hp) {
         current = hp;
         draw();
     }
-    
+
+    /**
+     * Removes healthbar from canvas
+     */
     public void remove() {
         removeSprite();
     }
-    
+
+    /**
+     * Draw healthbar
+     */
     private void draw() {
         Graphics g = getImage().getGraphics();
         g.setColor(bkg);

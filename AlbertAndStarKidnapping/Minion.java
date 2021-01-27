@@ -1,10 +1,10 @@
 import greenfoot.*;
 import java.awt.Color;
 /**
- * Write a description of class Minion here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Minion that attacks enemies
+ *
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Minion extends Sprite
 {
@@ -203,9 +203,11 @@ public class Minion extends Sprite
     private HPBar hpBar;
     private static double hpOffset = 50;
     private float cooldown = 0;
-    
+
     /**
-     * Constructor for objects of class Minion
+     * Creates a minion
+     * @param x x location
+     * @param y y location
      */
     public Minion(double x, double y) {
         super(x, y, a0[0].getFrame(0), 50, 50, 1);
@@ -219,7 +221,11 @@ public class Minion extends Sprite
     
     private static double overPi = 180./Math.PI;
     private int angle = 0;
-    
+
+    /**
+     * Minion update method
+     * @param delta Change in time since last update
+     */
     public void _update(float delta) {
         Enemy nearest = getClosestEnemy();
         
@@ -270,7 +276,12 @@ public class Minion extends Sprite
             return;
         }
     }
-    
+
+    /**
+     * Attack enemy
+     * @param nearest
+     * @return
+     */
     private boolean attack(Enemy nearest) {
        if(Math2D.distanceSquared(getX(), nearest.getX(), getY(), nearest.getY()) < attackRange) {
             nearest.damage(damage, false, false);
@@ -279,11 +290,18 @@ public class Minion extends Sprite
         }
         return false;
     }
-    
+
+    /**
+     * Update HP Bar location
+     */
     private void updateHPBarLoc() {
         hpBar.setLocation(getX(), getY() - hpOffset);
     }
 
+    /**
+     * Get closest enemy
+     * @return
+     */
     private Enemy getClosestEnemy() {
         double min = Math.pow(range, 2);
         Enemy next = null;
@@ -297,14 +315,21 @@ public class Minion extends Sprite
         
         return next;
     }
-    
+
+    /**
+     * Removes the minion
+     */
     public void destroy() {
         hpBar.remove();
         removeSprite();
         Global.getManager().removeMinion(this);
         numMinions--;
     }
-    
+
+    /**
+     * Get number of minions
+     * @return number of minions
+     */
     public static int getNumberOfMinions() {
         return numMinions;
     }

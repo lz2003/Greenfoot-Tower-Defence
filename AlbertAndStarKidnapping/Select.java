@@ -1,19 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Select here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Map selection world
+ *
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Select extends World
 {
     TextButton load, useNew;
     Character bg;
     private boolean isStory;
+
     /**
-     * Constructor for objects of class Load.
-     * 
+     * Creates the map selection screen
+     * @param isStory whether or not game is in story mode
      */
     public Select(boolean isStory)
     {    
@@ -47,7 +48,11 @@ public class Select extends World
         
         this.isStory = isStory;
     }
-    
+
+    /**
+     * Whether or not game is in story mode
+     * @return whether or not game is in story mode
+     */
     public boolean isStory() {
         return isStory;
     }

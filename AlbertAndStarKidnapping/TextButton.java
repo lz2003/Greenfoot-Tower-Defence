@@ -67,8 +67,6 @@ public class TextButton extends Actor
         myImage.drawImage (tempTextImage, 2, 2);
 
 
-        //myImage.setColor (Color.BLACK);
-        //myImage.drawRect (0,0,tempTextImage.getWidth() + 7, tempTextImage.getHeight() + 7);
         setImage(myImage);
     }
 
@@ -86,9 +84,6 @@ public class TextButton extends Actor
         myImage.fill();
         myImage.drawImage (tempTextImage, 2, 2);
 
-
-        //myImage.setColor (Color.BLACK);
-        //myImage.drawRect (0,0,tempTextImage.getWidth() + 7, tempTextImage.getHeight() + 7);
         setImage(myImage);
     }
 }

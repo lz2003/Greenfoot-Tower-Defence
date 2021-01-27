@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * A mask used to display the radius around a tower.
  * 
  * @author Ryan Lin
- * @version (a version number or a date)
+ * @version 2021-01-25
  */
 public class CircleMask extends Sprite
 {

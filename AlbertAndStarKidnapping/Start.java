@@ -1,18 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Start here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Start screen
+ *
+ * @author Lucy Zhao
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Start extends World
 {
     TextButton campaign, regular, editor, info;
     Character bg;
+
     /**
-     * Constructor for objects of class Start.
-     * 
+     * Creates the start screen
      */
     public Start()
     {    
@@ -30,7 +31,10 @@ public class Start extends World
         addObject(editor, getWidth() / 2, getHeight() / 2 + 210);
         addObject(info, getWidth() / 2, getHeight() / 2 + 140);
     }
-    
+
+    /**
+     * Actor act method
+     */
     public void act() { 
         if(Greenfoot.mouseClicked(campaign)) {
             Greenfoot.setWorld(new Load(true));

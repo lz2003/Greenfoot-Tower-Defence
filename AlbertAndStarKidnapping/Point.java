@@ -1,5 +1,8 @@
 /**
  * Class to represent a point in two dimensional space
+ *
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Point {
     public float x, y;

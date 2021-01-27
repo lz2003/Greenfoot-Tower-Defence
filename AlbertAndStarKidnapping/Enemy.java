@@ -3,9 +3,10 @@ import java.awt.Color;
 /**
  * Enemies make their way to Jay Jay the Dragon by following the path in the attempt to defeat/kill it. They are attacked by the towers that are guarding the path. If their health bar reaches 0, the enemy dies. 
  * Each different enemy has different stats and attacks. If they are successful in defeating Jay Jay, the level ends.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ *
+ * @author Rachel Tong
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Enemy extends Sprite {
 
@@ -126,20 +127,32 @@ public class Enemy extends Sprite {
     protected void updateHP() {
         hpBar.setHP(hp);
     }
-    
+
+    /**
+     * Enemy update method
+     * @param delta Change in time since last update
+     */
     public void _update(float delta) {
         movement(delta); 
         checkCanAttack(delta);
         hpBar.setLocation(getX(), getY() - hpOffset);
         updateHP();
     }
-    
+
+    /**
+     * Receive broadcast from object manager
+     * @param id broadcast magic number
+     */
     public void _receiveBroadcast(int id) {
         if(id == ObjectManager.BROADCAST_REBUILD) {
             resetPath();
         }
     }
-    
+
+    /**
+     * Whether or not the enemy can attack
+     * @param delta change in time since last update
+     */
     protected void checkCanAttack(float delta) {
         coolDown -= delta;
         if(Math2D.distanceSquared(Global.manager.getTargetX(), getX(), Global.manager.getTargetY(), getY()) < rangeSquared) {
@@ -149,7 +162,11 @@ public class Enemy extends Sprite {
             }   
         }
     }
-    
+
+    /**
+     * Move
+     * @param delta
+     */
     private void movement(float delta) {
         if(isRemoved()) return;
 
@@ -168,12 +185,23 @@ public class Enemy extends Sprite {
             nodeIndex++;
         }
     }
-    
+
+    /**
+     * Move
+     * @param x distance in x axis
+     * @param y distance in y axis
+     */
     public void translate(double x, double y) {
         setLocation(getX() + x, getY() + y);
         distTravelled += Math2D.distance(0, x, 0, y);
     }
-    
+
+    /**
+     * Move towards location
+     * @param x x location
+     * @param y y location
+     * @param magnitude distance
+     */
     public void moveTowards(double x, double y, float magnitude) {
         this.angle = Math2D.angleTo(getX(), x, getY(), y);
 
@@ -182,7 +210,10 @@ public class Enemy extends Sprite {
         
         translate(velX, velY);
     }
-    
+
+    /**
+     * Reset path when path is rebuilt
+     */
     private void resetPath() {
         Node[] path = Global.manager.getPath();
         
@@ -217,7 +248,11 @@ public class Enemy extends Sprite {
         removeSprite();
         hpBar.remove();
     }
-    
+
+    /**
+     * Get current node index in path
+     * @return node index
+     */
     public int getNodeIndex() {
         return nodeIndex; 
     }

@@ -1,31 +1,45 @@
 import greenfoot.*;
 import java.util.*;
 /**
- * Write a description of class BuildCursor here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Object to build towers with
+ *
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class BuildCursor extends Actor
 {
     private static BuildCursor cursor;
     private static int state = TowerButton.IDLE; 
     private static int idleX = 1000, idleY = -100;
-    
+
+    /**
+     * Initialises the build cursor
+     */
     public static void init() {
         cursor = new BuildCursor();
     }
-    
+
+    /**
+     * Sets the state of the build cursor
+     * @param ID magic number of state
+     */
     public static void setState(int ID) {
         state = ID;
     }
 
+    /**
+     * Creates new build cursor
+     */
     private BuildCursor() {
         Global.world.addObject(this, idleX, idleY);
         getImage().setTransparency(169);
     }
 
     boolean inWorld = false;
+
+    /**
+     * Actor act method
+     */
     public void act() {
         // Set location
         if(Global.getManager().mouseX() > Game.canvasWidth || Global.getManager().mouseX() < 0 ||
@@ -54,8 +68,6 @@ public class BuildCursor extends Actor
         }
         
         // Build towers
-        
-        // Should also add validation for money tho to please the capitalists
         if(Greenfoot.mouseClicked(this) && inWorld) {
             if(!Slot.getSelected().setBlocked(true) || state == TowerButton.IDLE) {
                 return;

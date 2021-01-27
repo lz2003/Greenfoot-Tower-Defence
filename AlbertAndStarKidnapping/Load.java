@@ -1,19 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Load here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * World to load previous game or to create a new game
+ *
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Load extends World
 {
     TextButton load, useNew;
     Character bg;
     private boolean isStory;
+
     /**
-     * Constructor for objects of class Load.
-     * 
+     * Creates load screen
+     * @param isStory whether or not game is in story mode
      */
     public Load(boolean isStory)
     {    
@@ -28,7 +29,10 @@ public class Load extends World
         addObject(useNew, getWidth() - 250, getHeight() / 2);
         this.isStory = isStory;
     }
-    
+
+    /**
+     * Actor act method
+     */
     public void act() {
         if(Greenfoot.mouseClicked(load)) {
             Greenfoot.setWorld(new Game(false, isStory));

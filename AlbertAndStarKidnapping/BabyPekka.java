@@ -2,16 +2,17 @@ import greenfoot.*;
 
 /**
  * The Baby Pekka is a small unit that has above average health and damage and is very speedy. 
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ *
+ * @author Rachel Tong
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class BabyPekka extends Enemy 
 {
     private float damage = 20;
     static GreenfootImage idle = new GreenfootImage("images/enemy/BabyPekka/0/0001.png");
     /**
-     * Constructor for BabyPekka
+     * Creates a baby pekka at the indicated location
      * 
      * @param x         the x coordinate of BabyPekka
      * @param y         the y coordinate of BabyPekka
@@ -206,6 +207,10 @@ public class BabyPekka extends Enemy
     
     private static double overPi = 180./Math.PI;
 
+    /**
+     * Update method
+     * @param delta Change in time since last update
+     */
     public void _update(float delta) {
         super._update(delta);
         int angle = (int) (this.angle * overPi);

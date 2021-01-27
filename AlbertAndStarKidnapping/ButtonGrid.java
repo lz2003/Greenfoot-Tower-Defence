@@ -1,13 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 /**
- * Write a description of class ButtonGrid here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Flowing grid for buttons
+ *
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class ButtonGrid extends Actor
 {
+    /**
+     * Adds the buttons to world in the grid
+     * @param buttons Array of buttons
+     * @param width buttons per row
+     * @param height buttons per column
+     * @param gap gap between buttons
+     */
     public void set(Button[] buttons, int width, int height, int gap) {
         int count = 0;
         int max = buttons.length;
@@ -18,7 +25,15 @@ public class ButtonGrid extends Actor
             }
         }
     }
-    
+
+    /**
+     * Adds the buttons to world in the grid
+     * @param buttons Array of buttons
+     * @param width buttons per row
+     * @param height buttons per column
+     * @param gapX horizontal gap between buttons
+     * @param gapY vertical gap between buttons
+     */
     public void set(Button[] buttons, int width, int height, int gapX, int gapY) {
         int count = 0;
         int max = buttons.length;
@@ -29,12 +44,4 @@ public class ButtonGrid extends Actor
             }
         }
     }
-    /**
-     * Act - do whatever the ButtonGrid wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
-    {
-        // Add your action code here.
-    }    
 }

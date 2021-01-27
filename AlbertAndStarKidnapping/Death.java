@@ -1,18 +1,18 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Death here.
+ * Death screen
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Lucy Zhao
+ * @version 2021-01-26
  */
 public class Death extends World
 {
     private TextButton next;
     Character bg;
+
     /**
-     * Constructor for objects of class Death.
-     * 
+     * Creates the death screen
      */
     public Death()
     {    
@@ -22,7 +22,10 @@ public class Death extends World
        addObject(bg, getWidth() / 2, getHeight() / 2);
        addObject(next, getWidth() / 2, getHeight() - 100);
     }
-    
+
+    /**
+     * Actor act method
+     */
     public void act() {
         if(Greenfoot.mouseClicked(next)) {
             Greenfoot.setWorld(new Start());
