@@ -112,7 +112,10 @@ public class Cutscene extends World
             textBox8.updateText();
         }
     }
-    
+
+    /**
+     * Create scene 1
+     */
     public void scene1()
     {
         setBackground(darkCastle);
@@ -123,7 +126,10 @@ public class Cutscene extends World
         textBox.addText("Harnessing the power from the God of\nGreenfoot, the only thing in my way is\nthat dragon of his.", koyen);
         textBox.addText("It’s already getting too strong for my\nliking. General, it's time to prepare\nfor war! Huehuehuehue!", koyen);
     }
-    
+
+    /**
+     * Create scene 2
+     */
     public void scene2()
     {
         setBackground(lightCastle);
@@ -133,7 +139,10 @@ public class Cutscene extends World
         textBox2.addText("I’ll never forget the pain he caused\nme.", player);
         textBox2.addText("You’ve raised me well, I shall\ndefend this kingdom with my life.\nJay jay jaaaaaaaay!", jayjay);
     }
-    
+
+    /**
+     * Create scene 3
+     */
     public void scene3()
     {
         setBackground(insideCastle);
@@ -144,7 +153,10 @@ public class Cutscene extends World
         textBox3.addText("I’ve been thinking. The Firelord and\nPope of Greenfoot has much more\npower than the king.", koyen);
         textBox3.addText("People are more willing to follow\nreligion than some temporary king.\nWouldn’t it be easier if I was both?", koyen);
     }
-    
+
+    /**
+     * Create scene 4
+     */
     public void scene4()
     {
         setBackground(insideCastle);
@@ -156,7 +168,10 @@ public class Cutscene extends World
         textBox4.addText("You’ll never get away with this.", iroh);
         textBox4.addText("I will, scowoby doo doesn’t exist\nin our universe.", koyen);
     }
-    
+
+    /**
+     * Create scene 5
+     */
     public void scene5()
     {
         setBackground(insideCastle);
@@ -167,7 +182,10 @@ public class Cutscene extends World
         textBox5.addText("Before he could, he witnessed\nyou kill his father.", council);
         textBox5.addText("*Koyen escapes*", koyen);
     }
-    
+
+    /**
+     * Create scene 6
+     */
     public void scene6()
     {
         setBackground(lightCastle);
@@ -178,7 +196,10 @@ public class Cutscene extends World
         textBox6.addText("Ahhhh, I’m just going to assume\nyou’re a pokemon and you can only say\nyour name.", player);
         textBox6.addText("You’re actually kind of cute.\nI guess I can raise you, it isn’t like\nI have any responsibilities hahaha...", player);
     }
-    
+
+    /**
+     * Create scene 7
+     */
     public void scene7()
     {
         setBackground(darkCastle);
@@ -191,7 +212,10 @@ public class Cutscene extends World
         textBox7.addText("But I believe Jay Jay can save\nthe world", player);
         textBox7.addText("Uwu yes daddy. Jay Jay!", jayjay);
     }
-    
+
+    /**
+     * Create scene 8
+     */
     public void scene8()
     {
         setBackground(warGround);

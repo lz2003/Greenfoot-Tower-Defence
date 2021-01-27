@@ -2,10 +2,10 @@ import java.util.*;
 import greenfoot.*;
 import java.io.IOException;
 /**
- * Write a description of class Spawner here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Class that spawns enemies
+ *
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Spawner extends Updated
 {
@@ -20,31 +20,50 @@ public class Spawner extends Updated
     
     private int level = 0;
     private ObjectManager manager;
+
     /**
-     * Constructor for objects of class Spawner
+     * Creates a spawner that will spawn enemies into the indicated object manager
+     * @param manager object manager
      */
     public Spawner(ObjectManager manager) {
         this.manager = manager;
     }
 
+    /**
+     * Creates a spawner that will spawn enemies into the indicated object manager
+     * @param manager object manager
+     * @param level level of spawner
+     */
     public Spawner(ObjectManager manager, int level) {
         this.manager = manager;
         this.level = level;
     }
 
+    /**
+     * Spawner update method
+     * @param delta Change in time since last update
+     */
     public void _update(float delta) {
         if(manager.getEnemies().size() <= 0) {
             nextLevel();
         }
     }
-    
+
+    /**
+     * Whether or not theres a cutscene
+     * @param level level to check
+     * @return whether or not theres a cutscene
+     */
     public static boolean hasCutscene(int level) {
         int cutscene = level / Cutscene.LEVELS_PER_CUTSCENE;
         int check = level % Cutscene.LEVELS_PER_CUTSCENE;
         
         return check == 0 && cutscene > 0 && cutscene <= Cutscene.TOTAL_CUTSCENES && Global.getWorld().isCampaign();
     }
-    
+
+    /**
+     * Spawns next level
+     */
     public void nextLevel() {
         int cutscene = ++level / Cutscene.LEVELS_PER_CUTSCENE;
         int check = level % Cutscene.LEVELS_PER_CUTSCENE;
@@ -62,7 +81,11 @@ public class Spawner extends Updated
         
         spawnLevel(level);
     }
-    
+
+    /**
+     * Spawns level
+     * @param level level
+     */
     public void spawnLevel(int level) {
         switch(level) {
             case 0:
@@ -591,7 +614,11 @@ public class Spawner extends Updated
             }
         }
     }
-    
+
+    /**
+     * Endless spawning
+     * @param level level
+     */
     private void endless(int level) {
         int enemies = level * 7;
         int seed = Math.abs((int)(Math.random() * 203192031) % 40000);
@@ -638,15 +665,30 @@ public class Spawner extends Updated
         
         spawn(e, 10 + seed % 50);
     }
-    
+
+    /**
+     * Spawns the arraylist of magic strings
+     * @param e arraylist of enemies
+     */
     private void spawn(ArrayList<String> e) {
         spawn(e, 50);
     }
-    
+
+    /**
+     * Spawns the arraylist of magic strings
+     * @param e arraylist of enemies
+     * @param offset spawning offset
+     */
     private void spawn(ArrayList<String> e, double offset) {
         spawn(e, offset, 2);
     }
-    // spawn enemies
+
+    /**
+     * Spawns the arraylist of magic strings
+     * @param enemies arraylist of enemies
+     * @param offset spawning offset
+     * @param delay spawning delay
+     */
     private void spawn(ArrayList<String> enemies, double offset, int delay) {
 
         for(int i = 0; i < enemies.size(); i++) {
@@ -672,7 +714,11 @@ public class Spawner extends Updated
             }
         }
     }
-    
+
+    /**
+     * Get level of world
+     * @return level
+     */
     public int getLevel() {
         return level;
     }

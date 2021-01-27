@@ -5,10 +5,11 @@ import java.io.File;
 import java.util.*;
 
 /**
- * Write a description of class MyWorld here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * World where the game takes place
+ *
+ * @author Ryan Lin
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Game extends World
 {
@@ -20,15 +21,31 @@ public class Game extends World
     TowerDisplay towerDisplay;
     private boolean isCampaign;
     private boolean isEditor;
-    
+
+    /**
+     * Creates a default game
+     */
     public Game() {    
         this(false, true);
     }
-    
+
+    /**
+     * Creates a game with options to load from autosave.owo and whether or not story mode has been selected
+     * @param autoLoad whether or not to load from previous session
+     * @param isCampaign whether or not story mode is selected
+     */
     public Game(boolean autoLoad, boolean isCampaign) {
         this(autoLoad, isCampaign, false);
     }
-    
+
+    /**
+     * Creates a game with options to load from autosave.owo, whether or not story mode has been selected,
+     * and whether or not the world is a map editor
+     *
+     * @param autoload whether or not to load from previous session
+     * @param isCampaign whether or not story mode is selected
+     * @param editor whether or not the world is an editor
+     */
     public Game(boolean autoload, boolean isCampaign, boolean editor) {
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(worldWidth, worldHeight, 1, false); 
@@ -86,7 +103,10 @@ public class Game extends World
             } catch(IOException e) {}
         }
     }
-    
+
+    /**
+     * Initialises UI
+     */
     public void init() {
         ButtonGrid b = new ButtonGrid();
         addObject(b, 887, 45);
@@ -124,18 +144,33 @@ public class Game extends World
         BuildCursor.init();
     }
 
+    /**
+     * Actor act method
+     */
     public void act() {
         manager.update();
     }
-    
+
+    /**
+     * Whether or not game is in story mode
+     * @return Whether or not game is in story mode
+     */
     public boolean isCampaign() {
         return isCampaign;
     }
-    
+
+    /**
+     * Whether or not world is an editor
+     * @return Whether or not world is an editor
+     */
     public boolean isEditor() {
         return isEditor;
     }
-    
+
+    /**
+     * Updates tower mask
+     * @param tower target tower
+     */
     public void updateMask(Tower tower){
         mask.show(tower);
     }

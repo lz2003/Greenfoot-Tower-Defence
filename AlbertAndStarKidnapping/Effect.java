@@ -2,8 +2,8 @@ import greenfoot.*;
 /**
  * Write a description of class Effect here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Lucy Zhao
+ * @version 2021-01-23
  */
 public class Effect extends Sprite 
 {

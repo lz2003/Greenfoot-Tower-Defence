@@ -1,5 +1,10 @@
 /**
- * Based off of https://www.youtube.com/watch?v=AKKpPmxx07w
+ * Class to handle pathfinding
+ * <br>
+ * Pathfinding algorithm based off of https://www.youtube.com/watch?v=AKKpPmxx07w
+ *
+ * @author Young Chen
+ * @version 2021-01-26
  */
 
 import java.util.ArrayList;
@@ -8,6 +13,12 @@ class PathfindingSimplified {
     private Grid grid;
     private Node start, target;
 
+    /**
+     * Create a pathfinding wrapper
+     * @param nodes Pathfinding nodes
+     * @param start start node
+     * @param target end node
+     */
     public PathfindingSimplified(Node[][] nodes, Node start, Node target) {
         this.grid = new Grid(nodes);
 
@@ -22,6 +33,10 @@ class PathfindingSimplified {
         this.target = target;
     }
 
+    /**
+     * Get the path
+     * @return path
+     */
     public Node[] getPath() {
         Pathfinding p = new Pathfinding(this.grid, this.start, this.target);
         p.findPath();
@@ -29,25 +44,50 @@ class PathfindingSimplified {
     }
 }
 
+/**
+ * Class to carry out pathfinding
+ * <br>
+ * Pathfinding algorithm based off of https://www.youtube.com/watch?v=AKKpPmxx07w
+ *
+ * @author Young Chen
+ * @version 2021-01-26
+ */
 public class Pathfinding {
     private Grid grid;
     private Node target, start;
     private Node[] path;
 
+    /**
+     * Creates a pathfinding instance
+     * @param grid Node grid
+     * @param start start node
+     * @param end end node
+     */
     public Pathfinding(Grid grid, Node start, Node end) {
         this.grid = grid;
         this.start = start;
         this.target = end;
     }
 
+    /**
+     * Sets the start node
+     * @param n start node
+     */
     public void setStartNode(Node n) {
         this.start = n;
     }
 
+    /**
+     * Sets the end node
+     * @param n end node
+     */
     public void setTargetNode(Node n) {
         this.target = n;
     }
 
+    /**
+     * Create the nearest path
+     */
     public void findPath() {
         Node start = this.start;
         Node end = this.target;
@@ -95,6 +135,7 @@ public class Pathfinding {
         }
     }
 
+    // reverse the path for the final path
     private void findFinalPath() {
         ArrayList<Node> path = new ArrayList<Node>();
         Node current = this.target;
@@ -113,68 +154,39 @@ public class Pathfinding {
 
         this.path = reversed;
     }
-    
-    /* Astar pathfinding
-    public void findPath() {
-        Node start = this.start;
-        Node end = this.target;
 
-        ArrayList<Node> open = new ArrayList<Node>(),
-                        closed = new ArrayList<Node>();
-
-        open.add(start);
-
-        while(open.size() > 0) {
-            Node current = open.get(0);
-
-            for(int i = 0; i < open.size(); i++) {
-                if(open.get(i).fCost() < current.fCost() || open.get(i).fCost() == current.fCost() && open.get(i).hCost() < current.hCost()) {
-                    current = open.get(i);
-                }
-            }
-
-            open.remove(current);
-            closed.add(current);
-
-            if(current == end) {
-                findFinalPath();
-                return;
-            }
-
-            Node[] neighbours = current.getNeighbours();
-            for(int i = 0; i < neighbours.length; i++) {
-                if(closed.contains(neighbours[i])) continue;
-
-                Node neighbour = neighbours[i];
-
-                float cost = current.gCost() + current.distance(end);
-
-                if(cost < neighbour.gCost() || !open.contains(neighbour)) {
-                    neighbour.setGCost(cost);
-                    neighbour.setHCost(neighbour.distance(target));
-                    neighbour.setParent(current);
-
-                    if(!open.contains(neighbour)) {
-                        open.add(neighbour);
-                    }
-                }
-            }
-        }
-    }
-    */
-
+    /**
+     * Get created path
+     * @return path
+     */
     public Node[] getPath() {
         return this.path;
     }
 }
 
+/**
+ * Class to contain the 2d array of nodes for pathfinding
+ *
+ * @author Young Chen
+ * @version 2021-01-26
+ */
 class Grid {
     private Node[][] grid;
 
+    /**
+     * Set the nodes
+     * @param grid nodes
+     */
     public Grid(Node[][] grid) {
         this.grid = grid;
     }
 
+    /**
+     * Get node at indicated index
+     * @param x x index
+     * @param y y index
+     * @return node at index
+     */
     public Node get(int x, int y) {
         try {
             Node n = grid[x][y];
@@ -185,6 +197,12 @@ class Grid {
     }
 }
 
+/**
+ * Pathfinding node
+ *
+ * @author Young Chen
+ * @version 2021-01-26
+ */
 class Node {
     private Point worldLoc;
     private Index2D arrayLoc;
@@ -199,6 +217,12 @@ class Node {
     
     private boolean onPath = false;
 
+    /**
+     * Create a node
+     * @param worldPos location in world
+     * @param arrayPos location in array
+     * @param blocked whether or not its blocked
+     */
     public Node(Point worldPos, Index2D arrayPos, boolean blocked) {
         this.worldLoc = worldPos;
         this.arrayLoc = arrayPos;
@@ -207,6 +231,10 @@ class Node {
         this.blocked = blocked;
     }
 
+    /**
+     * Sets the node's neighbours
+     * @param grid grid the node is in
+     */
     public void setNeighbours(Grid grid) {
         Node[] nodes = {
                          grid.get(arrayLoc.x + 1, arrayLoc.y    ),
@@ -237,65 +265,134 @@ class Node {
         }
     }
 
+    /**
+     * Gets the node's neighbours
+     * @return neighbours
+     */
     public Node[] getNeighbours() {
         return this.neighbours;
     }
 
+    /**
+     * Gets the node's parent
+     * @return parent
+     */
     public Node getParent() {
         return this.parent;
     }
 
+    /**
+     * Whether or not the node is blocked
+     * @return whether or not it's blocked
+     */
     public boolean isBlocked() {
         return blocked;
     }
 
+    /**
+     * Set G cost of node
+     * @param cost g cost
+     */
     public void setGCost(float cost) {
         this.distToNeighbour = cost;
     }
 
+    /**
+     * Set H cost of node
+     * @param cost h cost
+     */
     public void setHCost(float cost) {
         this.distToTarget = cost;
     }
 
+    /**
+     * Set the node's parent
+     * @param parent parent
+     */
     public void setParent(Node parent) {
         this.parent = parent;
     }
-    
+
+    /**
+     * Set whether or not the node is blocked
+     * @param blocked whether or not its blocked
+     */
     public void setBlocked(boolean blocked) {
         this.blocked = blocked;
     }
-    
+
+    /**
+     * Sets whether or not the node is on the created path
+     * @param onPath whether or not its on the created path
+     */
     public void setOnPath(boolean onPath) {
         this.onPath = onPath;
     }
 
+    /**
+     * Get h cost (distance to target)
+     * @return
+     */
     public float hCost() {
         return this.distToTarget;
     }
 
+    /**
+     * Get g cost (distance to neighbours)
+     * @return
+     */
     public float gCost() {
         return this.distToNeighbour;
     }
 
+    /**
+     * Get sum of h cost and g cost
+     * @return f cost
+     */
     public float fCost() {
         return this.distToTarget + this.distToNeighbour;
     }
 
+    /**
+     * Get distance between nodes
+     * @param b
+     * @return
+     */
     public float distance(Node b) {
         return this.worldLoc.distance(b.getWorldLoc());
     }
 
+    /**
+     * Get the location in the world
+     * @return
+     */
     public Point getWorldLoc() {
         return this.worldLoc;
     }
-    
+
+    /**
+     * Whether or not node is on the path
+     * @return whether or not node is on the created path
+     */
     public boolean isOnPath() {
         return this.onPath;
     }
 }
 
+/**
+ * 2D Index object
+ *
+ * @author Young Chen
+ * @version 2021-01-26
+ */
 class Index2D {
     public int x, y;
+
+    /**
+     * Creates the index object
+     * @param x x index
+     * @param y y index
+     */
     public Index2D(int x, int y) {
         this.x = x;
         this.y = y;

@@ -2,9 +2,10 @@ import greenfoot.*;
 
 /**
  * The Maniac is a basic unit that represents the average stats for enemy.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ *
+ * @author Rachel Tong
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Maniac extends Enemy 
 {
@@ -196,7 +197,7 @@ public class Maniac extends Enemy
     private static double overPi = 180./Math.PI;
     private static int damage = 10;
     /**
-     * Constructor for Maniac
+     * Creates a maniac
      * 
      * @param x         the x coordinate of Maniac
      * @param y         the y coordinate of Maniac
@@ -204,7 +205,11 @@ public class Maniac extends Enemy
     public Maniac(double x, double y) {
         super(x, y, idle, Enemy.DEFAULT_HP, Enemy.DEFAULT_RANGE, 1f, .3f, false, false); 
     }
-    
+
+    /**
+     * Maniac update method
+     * @param delta Change in time since last update
+     */
     public void _update(float delta) {
         super._update(delta);
         int angle = (int) (this.angle * overPi);

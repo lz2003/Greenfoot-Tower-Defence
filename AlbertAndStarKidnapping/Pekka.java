@@ -2,14 +2,15 @@ import greenfoot.*;
 
 /**
  * The Pekka is a large unit that has a large amount of health, large damage, and very slow. 
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ *
+ * @author Rachel Tong
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Pekka extends Enemy 
 {
     /**
-     * Constructor for Pekka
+     * Creates a pekka
      * 
      * @param x         the x coordinate of Pekka
      * @param y         the y coordinate of Pekka
@@ -206,7 +207,11 @@ public class Pekka extends Enemy
     private static GreenfootImage idle = new GreenfootImage("images/enemy/Pekka/0/0001.png");
     private static double overPi = 180./Math.PI;
     private static int damage = 450;
-    
+
+    /**
+     * Pekka update method
+     * @param delta Change in time since last update
+     */
     public void _update(float delta) {
         super._update(delta);
         int angle = (int) (this.angle * overPi);

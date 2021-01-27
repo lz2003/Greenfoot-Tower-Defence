@@ -1,18 +1,18 @@
 import greenfoot.*;
 /**
- * Write a description of class BetterMouse here.
+ * MouseInfo wrapper class
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Mouse  
 {
     private int x, y;
     private boolean down;
-    
-    public Mouse() {
-    }
-    
+
+    /**
+     * Update the mouse information
+     */
     public void update() {
         MouseInfo info = Greenfoot.getMouseInfo();
         if(info == null) return;
@@ -22,15 +22,27 @@ public class Mouse
         
         down = info.getButton() > 0;
     }
-    
+
+    /**
+     * Get x location of mouse
+     * @return x location
+     */
     public int getMouseX() {
         return x;
     }
-    
+
+    /**
+     * Get y location of mouse
+     * @return y location
+     */
     public int getMouseY() {
         return y;
     }
-    
+
+    /**
+     * Get whether or not the mouse is down
+     * @return Whether or not the mouse is down
+     */
     public boolean isDown() {
         return down;
     }

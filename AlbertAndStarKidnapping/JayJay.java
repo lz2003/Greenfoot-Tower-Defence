@@ -1,10 +1,11 @@
 import greenfoot.*;
 import java.awt.Color;
 /**
- * Write a description of class JayJay here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Being that the player defends.
+ *
+ * @author Lucy Zhao
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class JayJay extends Sprite 
 {
@@ -12,14 +13,23 @@ public class JayJay extends Sprite
     private float hp = 1500;
     private static final Color HPBKG = new Color(255, 0, 0), HPFOR = new Color(0, 255, 0);
     private boolean damaged = false, dying = false, dead = false;
-    
+
+    /**
+     * Creates a jay jay
+     * @param x x location
+     * @param y y location
+     */
     public JayJay(double x, double y) {
         super(x, y, idle.getFrame(0), 250, 250, 2);
         hpBar = new HPBar(getX(), getY() - 100, 100, 10, hp, HPBKG, HPFOR);
         setY(getY() - 50);
         setAnimation(idle, 0.07f);
     }
-    
+
+    /**
+     * Deals damage to it
+     * @param damage amount of damage
+     */
     public void damage(float damage) {
         hp -= damage;
         hpBar.setHP(hp);
@@ -35,7 +45,11 @@ public class JayJay extends Sprite
             // or removeSprite();
         }
     }
-    
+
+    /**
+     * Animates jay jay
+     * @param delta Change in time since last update
+     */
     public void _update(float delta) {
         if(!dead)
             animate(delta);
@@ -52,15 +66,24 @@ public class JayJay extends Sprite
             }
         }
     }
-    
+
+    /**
+     * Removes jay jay
+     */
     public void destroy() {
         removeSprite();
     }
-    
+
+    /**
+     * Ends the game
+     */
     private void endGame() {
         Greenfoot.setWorld(new Death());
     }
-    
+
+    /**
+     * Starts death animation
+     */
     private void deathAnimation() {
         setAnimation(die, 0.15f);
     }

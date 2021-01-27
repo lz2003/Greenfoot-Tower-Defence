@@ -1,10 +1,11 @@
 import greenfoot.*;
 
 /**
- * The warlock is a magical unit that has resistance to magical damage.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * The warlock is a magical unit that has resistance to magical damage. It can attack from a distance.
+ *
+ * @author Rachel Tong
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Warlock extends Enemy 
 {
@@ -198,8 +199,8 @@ public class Warlock extends Enemy
     private static double overPi = 180./Math.PI;
     boolean canAttack = false;
     
-        /**
-     * Constructor for Warlock
+    /**
+     * Creates a warlock
      * 
      * @param x         the x coordinate of Warlock
      * @param y         the y coordinate of Warlock
@@ -209,8 +210,11 @@ public class Warlock extends Enemy
         range = 550;
         rangeSquared = range * range;
     }
-    
-    
+
+    /**
+     * Warlock update method
+     * @param delta Change in time since last update
+     */
     public void _update(float delta) {
         if(!canAttack) {
             super._update(delta);
@@ -252,7 +256,11 @@ public class Warlock extends Enemy
         }
         animate(delta);
     }
-    
+
+    /**
+     * Checks whether or not it can attack
+     * @param delta change in time since last update
+     */
     protected void checkCanAttack(float delta) {
         coolDown -= delta;
         if(Math2D.distanceSquared(Global.manager.getTargetX(), getX(), Global.manager.getTargetY(), getY()) < rangeSquared) {

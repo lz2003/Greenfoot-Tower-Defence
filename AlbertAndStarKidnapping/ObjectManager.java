@@ -2,10 +2,13 @@ import java.util.ArrayList;
 import java.awt.Color;
 import greenfoot.*;
 /**
- * Write a description of class ObjectManager here.
+ * Class to manage all the game objects and pathfinding
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Lucy Zhao
+ * @author Rachel Tong
+ * @author Ryan Lin
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class ObjectManager  
 {
@@ -20,8 +23,7 @@ public class ObjectManager
         STATE_BUILD = 0,
         STATE_IDLE = 1,
         STATE_MENU = 2;    
-        
-    //private float camX = 0, camY = 0;
+
     private int state = 0;
     
     private int maxNodesX, maxNodesY;
@@ -56,14 +58,18 @@ public class ObjectManager
     private float money = START_MONEY;
 
     /**
-     * Constructor for objects of class ObjectManager
+     * Instantiates the object manager
      */
     public ObjectManager() {
         mouse = new Mouse();
         spawner = new Spawner(this);
         jay = new JayJay(targetX, targetY);
     }
-    
+
+    /**
+     * Instantiates the object manager
+     * @param editor Whether or not to make the object manager assume the world is a map editor
+     */
     public ObjectManager(boolean editor) {
         mouse = new Mouse();
         
@@ -76,6 +82,9 @@ public class ObjectManager
         jay = new JayJay(targetX, targetY);
     }
 
+    /**
+     * Clears all the objects being managed
+     */
     public void reset() {
         if(!Global.getWorld().isEditor())
             spawner = new Spawner(this);
@@ -102,12 +111,19 @@ public class ObjectManager
             minions.get(i).destroy();
         }
     }
-    
+
+    /**
+     * Updates objects
+     */
     public void update() {
         mouse.update();
         updateLoop(getDelta());
     }
-    
+
+    /**
+     * Loop and update each object
+     * @param delta Change in time since last update in seconds
+     */
     private void updateLoop(float delta) {
         for(int i = objects.size() - 1; i >= 0; i--)
             objects.get(i)._update(delta);
@@ -132,7 +148,11 @@ public class ObjectManager
         jay._update(delta);
         spawner._update(delta);
     }
-    
+
+    /**
+     * Sends a message to all objects
+     * @param ID Magic number of broadcast
+     */
     public void broadcast(int ID) {
         for(Updated o: objects) {
             o._receiveBroadcast(ID);
@@ -154,48 +174,90 @@ public class ObjectManager
             o._receiveBroadcast(ID);
         }
     }
-    
+
+    /**
+     * Adds an enemy
+     * @param e enemy to add
+     */
     public void addEnemy(Enemy e) {
         enemies.add(e);
     }
-    
+
+    /**
+     * Adds a projectile
+     * @param p projectile to add
+     */
     public void addProjectile(Projectile p) {
         projectiles.add(p);
     }
-    
+
+    /**
+     * Adds a tower
+     * @param t tower to add
+     */
     public void addTower(Tower t) {
         towers.add(t);
     }
-    
+
+    /**
+     * Adds a minion
+     * @param m minion to add
+     */
     public void addMinion(Minion m) {
         minions.add(m);
     }
-    
+
+    /**
+     * Removes an enemy
+     * @param e enemy to remove
+     */
     public void removeEnemy(Enemy e) {
         enemies.remove(e);
     }
-    
+
+    /**
+     * Removes a projectile
+     * @param p projectile to remove
+     */
     public void removeProjectile(Projectile p) {
         projectiles.remove(p);
     }
-    
+
+    /**
+     * Removes a tower
+     * @param t tower to remove
+     */
     public void removeTower(Tower t) {
         towers.remove(t);
     }
-    
+
+    /**
+     * Removes a minion
+     * @param m minion to remove
+     */
     public void removeMinion(Minion m) {
         minions.remove(m);
     }
-    
+
+    /**
+     * Removes an updated object
+     * @param u object to remove
+     */
     public void removeObject(Updated u) {
         objects.remove(u);
     }
-    
+
+    /**
+     * Adds an updated object
+     * @param u object to add
+     */
     public void addObject(Updated u) {
         objects.add(u);
     }
     
     private long last;
+
+    // get change in time since last function call
     private float getDelta() {
         long now = System.nanoTime();
         float delta = (now - last) / 1000000000f;
@@ -203,6 +265,9 @@ public class ObjectManager
         return delta;
     }
 
+    /**
+     * Initialises the world
+     */
     public void init() {
         int widthIndex = 0, heightIndex = 0;
         int width = 850;
@@ -238,7 +303,12 @@ public class ObjectManager
         
         new Background(width, height);
     }
-    
+
+    /**
+     * Gets the closest node from indicated location
+     * @param loc location
+     * @return closest pathfinding node
+     */
     public Node getClosestNode(Point loc) {
         int x = (int) (loc.x + .5f);
         int y = (int) (loc.y + .5f);
@@ -251,7 +321,11 @@ public class ObjectManager
         
         return nodes[x][y];
     }
-    
+
+    /**
+     * Rebuilds the pathfinding path
+     * @return whether or not the path is valid
+     */
     public boolean rebuildPath() {
         // Try to find a path
         pathfinder = new PathfindingSimplified(nodes, nodes[startIndexX][startIndexY], nodes[targetIndexX][targetIndexY]);
@@ -264,7 +338,14 @@ public class ObjectManager
         broadcast(BROADCAST_REBUILD);
         return true;
     }
-    
+
+    /**
+     * Updates one node in the pathfinding path
+     * @param x x index of node
+     * @param y y index of node
+     * @param blocked whether or not to set node as blocked
+     * @return whether or not change is valid (still has a valid path after change)
+     */
     public boolean updatePath(int x, int y, boolean blocked) {
         if(x == startIndexX && y == startIndexY) return false;
         
@@ -280,11 +361,20 @@ public class ObjectManager
         
         return valid;
     }
-    
+
+    /**
+     * Get the pathfinding path
+     * @return path
+     */
     public Node[] getPath() {
         return this.path;
     }
-    
+
+    /**
+     * Get a pathfinding node
+     * @param index index of node
+     * @return node
+     */
     public Node getPathNode(int index) {
         try {
             return this.path[index];
@@ -292,75 +382,148 @@ public class ObjectManager
             return null;
         }
     }
-    
+
+    /**
+     * Get all pathfinding nodes
+     * @return nodes
+     */
     public Node[][] getNodes() {
         return this.nodes;
     }
-    
+
+    /**
+     * Get end goal node
+     * @return end goal node
+     */
     public Node getTargetNode() {
         return this.targetNode;
     }
-    
+
+    /**
+     * Get x location of mouse
+     * @return x location
+     */
     public int mouseX() {
         return mouse.getMouseX();
     }
-    
+
+    /**
+     * Get y location of mouse
+     * @return y location
+     */
     public int mouseY() {
         return mouse.getMouseY();
     }
-    
+
+    /**
+     * Get whether or not the mouse is down
+     * @return whether or not the mouse is down
+     */
     public boolean mouseDown() {
         return mouse.isDown();
     }
-    
+
+    /**
+     * Get the current state of the object manager
+     * @return state
+     */
     public int getState() {
         return this.state;
     }
-    
+
+    /**
+     * Get all enemies
+     * @return enemies
+     */
     public ArrayList<Enemy> getEnemies() {
         return this.enemies;
     }
-    
+
+    /**
+     * Get all towers
+     * @return towers
+     */
     public ArrayList<Tower> getTowers() {
         return this.towers;
     }
-    
+
+    /**
+     * Get all projectiles
+     * @return projectiles
+     */
     public ArrayList<Projectile> getProjectiles() {
         return this.projectiles;
     }
-    
+
+    /**
+     * Set the pathfinding target location
+     * @param x x location of target
+     */
     public void setTargetX(double x) {
         targetX = x;
     }
-    
+
+    /**
+     * Set the pathfinding target y location
+     * @param y y location of target
+     */
     public void setTargetY(double y) {
         targetY = y;
     }
-    
+
+    /**
+     * Get the pathfinding target x location
+     * @return x location
+     */
     public double getTargetX() {
         return targetX;
     }
-    
+
+    /**
+     * Get the pathfinding target y location
+     * @return y location
+     */
     public double getTargetY() {
         return targetY;
     }
-    
+
+    /**
+     * Deal damage to jay jay
+     * @param damage amount of damage
+     */
     public void damageJayJay(float damage) {
         jay.damage(damage);
     }
-    
+
+    /**
+     * Get amount of money
+     * @return amount of money
+     */
     public float getMoney() {
         return money;
     }
-    
+
+    /**
+     * Add money
+     * @param amount amount to add
+     */
     public void addMoney(float amount) {
         money += amount;
     }
-    
+
+    /**
+     * Set money value
+     * @param amount new money amount
+     */
     public void setMoney(float amount) {
         money = amount;
     }
-    
+
+    /**
+     * Try to reduce the money amount
+     * @param amount amount to reduce by
+     * @return whether or not the remaining money will be greater than 0
+     */
     public boolean requestMoney(float amount) {
         money -= amount;
         
@@ -371,22 +534,30 @@ public class ObjectManager
         
         return true;
     }
-    
+
+    /**
+     * Get the spawner
+     * @return spawner
+     */
     public Spawner getSpawner() {
         return spawner;
     }
-    
+
+    /**
+     * Set the level of the game
+     * @param level level
+     */
     public void setLevel(int level) {
         if(Global.getWorld().isEditor()) return;
         
         spawner = new Spawner(this, level);
     }
-    
+
+    /**
+     * Get the jay jay
+     * @return jay jay
+     */
     public JayJay getJayJay() {
         return jay;
-    }
-    
-    public void clear() {
-        
     }
 }

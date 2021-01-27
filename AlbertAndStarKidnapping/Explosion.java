@@ -1,9 +1,9 @@
 import greenfoot.*;
 /**
- * Write a description of class Explosion here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Explosion effect
+ *
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Explosion extends Sprite 
 {
@@ -14,9 +14,12 @@ public class Explosion extends Sprite
         new GreenfootImage("images/explosion/0004.png"),
         new GreenfootImage("images/explosion/0005.png"),
         new GreenfootImage("images/explosion/0006.png"),
-    }); 
+    });
+
     /**
-     * Constructor for objects of class Explosion
+     * Creates an explosion effect
+     * @param x x location
+     * @param y y location
      */
     public Explosion(double x, double y) {
         super(x, y, explosion.getFrame(0), 4);
@@ -25,7 +28,10 @@ public class Explosion extends Sprite
         setAnimation(explosion, 0.1f);
     }
 
-    
+    /**
+     * Updates explosion animation
+     * @param delta Change in time since last update
+     */
     public void _update(float delta) {
         animate(delta);
         

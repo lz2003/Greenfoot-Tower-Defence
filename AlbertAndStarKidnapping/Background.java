@@ -1,17 +1,14 @@
 import greenfoot.*;
 /**
- * Write a description of class Background here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Background image
+ *
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class Background extends Sprite 
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
     /**
-     * Constructor for objects of class Background
+     * Creates the object for the background image
      */
     public Background(int width, int height)
     {

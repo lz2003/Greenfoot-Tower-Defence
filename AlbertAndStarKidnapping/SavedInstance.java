@@ -3,10 +3,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 /**
- * Write a description of class SaveGame here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Class to save the world as a file
+ *
+ * @author Young Chen
+ * @version 2021-01-26
  */
 public class SavedInstance 
 {
@@ -44,8 +44,10 @@ public class SavedInstance
     private float money;
     private ArrayList<Tower> towers;
     private int width, height;
+
     /**
-     * Constructor for objects of class SaveGame
+     * Takes a snapshot of the current object manager variables
+     * @param m Object manager
      */
     public SavedInstance(ObjectManager m) {
         Spawner spawner = m.getSpawner();
@@ -67,6 +69,11 @@ public class SavedInstance
         this.towers = towers;
     }
 
+    /**
+     * Saves the object manager snapshot
+     * @param file file name
+     * @throws IOException
+     */
     public void save(String file) throws IOException {
         File f = new File(file);
 
@@ -139,8 +146,11 @@ public class SavedInstance
         STATE_TOWERS = 1
     ;
 
-
-
+    /**
+     * Reads a saved world file and adds the objects to the object manager
+     * @param file file name
+     * @throws IOException
+     */
     public static void read(String file) throws IOException {
         Scanner scan = new Scanner(new File(file));
 
@@ -256,6 +266,13 @@ public class SavedInstance
         return Global.SLOT_SIZE * x + Global.SLOT_SIZE / 2;
     }
 
+    /**
+     * Gets a tower at the indicated index
+     * @param towers Arraylist of towers
+     * @param x Tower x index
+     * @param y Tower y index
+     * @return tower, or null if no tower found
+     */
     public static Tower getTowerAtIndex(ArrayList<Tower> towers, int x, int y) {
         for(int i = 0; i < towers.size(); i++) {
             Tower tower = towers.get(i);
