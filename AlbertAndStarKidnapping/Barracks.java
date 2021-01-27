@@ -3,10 +3,10 @@ import java.util.*;
 /**
  * Spawns NPCs to fight enemies on the path near the tower.
  * 
- * @author Ryan Lin 
- * @version (a version number or a date)
+ * @author Young Chen
+ * @version 2021
  */
-public class Barracks extends CombatTower 
+public class Barracks extends Tower 
 {
     private static final float[]
         MAX_COOLDOWN = {5000, 4000, 3000},
@@ -25,6 +25,7 @@ public class Barracks extends CombatTower
     };
     public static final int MINIONS_PER_BARRACK = 3;
     private static int numBarracks = 0;
+    
     /**
      * Creates a basic Barracks.
      * @param x the x coordinate of the tower
@@ -47,34 +48,37 @@ public class Barracks extends CombatTower
      */
     public Barracks(int x, int y, int iX, int iY, int level)
     {
-        super(sprite, MAX_RANGE, MAX_COOLDOWN, false, x, y, iX, iY, level);
+        super(sprite, MAX_RANGE, MAX_COOLDOWN, x, y, iX, iY, level);
         numBarracks++;
         scale(53, 53);
     }
-
-    /**
-     * Attack enemies
-     */
-    protected void attack(Enemy e) {
-        // do nothing
-    }
     
     /**
-     * Spawn barbarian
+     * Spawn Minion
      */
     protected void attack() {
+        //if there are less minions in the world than are permitted
         if(numBarracks * MINIONS_PER_BARRACK > Minion.getNumberOfMinions()) {
+            //create a new minion and reset the cooldown timer
             new Minion(getX(), getY());
             resetCooldown();
         }
     }
     
+    /**
+     * Update the Barracks
+     * @return delta the time in seconds since the last update call
+     */
     public void _update(float delta) {
+        //if the Barracks' cooldown timer is over, try to spawn minions
         if(canAct()) {
             attack();
         }
     }
     
+    /**
+     * Destroys the barracks
+     */
     public void destroy() {
         super.destroy();
         numBarracks--;
@@ -88,6 +92,10 @@ public class Barracks extends CombatTower
         return "Barracks";
     }
     
+    /**
+     * Get the cost of a Barracks
+     * @return the cost of a Barracks
+     */
     public float getCost() {
         return Tower.COST_BARRACKS;
     }

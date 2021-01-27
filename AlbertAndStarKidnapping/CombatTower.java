@@ -3,7 +3,8 @@ import greenfoot.*;
  * A tower that shoots projectiles.
  * 
  * @author Ryan Lin
- * @version (version)
+ * @author Young Chen
+ * @version 2021
  */
 public abstract class CombatTower extends Tower 
 {
@@ -12,6 +13,9 @@ public abstract class CombatTower extends Tower
     /**
      * Constructor for objects of class CombatTower with a custom level
      * @param image a 2D array of sprite images
+     * @param range the range of the tower
+     * @param cooldown the cooldown of the tower
+     * @param rotate is the tower able to rotate to face the enemy
      * @param x the x coordinate of the tower
      * @param y the y coordinate of the tower
      * @param iX the x index of the tower in the global grid
@@ -41,37 +45,40 @@ public abstract class CombatTower extends Tower
      */
     public void _update(float delta){
         super._update(delta);
+        //if the image can be rotated set the image to the 
         if(rotate) setRotation();
+        //Assign the next enemy to target to enemy variable
         Enemy enemy = getNextEnemy();
+        //if the tower is finished with its cooldown and there is an enemy to attack
         if(canAct() && enemy != null){
+            //attack the enemy and reset the cooldown timer of the CombatTower
             attack(enemy);
             resetCooldown();
         }
     }
     
     /**
-     * Determines if the cooldown timer has expired
-     */
-    protected boolean canAct(){
-        return System.currentTimeMillis() - this.lastTime >= cooldown[level-1];
-    }
-    
-    /**
      * Get the next enemy targeted by this tower
-     * @return Enemy the closest enemy to the tower, null if no enemies exist
+     * @return Enemy the next enemy targeted by this tower, null if no enemies exist
      */
     protected Enemy getNextEnemy() {
         double maxNodeIndex = -1;
         Enemy next = null;
         for(Enemy e: Global.manager.getEnemies()){
+            //get the straight-line distance between the tower and the enemy
             double dist = Math2D.distance(e.getX(), this.getX(), e.getY(), this.getY());
+            //Get the nodeIndex of the enemy (larger number means further along the path)
             int nodeIndex = e.getNodeIndex();
+            //if the enemy is within the tower's range and the enemy's is further along the path than the previous maximum
             if(dist < range[level-1] && nodeIndex > maxNodeIndex){
+                //make it the targeted enemy
                 maxNodeIndex = nodeIndex;
                 next = e;
             }
         }
+        //if the enemy exists, make the tower rotate to face the enemy
         this.rotation = next != null ? Math2D.angleTo(getX(), next.getX(), getY(), next.getY()) : this.rotation;
+        //return the enemy to target
         return next;
     }
     
