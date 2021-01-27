@@ -27,8 +27,8 @@ public class Start extends World
         addObject(bg, getWidth() / 2, getHeight() / 2);
         addObject(campaign, getWidth() / 2, getHeight() / 2);
         addObject(regular, getWidth() / 2, getHeight() / 2 + 70);
-        addObject(editor, getWidth() / 2, getHeight() / 2 + 140);
-        addObject(info, getWidth() / 2, getHeight() / 2 + 210);
+        addObject(editor, getWidth() / 2, getHeight() / 2 + 210);
+        addObject(info, getWidth() / 2, getHeight() / 2 + 140);
     }
     
     public void act() { 

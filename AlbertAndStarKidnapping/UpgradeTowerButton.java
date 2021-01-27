@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class UpgradeTowerButton extends ImageButton
 {
+    public static final float UPGRADE_MULTIPLYER = 1.3f;
     private Tower tower;
     public UpgradeTowerButton()
     {
@@ -30,9 +31,15 @@ public class UpgradeTowerButton extends ImageButton
     public void onclick() 
     {
         if(tower != null && Greenfoot.mouseClicked(this)){
+            if(tower instanceof Wall) {
+                if(!Global.getWorld().isEditor()) return;
+            }
+            
+            if(tower.getLevel() >= Tower.MAX_LEVEL) return;
+            
             float cost = tower.getCost();
-            float costAdjusted = cost * 1.3f;
-            if(Global.getManager().requestMoney(cost))
+            float costAdjusted = cost * UPGRADE_MULTIPLYER;
+            if(Global.getManager().requestMoney(costAdjusted))
                 tower.levelup();
         }
     }    

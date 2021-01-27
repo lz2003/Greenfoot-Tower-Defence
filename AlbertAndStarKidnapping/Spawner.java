@@ -38,7 +38,7 @@ public class Spawner extends Updated
         }
     }
     
-    public boolean hasCutscene(int level) {
+    public static boolean hasCutscene(int level) {
         int cutscene = level / Cutscene.LEVELS_PER_CUTSCENE;
         int check = level % Cutscene.LEVELS_PER_CUTSCENE;
         
@@ -67,6 +67,7 @@ public class Spawner extends Updated
         switch(level) {
             case 0:
                 break;
+                
             case 1: {
                 ArrayList<String> e = new ArrayList<String>();
                 int i;
@@ -519,6 +520,69 @@ public class Spawner extends Updated
                 }
                 
                 spawn(e, 60);
+                break;
+            }
+            
+            case 36: {
+                ArrayList<String> e = new ArrayList<String>();
+                int i;
+                for(i = 0; i < 20; i++) {
+                    e.add(PK);
+                }
+                e.add(WL);
+                e.add(WL);
+                e.add(WL);
+                
+                spawn(e, 5);
+                break;
+            }
+            
+            case 37: {
+                ArrayList<String> e = new ArrayList<String>();
+                int i;
+                e.add(PK);
+                e.add(PK);
+                e.add(PK);
+                e.add(PK);
+                e.add(PK);
+                e.add(PK);
+                e.add(PK);
+                e.add(PK);
+                e.add(PK);
+                
+                for(i = 0; i < 10; i++) {
+                    e.add(PK);
+                    e.add(GL);
+                    e.add(WL);
+                    e.add(MN);
+                }
+                
+                spawn(e, 35);
+                break;
+            }
+            
+            case 38: {
+                ArrayList<String> e = new ArrayList<String>();
+                int i;
+                for(i = 0; i < 50; i++) {
+                    e.add(PK);
+                    e.add(WL);
+                }
+                
+                spawn(e, 27);
+                break;
+            }
+            
+            case 39: {
+                ArrayList<String> e = new ArrayList<String>();
+                int i;
+                for(i = 0; i < 65; i++) {
+                    e.add(PK);
+                    e.add(WL);
+                    e.add(TR);
+                }
+                
+                spawn(e, 20);
                 break;
             }
             

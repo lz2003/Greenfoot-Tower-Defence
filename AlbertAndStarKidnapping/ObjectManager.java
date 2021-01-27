@@ -77,7 +77,12 @@ public class ObjectManager
     }
 
     public void reset() {
-        spawner = new Spawner(this);
+        if(!Global.getWorld().isEditor())
+            spawner = new Spawner(this);
+        else {
+            spawner = new DummySpawner(this);
+            money = 1000000;
+        }
         jay.destroy();
         jay = new JayJay(targetX, targetY);
         
@@ -372,6 +377,8 @@ public class ObjectManager
     }
     
     public void setLevel(int level) {
+        if(Global.getWorld().isEditor()) return;
+        
         spawner = new Spawner(this, level);
     }
     

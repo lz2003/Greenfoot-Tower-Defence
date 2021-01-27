@@ -9,7 +9,7 @@ public class RPG extends Splash
 {
     // Change these later on
     private static final float[]
-        MAX_DAMAGE = {400, 650, 1000},
+        MAX_DAMAGE = {400, 950, 1800},
         MAX_RADIUS = {4000, 4000, 4000},
         MAX_SPEED = {9, 9, 9};
     

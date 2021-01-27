@@ -15,6 +15,7 @@ public class FastForwardButton extends ImageButton
     }
     
     public void onPress() {
-        Global.getManager().getSpawner().nextLevel();
+        if(!Spawner.hasCutscene(1 + Global.getManager().getSpawner().getLevel()) || !Global.getWorld().isCampaign())
+            Global.getManager().getSpawner().nextLevel();
     }   
 }

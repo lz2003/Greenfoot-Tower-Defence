@@ -46,6 +46,7 @@ public class Mines extends Tower
     {
         super(sprite, MAX_RANGE, MAX_COOLDOWN, x, y, iX, iY, level);
         goldPerSecond = 1;
+        scale(58, 58);
     }
     
     public void levelup() {
