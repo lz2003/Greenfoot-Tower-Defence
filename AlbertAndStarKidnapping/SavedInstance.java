@@ -37,7 +37,8 @@ public class SavedInstance
     ;
     
     public static final String 
-        AUTO_SAVE_PATH = SaveButton.SAVE_DIR + File.separator + "autosave" + "." + SaveButton.EXT;
+        AUTO_SAVE_PATH = SaveButton.SAVE_DIR + File.separator + "autosave" + "." + SaveButton.EXT,
+        MAP_PATH = SaveButton.SAVE_DIR + File.separator + "maps" + File.separator;
 
     private int level;
     private float money;
@@ -247,6 +248,7 @@ public class SavedInstance
         Global.getManager().setLevel(level);
         Global.getManager().setMoney(money);
         Global.getManager().getSpawner().spawnLevel(level);
+
         scan.close();
     }
 

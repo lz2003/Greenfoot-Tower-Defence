@@ -14,7 +14,7 @@ public class JayJay extends Sprite
     private boolean damaged = false, dying = false, dead = false;
     
     public JayJay(double x, double y) {
-        super(x, y, new GreenfootImage("jay.png"), 250, 250, 2);
+        super(x, y, idle.getFrame(0), 250, 250, 2);
         hpBar = new HPBar(getX(), getY() - 100, 100, 10, hp, HPBKG, HPFOR);
         setY(getY() - 50);
         setAnimation(idle, 0.07f);

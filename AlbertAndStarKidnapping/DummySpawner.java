@@ -17,4 +17,8 @@ public class DummySpawner extends Spawner
     public void nextLevel() {
     
     }
+    
+    public void spawnLevel(int level) {
+    
+    }
 }

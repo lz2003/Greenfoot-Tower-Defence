@@ -8,7 +8,7 @@ import greenfoot.*;
 public class Wall extends Tower 
 {
     private static final float[]
-        MAX_COOLDOWN = {1000, 1000, 1000},
+        MAX_COOLDOWN = {0, 0, 0},
         MAX_RANGE = {0, 0, 0};
     
     private static GreenfootImage[][] sprite = {
@@ -16,10 +16,10 @@ public class Wall extends Tower
             new GreenfootImage("images/tower/wall.png")
         },
         {
-            new GreenfootImage("images/tower/wall.png")
+            new GreenfootImage("images/tower/wall2.png")
         },
         {
-            new GreenfootImage("images/tower/wall.png")
+            new GreenfootImage("images/tower/wall3.png")
         }
     };
 

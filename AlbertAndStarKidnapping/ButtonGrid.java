@@ -14,7 +14,18 @@ public class ButtonGrid extends Actor
         
         for(int y = 0; y < height; y++) {
             for(int x = 0; x < width && count < max; x++, count++) {
-                Global.world.addObject(buttons[count], getX() + gap * x, getY() + gap * y);
+                getWorld().addObject(buttons[count], getX() + gap * x, getY() + gap * y);
+            }
+        }
+    }
+    
+    public void set(Button[] buttons, int width, int height, int gapX, int gapY) {
+        int count = 0;
+        int max = buttons.length;
+        
+        for(int y = 0; y < height; y++) {
+            for(int x = 0; x < width && count < max; x++, count++) {
+                getWorld().addObject(buttons[count], getX() + gapX * x, getY() + gapY * y);
             }
         }
     }

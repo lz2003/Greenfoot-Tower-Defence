@@ -36,6 +36,17 @@ public class ReadButton extends ImageButton
         }
     }
     
+    public static void read(String dir) {
+        try {
+            File save = new File(SaveButton.SAVE_DIR);
+
+            Global.getManager().reset();
+            SavedInstance.read(dir);
+        } catch(IOException e) {
+        
+        }
+    }
+    
     public static File chooseFile(File start) {
         JFileChooser chooser = new JFileChooser(start);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Save File", SaveButton.EXT);

@@ -10,7 +10,7 @@ public class Barracks extends CombatTower
 {
     private static final float[]
         MAX_COOLDOWN = {5000, 4000, 3000},
-        MAX_RANGE = {300, 400, 500};
+        MAX_RANGE = {30, 30, 30};
     
     private static final GreenfootImage[][]sprite = {
         {
@@ -49,6 +49,7 @@ public class Barracks extends CombatTower
     {
         super(sprite, MAX_RANGE, MAX_COOLDOWN, false, x, y, iX, iY, level);
         numBarracks++;
+        scale(53, 53);
     }
 
     /**

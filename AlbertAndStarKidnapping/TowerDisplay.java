@@ -11,6 +11,7 @@ public class TowerDisplay extends Actor
     private Tower tower;
     private TowerLevel towerLevel;
     private TowerText towerText;
+    private TowerUpgrade towerUpgrade;
     private RemoveTowerButton removeTowerButton;
     private UpgradeTowerButton upgradeTowerButton;
     private Bar range;
@@ -18,6 +19,7 @@ public class TowerDisplay extends Actor
     private Label rangeLabel;
     private Label cooldownLabel;
     private Label defaultLabel;
+    private Label upgradeLabel;
     
     /**
      * Creates a TowerDisplay
@@ -36,13 +38,14 @@ public class TowerDisplay extends Actor
     public void addedToWorld(World world)
     {
         towerText = new TowerText(getX()-200, getY()-40);
-        towerLevel = new TowerLevel(getX()-200, getY()+10);
+        towerLevel = new TowerLevel(getX()-200, getY()-13);
+        towerUpgrade = new TowerUpgrade(getX() - 200, getY() + 60);
         removeTowerButton = new RemoveTowerButton();
         upgradeTowerButton = new UpgradeTowerButton();
         range = new Bar(150, 20, 0, 400, Color.GREEN, Color.WHITE, true);
         cooldown = new Bar(150, 20, 0, 4000, Color.ORANGE, Color.WHITE, true);
-        rangeLabel = new Label("Range: ", 18);
-        cooldownLabel = new Label("Cooldown: ", 18);
+        rangeLabel = new Label("Range: ", 20);
+        cooldownLabel = new Label("Cooldown: ", 20);
         defaultLabel = new Label("Tower stats", 40);
         world.addObject(defaultLabel, getX() + 20, getY());
     }
@@ -66,6 +69,7 @@ public class TowerDisplay extends Actor
         if(this.tower == tower)tower = null;
         towerText.unlinkTower(tower);
         towerLevel.unlinkTower(tower);
+        towerUpgrade.unlinkTower(tower);
         removeTowerButton.unlinkTower(tower);
         upgradeTowerButton.unlinkTower(tower);
     }
@@ -80,15 +84,17 @@ public class TowerDisplay extends Actor
         world.removeObject(defaultLabel);
         world.addObject(towerText, getX()-200, getY()-40);
         world.addObject(towerLevel, getX()-200, getY()-13);
+        world.addObject(towerUpgrade, getX()-200, getY() + 60);
         world.addObject(removeTowerButton, getX()-160, getY()+20);
         world.addObject(upgradeTowerButton, getX()-80, getY()+20);
-        world.addObject(rangeLabel, getX()+20, getY()-30);
+        world.addObject(rangeLabel, getX()+ 38, getY()-30);
         world.addObject(range, getX() + 150, getY()-30);
         world.addObject(cooldownLabel, getX()+20, getY());
         world.addObject(cooldown, getX() + 150, getY());
         this.tower = tower;
         towerText.setTower(tower);
         towerLevel.setTower(tower);
+        towerUpgrade.setTower(tower);
         removeTowerButton.setTower(tower);
         upgradeTowerButton.setTower(tower);
         range.setValue((int)tower.getRange());

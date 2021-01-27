@@ -15,4 +15,11 @@ public class ImageButton extends Button
         setImage(image);
         getImage().scale(75, 75);
     }
+    
+    public ImageButton(GreenfootImage image, boolean autoscale) {
+        this.image = image;
+        setImage(image);
+        if(autoscale)
+            getImage().scale(75, 75);
+    }
 }

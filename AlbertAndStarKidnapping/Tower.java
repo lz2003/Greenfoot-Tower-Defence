@@ -8,7 +8,7 @@ import greenfoot.*;
  */
 public abstract class Tower extends Sprite 
 {
-    protected static final int MAX_LEVEL = 3;
+    public static final int MAX_LEVEL = 3;
     
     public static final int 
         COST_ARCHER = 250,
