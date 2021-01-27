@@ -1,9 +1,9 @@
 import greenfoot.*;
 /**
- * Write a description of class Fireball here.
+ * A magical fireball that deals AOE damage
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Lucy Zhao
+ * @version 2021
  */
 public class Fireball extends Splash 
 {

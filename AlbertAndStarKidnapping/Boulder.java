@@ -1,9 +1,9 @@
 import greenfoot.*;
 /**
- * Write a description of class Boulder here.
+ * An enemy's boulder used to hurt Jay Jay
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Young Chen
+ * @version 2021
  */
 public class Boulder extends EnemyProjectile 
 {
@@ -42,6 +42,9 @@ public class Boulder extends EnemyProjectile
 
     }
     
+    /**
+     * Update method of Boulder class
+     */
     public void _update(float delta) {
         if (isRemoved()) return;
 

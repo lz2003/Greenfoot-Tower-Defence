@@ -1,9 +1,9 @@
 import greenfoot.*;
 /**
- * Write a description of class Cannonball here.
+ * A Cannonball that hits a single target
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Lucy Zhao
+ * @version 2021
  */
 public class Cannonball extends Projectile
 {

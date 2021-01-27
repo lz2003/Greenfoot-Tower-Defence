@@ -13,13 +13,13 @@ public class Mines extends Tower
     
     private static GreenfootImage[][] sprite = {
         {
-            new GreenfootImage("images/Gold Mine/goldMine1.png")
+            new GreenfootImage("images/tower/Gold Mine/goldMine1.png")
         },
         {
-            new GreenfootImage("images/Gold Mine/goldMine2.png")
+            new GreenfootImage("images/tower/Gold Mine/goldMine2.png")
         },
         {
-            new GreenfootImage("images/Gold Mine/goldMine3.png")
+            new GreenfootImage("images/tower/Gold Mine/goldMine3.png")
         }
     };
     private float goldPerSecond;
