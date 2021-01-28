@@ -245,7 +245,7 @@ public class Cutscene extends World
         textBox8.addText("This war has lasted 100 years. What\nhappened? I thought we were winning.", player);
         textBox8.addText("Good thing we don't age. It's\nbecause of that new general YajYaj!", jayjay);
         textBox8.addText("It's true he's great. I found\nhim in some ditch and now its fair.", koyen);
-        textBox8.addText("We must find a way to make amends\n,this war will last forever.", player);
+        textBox8.addText("We must find a way to make amends,\nthis war will last forever.", player);
         textBox8.addText("The name is yajyaj, you know my\nstrategy is just making the troops walk\nin a line right?", yajyaj);
         textBox8.addText("That man has 10000 iq.", jayjay);
         textBox8.addText("I'm willing to fight to the end\nof the world!", koyen);
