@@ -3,7 +3,7 @@ import greenfoot.*;
  * Shoots Lazers at enemies.
  * 
  * @author Ryan Lin
- * @version (a version number or a date)
+ * @version 2021
  */
 public class LazerTower extends CombatTower 
 {
@@ -88,6 +88,10 @@ public class LazerTower extends CombatTower
         return "Laser Tower";
     }
     
+    /**
+     * Get the cost of LazerTower
+     * @return the cost of LazerTower
+     */
     public float getCost() {
         return Tower.COST_LASER;
     }

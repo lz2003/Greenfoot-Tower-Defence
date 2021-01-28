@@ -3,7 +3,7 @@ import greenfoot.*;
  * Shoots fireballs at enemies.
  * 
  * @author Ryan Lin
- * @version (a version number or a date)
+ * @version 2021
  */
 public class FireballTower extends CombatTower 
 {
@@ -67,10 +67,8 @@ public class FireballTower extends CombatTower
     public FireballTower(int x, int y, int iX, int iY, int level)
     {
         super(sprite, MAX_RANGE, MAX_COOLDOWN, true, x, y, iX, iY, level);
-            
         setDimensions(50, 120);
-        setY(getY() - 25);     
-            
+        setY(getY() - 25);
     }
 
     /**
@@ -89,6 +87,10 @@ public class FireballTower extends CombatTower
         return "Fireball Tower";
     }
     
+    /**
+     * Get the cost of a FireballTower
+     * @return the cost of a FireballTower
+     */
     public float getCost() {
         return Tower.COST_FIREBALL;
     }

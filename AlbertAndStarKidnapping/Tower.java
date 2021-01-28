@@ -4,12 +4,13 @@ import greenfoot.*;
  * A structure that shoots projectiles at enemies.
  * 
  * @author Ryan Lin
- * @version (a version number or a date)
+ * @version 2021
  */
 public abstract class Tower extends Sprite 
 {
+    /**The maximum level of any tower.*/
     public static final int MAX_LEVEL = 3;
-    
+    /**Cost of Corresponding Tower.*/
     public static final int 
         COST_ARCHER = 250,
         COST_CANNON = 200,
@@ -19,13 +20,21 @@ public abstract class Tower extends Sprite
         COST_LASER = 850,
         COST_MINES = 75,
         COST_PILLBOX = 1525;
-    
+    /**The level of the tower.*/
     protected int level;
+    /**The last time the cooldown timer was marked.*/
     protected long lastTime;
-    protected int iX, iY;
+    /**The row of the grid that the tower is placed on.*/
+    protected int iX;
+    /**The column of the grid that the tower is placed on.*/
+    protected int iY;
+    /**The rotation image index.*/
     protected double rotation = 0;
+    /**2D array of images of the tower: First dimension is level, second dimension is rotation.*/ 
     protected GreenfootImage[][]image;
+    /**The maximum range of the tower, by level.*/
     protected float[]range;
+    /**The cooldown time of the tower, by level.*/
     protected float[]cooldown;
     
     /**
@@ -55,6 +64,13 @@ public abstract class Tower extends Sprite
      */
     protected void resetCooldown(){
         this.lastTime = System.currentTimeMillis();
+    }
+    
+    /**
+     * Determines if the cooldown timer has expired
+     */
+    protected boolean canAct(){
+        return System.currentTimeMillis() - this.lastTime >= cooldown[level-1];
     }
     
     /**
@@ -93,6 +109,7 @@ public abstract class Tower extends Sprite
      * Removes the tower from the world
      */
     public void destroy() {
+        System.out.println("destroyed");
         removeSprite();
         Global.getManager().removeTower(this);
     }
@@ -120,5 +137,9 @@ public abstract class Tower extends Sprite
         return range[level-1];
     }
     
+    /**
+     * Get the cost of the tower
+     * @return the cost of the tower
+     */
     public abstract float getCost();
 }

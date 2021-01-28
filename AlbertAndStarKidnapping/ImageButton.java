@@ -1,21 +1,27 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ImageButton here.
+ * A button that displays an image.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Young Chen
+ * @version 2021
  */
-public class ImageButton extends Button
+public abstract class ImageButton extends Button
 {
     private GreenfootImage image;
     
+    /**
+     * Simple constructor for ImageButton class
+     */
     public ImageButton(GreenfootImage image) {
-        this.image = image;
-        setImage(image);
-        getImage().scale(75, 75);
+        this(image, true);
     }
     
+    /**
+     * Constructor with option for no automatic scaling for ImageButton class
+     * @param image The image to be displayed by the button.
+     * @param autoscale Is the image going to be autoscaled to the default size
+     */
     public ImageButton(GreenfootImage image, boolean autoscale) {
         this.image = image;
         setImage(image);

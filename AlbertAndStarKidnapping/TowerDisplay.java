@@ -1,14 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TowerDisplay here.
+ * A widget that displays information about a Tower.
  * 
  * @author Ryan Lin
- * @version (Version)
+ * @version 2021
  */
 public class TowerDisplay extends Actor
 {
-    private Tower tower;
     private TowerLevel towerLevel;
     private TowerText towerText;
     private TowerUpgrade towerUpgrade;
@@ -27,8 +26,6 @@ public class TowerDisplay extends Actor
     public TowerDisplay()
     {
         GreenfootImage image = new GreenfootImage(400, 100);
-        //image.setColor(new Color(3, 248, 252));
-        //image.fill();
         setImage(image);
     }
     
@@ -57,7 +54,9 @@ public class TowerDisplay extends Actor
     public void hide(Tower tower)
     {
         World world = getWorld();
+        //add placeholder text
         world.addObject(defaultLabel, getX(), getY());
+        //remove buttons and labels from the world
         world.removeObject(towerText);
         world.removeObject(towerLevel);
         world.removeObject(removeTowerButton);
@@ -67,7 +66,7 @@ public class TowerDisplay extends Actor
         world.removeObject(rangeLabel);
         world.removeObject(cooldownLabel);
         world.removeObject(towerUpgrade);
-        if(this.tower == tower)tower = null;
+        //unlink the buttons and labels from the current tower
         towerText.unlinkTower(tower);
         towerLevel.unlinkTower(tower);
         towerUpgrade.unlinkTower(tower);
@@ -82,7 +81,9 @@ public class TowerDisplay extends Actor
     public void show(Tower tower)
     {
         World world = getWorld();
+        //remove placeholder text
         world.removeObject(defaultLabel);
+        //Add buttons and labels back into the world
         world.addObject(towerText, getX()-200, getY()-40);
         world.addObject(towerLevel, getX()-200, getY()-13);
         world.addObject(towerUpgrade, getX()-200, getY() + 60);
@@ -92,12 +93,13 @@ public class TowerDisplay extends Actor
         world.addObject(range, getX() + 150, getY()-30);
         world.addObject(cooldownLabel, getX()+20, getY());
         world.addObject(cooldown, getX() + 150, getY());
-        this.tower = tower;
+        //Link all of the buttons and text to the selected tower
         towerText.setTower(tower);
         towerLevel.setTower(tower);
         towerUpgrade.setTower(tower);
         removeTowerButton.setTower(tower);
         upgradeTowerButton.setTower(tower);
+        //Set values for the range and cooldown bars
         range.setValue((int)tower.getRange());
         cooldown.setValue((int)tower.getCooldown());
     }
@@ -105,20 +107,14 @@ public class TowerDisplay extends Actor
     /**
      * Update the tower
      */
-    public void update()
+    public void update(Tower tower)
     {
+        //Update name, level label, and mask
         towerText.updateTower(tower);
         towerLevel.updateTower(tower);
         Global.world.updateMask(tower);
+        //update the tower's range and cooldown bar with new values
         range.setValue((int)tower.getRange());
         cooldown.setValue((int)tower.getCooldown());
-    }
-    
-    public void act() 
-    {
-        if(tower!=null && Greenfoot.mouseClicked(upgradeTowerButton)){
-            upgradeTowerButton.onclick();
-            update();
-        }
-    }    
+    }   
 }

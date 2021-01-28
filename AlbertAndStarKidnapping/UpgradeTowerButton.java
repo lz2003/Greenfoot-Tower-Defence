@@ -1,46 +1,39 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class UpgradeTowerButton here.
+ * A button that upgrades a tower.
  * 
  * @author Ryan Lin
- * @version (a version number or a date)
+ * @version 2021
  */
-public class UpgradeTowerButton extends ImageButton
+public class UpgradeTowerButton extends TowerActionButton
 {
     public static final float UPGRADE_MULTIPLYER = 1.3f;
-    private Tower tower;
+    
+    /**
+     * Constructor for UpgradeTowerButton class.
+     */
     public UpgradeTowerButton()
     {
         super(new GreenfootImage("images/buttons/upgrade/upgradeUnpressed.png"));
     }
-    
-    public void setTower(Tower tower)
+
+    /**
+     * Action when the button is clicked.
+     */
+    public void onPress() 
     {
-        this.tower = tower;
-    }
-    
-    public void unlinkTower(Tower tower)
-    {
-        if(this.tower == tower)
-        {
-            tower = null;
-        }
-    }
-    
-    public void onclick() 
-    {
-        if(tower != null && Greenfoot.mouseClicked(this)){
-            if(tower instanceof Wall) {
-                if(!Global.getWorld().isEditor()) return;
-            }
-            
-            if(tower.getLevel() >= Tower.MAX_LEVEL) return;
-            
-            float cost = tower.getCost();
-            float costAdjusted = cost * UPGRADE_MULTIPLYER;
-            if(Global.getManager().requestMoney(costAdjusted))
-                tower.levelup();
+        if(tower instanceof Wall && !Global.getWorld().isEditor()) return;
+        //Do not consider levelling up if the tower is already at the maximum level
+        if(tower.getLevel() >= Tower.MAX_LEVEL) return;
+        //Get the cost of the tower
+        float cost = tower.getCost();
+        //Calculate the upgrade cost of the tower
+        float costAdjusted = cost * UPGRADE_MULTIPLYER;
+        //If the player has enough money, take out the money and level up the tower
+        if(Global.getManager().requestMoney(costAdjusted)){
+            tower.levelup();
+            Global.world.towerDisplay.update(tower);
         }
     }    
 }

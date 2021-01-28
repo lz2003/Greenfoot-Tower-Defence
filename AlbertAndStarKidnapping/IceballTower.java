@@ -3,7 +3,7 @@ import greenfoot.*;
  * Shoots Iceballs at enemies.
  * 
  * @author Ryan Lin 
- * @version (a version number or a date)
+ * @version 2021
  */
 public class IceballTower extends CombatTower 
 {

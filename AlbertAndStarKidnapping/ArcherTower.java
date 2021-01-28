@@ -3,7 +3,7 @@ import greenfoot.*;
  * Shoots arrows at enemies.
  * 
  * @author Ryan Lin
- * @version (a version number or a date)
+ * @version 2021
  */
 public class ArcherTower extends CombatTower 
 {
@@ -87,6 +87,10 @@ public class ArcherTower extends CombatTower
         return "Archer Tower";
     }
     
+    /**
+     * Get the cost of an ArcherTower
+     * @return the cost of an ArcherTower
+     */
     public float getCost() {
         return Tower.COST_ARCHER;
     }

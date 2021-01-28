@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class TowerButton here.
+ * A button that allows the user to select a tower to place down on the map.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Young Chen
+ * @version 2021
  */
 public class TowerButton extends Button
 {
@@ -36,26 +36,25 @@ public class TowerButton extends Button
         
     private int towerID;
         
+    /**
+     * Constructor for TowerButton class
+     * @param towerID   The ID of the tower to be displayed
+     */
     public TowerButton(int towerID) {
+        //set the image of the button to be the icon of the tower with that towerID
         setImage(icons[towerID]);
+        //Scale the icon to the correct size
         getImage().scale(SIZE + 6, SIZE + 13);
+        //Set the towerID
         this.towerID = towerID;
     }
     
+    /**
+     * Display the cost upon adding the TowerButton to the world.
+     */
     public void addedToWorld(World w) {
         int cost = 0;
-        /*
-         *     public static final int 
-        COST_ARCHER = 150,
-        COST_CANNON = 100,
-        COST_BARRACKS = 800,
-        COST_FIREBALL = 500,
-        COST_ICEBALL = 450,
-        COST_LASER = 650,
-        COST_MINES = 100,
-        COST_PILLBOX = 900;
-        
-         */
+        //Assign a cost to the button based on its towerID
         switch(towerID) {
             case ARCH:
                 cost = Tower.COST_ARCHER;
@@ -85,65 +84,51 @@ public class TowerButton extends Button
                 cost = 0;
                 break;
         }
-
+        //Convert the cost into a String
         String s = Integer.toString((int)cost);
-
+        //Determine the x and y coordinate of the cost string based on the number of digits in the cost
         int x = s.length() == 3 ? getX() - getImage().getWidth() / 2 + 7 : getX() - getImage().getWidth() / 2 - 1;
         x = s.length() == 2 ? getX() - getImage().getWidth() / 2 + 14: x;
-        
         int y = getY() + 32;
-        
+        //display the cost
         getWorld().addObject(new TowerTextDisplay(x, y, s), x, y);
     }
+    
     /**
-     * Act - do whatever the TowerButton wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act() 
+     * Update the state of the TowerButton.
+     */   
+    public void onPress()
     {
-        if(Greenfoot.mouseClicked(this)) {
-            BuildCursor.setState(towerID);
-        }
-        /*
-        switch(towerID) {
-            case ARCH:
-               
-                break;
-            case ARTY:
-               
-                break;
-            case BARA:
-                
-                break;
-            case FIRE:
-               
-                break;
-            case ICE:
-                
-                break;
-            case LAZER:
-                
-                break;
-            case MINE:
-                
-                break;
-            case PILL:
-               
-                break;
-        }
-        */
-    }    
+        BuildCursor.setState(towerID);
+    }
 }
 
+/**
+ * Displays the cost text.
+ * @author Young Chen
+ * @version 2021
+ */
 class TowerTextDisplay extends TextField {
+    /**
+     * Constructor for TowerTextDisplay class.
+     * @param x   The x coordinate of the text.
+     * @param y   The y coordinate of the text.
+     * @param pre The string to be displayed. 
+     */
     public TowerTextDisplay(int x, int y, String pre) {
         super(x, y, pre);
         setValue(pre);
     }
     
+    /**
+     * Adjust its location when added to world.
+     */
     public void addedToWorld(World w) {
         updateLoc();
     }
     
+    /**
+     * Updates the TowerTextDisplay.
+     */
     public void act() {}
 }

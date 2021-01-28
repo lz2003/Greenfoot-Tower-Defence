@@ -3,23 +3,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Button here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Young Chen
+ * @version 2021
  */
-public class Button extends Actor
+public abstract class Button extends Actor
 {
     /**
-     * Act - do whatever the Button wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Check for mouse clicks and act accordingly.
      */
     public void act() 
     {
-        // Add your action code here.
         if(Greenfoot.mouseClicked(this)) {
             onPress();
         }
     }   
     
-    protected void onPress() {
-    }
+    /**
+     * Action when the Button is pressed.
+     */
+    protected abstract void onPress();
 }

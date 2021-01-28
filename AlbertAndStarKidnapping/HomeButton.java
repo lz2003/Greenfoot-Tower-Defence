@@ -1,19 +1,25 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class HomeButton here.
+ * A button that takes the user back to the starting screen.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Young Chen
+ * @version 2021
  */
 public class HomeButton extends ImageButton
 {
     private static final GreenfootImage image = new GreenfootImage("images/buttons/home/homeUnpressed.png");
     
+    /**
+     * Constructor for class HomeButton.
+     */
     public HomeButton() {
         super(image);
     }
     
+    /**
+     * Return the user to the home screen.
+     */
     public void onPress() {
         Greenfoot.setWorld(new Start());
     }

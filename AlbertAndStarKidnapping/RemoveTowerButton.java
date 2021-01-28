@@ -1,44 +1,34 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class RemoveTowerButton here.
+ * A button that removes the linked tower.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ryan Lin
+ * @version 2021
  */
-public class RemoveTowerButton extends ImageButton
+public class RemoveTowerButton extends TowerActionButton
 {
-    private Tower tower;
+    /**
+     * Constructor for RemoveTowerButton class.
+     */
     public RemoveTowerButton()
     {
         super(new GreenfootImage("images/buttons/delete/deleteUnpressed.png"));
     }
     
-    public void setTower(Tower tower)
-    {
-        this.tower = tower;
+    /**
+     * Action when the button is pressed.
+     */
+    public void onPress(){
+        if(tower instanceof Wall && !Global.getWorld().isEditor()) return;
+        //Get the tower's location in the grid
+        int x = tower.getIX();
+        int y = tower.getIY();
+        //Update the path when the tower is destroyed
+        Global.getManager().updatePath(x, y, false);
+        //Destroy the tower
+        tower.destroy();
+        //Hide the mask
+        Global.getWorld().mask.hide();
     }
-    
-    public void unlinkTower(Tower tower)
-    {
-        if(this.tower == tower)
-        {
-            tower = null;
-        }
-    }
-    
-    public void act() 
-    {
-        if(tower != null && Greenfoot.mouseClicked(this))
-        {
-            if(tower instanceof Wall) {
-                if(!Global.getWorld().isEditor()) return;
-            }
-            int x = tower.getIX();
-            int y = tower.getIY();
-            Global.getManager().updatePath(x, y, false);
-            tower.destroy();
-            Global.getWorld().mask.hide();
-        }
-    }    
 }
