@@ -213,6 +213,8 @@ public class BabyPekka extends Enemy
      */
     public void _update(float delta) {
         super._update(delta);
+
+        // calculate angle index
         int angle = (int) (this.angle * overPi);
         angle += 720 + 45;
         angle = angle % 360;
@@ -222,7 +224,8 @@ public class BabyPekka extends Enemy
         if(coolDown > 0) {
             index = 1;
         }
-        
+
+        // set animation
         switch(angle) {
             case 0:
                 setAnimation(a0[index], 0.1f);

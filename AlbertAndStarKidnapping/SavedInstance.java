@@ -250,6 +250,9 @@ public class SavedInstance
                             new Wall(getLoc(x), getLoc(y), x, y, towerLevel);
                             Global.getManager().updatePath(x, y, true);
                             break;
+                        case EMPTY:
+                            Global.getManager().updatePath(x, y, false);
+                            break;
                     }
                     break;
                 }

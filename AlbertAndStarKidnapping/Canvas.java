@@ -14,7 +14,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.HeadlessException;
 /**
  * Sprite renderer class that draws sprites from lowest y position (closest to top of the screen)
- * to highest y position (closest to bottom of the screen)
+ * to highest y position (closest to bottom of the screen). Also draws onto a volatile image, which
+ * can lead to better performance in certain cases compared to using greenfoot's actor class directly
  *
  * @author Young Chen
  * @version 2021-01-15
@@ -54,7 +55,8 @@ public class Canvas extends Actor
         image = getImage().getAwtImage();
         
         spriteLayers = new ArrayList<ArrayList<Sprite>[]>();
-        
+
+        // Create a volatile image instance
         ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         
         try {
@@ -67,7 +69,7 @@ public class Canvas extends Actor
     }
 
     /**
-     * Creates a new draw layer in indicated y-index
+     * Creates a new draw layer in indicated y-index if the layer hasn't already been initialised
      * @param layer index
      */
     private void createNewLayer(int layer) {
@@ -167,7 +169,10 @@ public class Canvas extends Actor
             }
         }
 
+        // get graphics context of greenfoot image
         Graphics2D gimg = image.createGraphics();
+
+        // draw volatile image onto greenfoot image
         gimg.drawImage(vi, 0, 0, width, height, null); 
     }
 

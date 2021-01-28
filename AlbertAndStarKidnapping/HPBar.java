@@ -53,7 +53,7 @@ public class HPBar extends Sprite
     }
 
     /**
-     * Draw healthbar
+     * Draw the healthbar
      */
     private void draw() {
         Graphics g = getImage().getGraphics();
