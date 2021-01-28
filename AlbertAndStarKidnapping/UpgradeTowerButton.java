@@ -23,7 +23,7 @@ public class UpgradeTowerButton extends TowerActionButton
      */
     public void onPress() 
     {
-        super.onPress();
+        if(tower instanceof Wall && !Global.getWorld().isEditor()) return;
         //Do not consider levelling up if the tower is already at the maximum level
         if(tower.getLevel() >= Tower.MAX_LEVEL) return;
         //Get the cost of the tower

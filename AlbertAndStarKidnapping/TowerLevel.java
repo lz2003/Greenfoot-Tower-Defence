@@ -12,6 +12,10 @@ public class TowerLevel extends TowerLabel
         super(x, y, "Level: ");
     }
     
+    /**
+     * Update the label with information from a Tower.
+     * @param tower The tower whose information is to be displayed.
+     */
     public void updateTower(Tower tower) {
         if(tower == null){
             setValue("Level: ");

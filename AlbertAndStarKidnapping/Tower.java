@@ -109,6 +109,7 @@ public abstract class Tower extends Sprite
      * Removes the tower from the world
      */
     public void destroy() {
+        System.out.println("destroyed");
         removeSprite();
         Global.getManager().removeTower(this);
     }

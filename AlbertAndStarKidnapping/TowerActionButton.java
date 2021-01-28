@@ -48,13 +48,4 @@ public abstract class TowerActionButton extends ImageButton
             onPress();
         }
     }
-    
-    /**
-     * Action when the button is pressed.
-     */
-    public void onPress()
-    {
-        //if the tower is a wall and map editing mode is off, do not act upon it
-        if(tower instanceof Wall && !Global.getWorld().isEditor()) return;
-    }
 }
