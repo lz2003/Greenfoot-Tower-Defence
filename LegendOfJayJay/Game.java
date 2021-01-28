@@ -6,7 +6,79 @@ import java.util.*;
 
 /**
  * World where the game takes place
- *
+ * 
+ * Credits for assets: <br>
+ * <b>Sounds</b>
+ * https://www.youtube.com/watch?v=HoiU2vfJxhA
+ * <li>0.06: upgrade</li>
+ * <li>0:23: place tower</li>
+ * <li>0.24: arrowhit</li>
+ * <li>0:32: barbarian deploy</li>
+ * <li>0:37 melee attack</li>
+ * <li>1:08: upgrade</li>
+ * <li>1:10: button click</li>
+ * <li>1:11: cannon</li>
+ * <li>1:16-19: collect gold</li>
+ * <li>1:27: pekka</li>
+ * <li>1:39 explosion</li>
+ * <li>1:43 freeze spell</li>
+ * <li>1:48 tower powerup</li>
+ * <li>2:11 healer attack</li>
+ * <li>2:30 mage attack</li>
+ * <li>2:34 mage deploy</li>
+ * <li>2:37 mortar attack</li>
+ * <li>2:52 golem</li>
+ * <li>2:57-2:59 zap/tesla</li>
+ * <li>3:01 spring trap</li>
+ * <li>3:16 wall place</li>
+ * <li>3:29 complete level</li>
+ * <br>
+ * <b>Music</b>
+ * <li>https://www.youtube.com/watch?v=thbts1Vf948 </li>
+ * <li>https://www.youtube.com/watch?v=72PhV7wQr5Y </li>
+ * <li>https://www.youtube.com/watch?v=CRIk6Z0lJhE </li>
+ * <li>https://www.youtube.com/watch?v=f04N04uFyIM </li>
+ * <li>https://www.youtube.com/watch?v=ZBFw6kkh4-M </li>
+ * <li>https://www.youtube.com/watch?v=0ELE9Jv-4p4 </li>
+ * <li>https://www.youtube.com/watch?v=VWBF0Zonqck </li>
+ * <li>https://www.youtube.com/watch?v=ptrUUOxTF8c </li>
+ * <br>
+ * <b> Images/Sprites </b>
+ * <br>
+ * <i>Towers + Tower Units</i>
+ * 
+ * <li>Barracks https://za.pinterest.com/pin/822329213183384106/?amp_client_id=CLIENT_ID(_)&mweb_unauth_id=&simplified=true 
+ * <li>Gold Mines https://heavy.com/games/2014/11/clash-of-clans-cheats-top-tips-for-gold-mines/2/ 
+ * <br>
+ * <i>Projectiles</i>
+ * 
+ * <li>Fireballs https://www.123rf.com/photo_110800607_stock-vector-fire-ball-animated-flaming-fireball-hot-flying-flame-and-warm-fireballs-2d-animation-frames-for-game.html
+ * <li>Cartoon Arrow https://www.istockphoto.com/vector/cartoon-shooting-arrow-gm518203581-49578308
+ * <li>Iceball https://www.nicepng.com/ourpic/u2q8i1w7e6t4y3a9_iceball-ice-mario/ 
+ * <li>Cannonball/ Mortar shells https://www.subpng.com/png-ns2qkl/ 
+ * <li>Explosion https://opengameart.org/content/pixel-art-explosion-animation 
+ * <br>
+ * <i>Shop</i>
+ * 
+ * <li>BarbarianHutCard https://clashroyale.fandom.com/wiki/Cards
+ * <br>
+ * <i>CutScenes + Backgrounds</i>
+ * 
+ * <li>Player/Bennet, Iroh/Albedo, Koyen/Childe, Council/Sucrose, YajYaj/ Kaeya https://genshin.mihoyo.com/en/character/mondstadt?char=2
+ * <li>dark and light castle https://wallpaperaccess.com/anime-castle
+ * <li>inside castle https://cutewallpaper.org/21/anime-castle-background/view-page-21.html 
+ * <li>war ground https://www.wallpaperflare.com/search?wallpaper=war+zone
+ * <br>
+ * <i>Background</i>
+ * 
+ * <li>Grass https://webstockreview.net/images/daisies-clipart-grass-prairie-16.png
+ * <li>Sand https://thumbs.dreamstime.com/b/sand-texture-11053497.jpg 
+ * <br>
+ * <i>Other</i>
+ * 
+ * <li>greenfoot logo (info screen) https://upload.wikimedia.org/wikipedia/commons/4/43/Greenfoot_Logo.jpg
+ * <li> Jay Jay - https://www.youtube.com/watch?v=-51AfyMqnpI&ab_channel=JayJaytheJetPlane-OfficialChannel 
+ * 
  * @author Ryan Lin
  * @author Young Chen
  * @version 2021-01-26
