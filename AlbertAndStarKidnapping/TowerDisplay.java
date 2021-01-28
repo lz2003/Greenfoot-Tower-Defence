@@ -65,6 +65,7 @@ public class TowerDisplay extends Actor
         world.removeObject(cooldown);
         world.removeObject(rangeLabel);
         world.removeObject(cooldownLabel);
+        world.removeObject(towerUpgrade);
         //unlink the buttons and labels from the current tower
         towerText.unlinkTower(tower);
         towerLevel.unlinkTower(tower);

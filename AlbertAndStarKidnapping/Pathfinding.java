@@ -45,7 +45,7 @@ class PathfindingSimplified {
 }
 
 /**
- * Class to carry out pathfinding
+ * Class to carry out pathfinding using the A* algorithm
  * <br>
  * Pathfinding algorithm based off of https://www.youtube.com/watch?v=AKKpPmxx07w
  *
@@ -89,39 +89,57 @@ public class Pathfinding {
      * Create the nearest path
      */
     public void findPath() {
+        // Define starting and target nodes
         Node start = this.start;
         Node end = this.target;
 
+        // Create opened and closed node arrays
+        // The neighbours of the open array will be added to the open array, and the node
+        // that the neighbours were checked from will be added to the closed array
         ArrayList<Node> open = new ArrayList<Node>(),
                         closed = new ArrayList<Node>();
 
+        // Add the starting node to the open array
         open.add(start);
 
+        // While there are still unchecked neighbours
         while(open.size() > 0) {
+            // Get the first node in the open array
             Node current = open.get(0);
 
+            // Get the node with lowest cost
             for(int i = 0; i < open.size(); i++) {
                 if(open.get(i).fCost() < current.fCost() || open.get(i).fCost() == current.fCost() && open.get(i).hCost() < current.hCost()) {
                     current = open.get(i);
                 }
             }
 
+
+            // The lowest cost node will now be checked
             open.remove(current);
             closed.add(current);
 
+            // Check if the current node is the target
             if(current == end) {
                 findFinalPath();
                 return;
             }
 
+            // Get the current node's neighbours and set their g costs and h costs, as well as set
+            // the node's parent to the current node. This parent variable will be used to trace back
+            // the path to the starting node
             Node[] neighbours = current.getNeighbours();
             for(int i = 0; i < neighbours.length; i++) {
+
+                // If neighbour has already been checked, don't check it again
                 if(closed.contains(neighbours[i])) continue;
 
                 Node neighbour = neighbours[i];
 
+                // Get the f cost of the current node
                 float cost = current.gCost() + current.distance(end);
 
+                // Check if the neighbour's node is closer to the target or that it hasn't been checked yet
                 if(cost < neighbour.gCost() || !open.contains(neighbour)) {
                     neighbour.setGCost(cost);
                     neighbour.setHCost(neighbour.distance(target));
@@ -185,7 +203,7 @@ class Grid {
      * Get node at indicated index
      * @param x x index
      * @param y y index
-     * @return node at index
+     * @return node at index, or null if index is invalid
      */
     public Node get(int x, int y) {
         try {
@@ -236,12 +254,13 @@ class Node {
      * @param grid grid the node is in
      */
     public void setNeighbours(Grid grid) {
+        // Get list of possibly valid neighbours
         Node[] nodes = {
                          grid.get(arrayLoc.x + 1, arrayLoc.y    ),
                          grid.get(arrayLoc.x - 1, arrayLoc.y    ),
                          grid.get(arrayLoc.x    , arrayLoc.y - 1),
                          grid.get(arrayLoc.x    , arrayLoc.y + 1),
-                         // Comment below to exclude travelling through corners
+                         // Comment below to exclude travelling diagonally
                          //grid.get(arrayLoc.x + 1, arrayLoc.y - 1),
                          //grid.get(arrayLoc.x + 1, arrayLoc.y + 1),
                          //grid.get(arrayLoc.x - 1, arrayLoc.y - 1),
@@ -249,7 +268,7 @@ class Node {
         };
 
         int length = 0;
-
+        // Add neighbours that are not blocked
         for(int i = 0; i < nodes.length; i++) {
             if(nodes[i] != null)
                 if(!nodes[i].isBlocked())
