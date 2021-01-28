@@ -4,9 +4,9 @@ Tell the reader (someone who does not know anything about this project)
 all he/she needs to know. The comments should usually include at least:
 ------------------------------------------------------------------------
 
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
-HOW TO START THIS PROJECT:
-AUTHORS:
-USER INSTRUCTIONS:
+PROJECT TITLE: The Legend of Jay Jay the Dragon
+PURPOSE OF PROJECT: ICS4U Grid Game Project
+VERSION or DATE: Jan 2021
+HOW TO START THIS PROJECT: Open in Greenfoot
+AUTHORS: Ryan Lin, Young Chen, Eric Wang, Gordon Xie, Rachel Tong, Lucy Zhao
+USER INSTRUCTIONS: Open in Greenfoot
