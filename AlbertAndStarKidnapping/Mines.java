@@ -3,7 +3,7 @@ import greenfoot.*;
  * Generates gold currency for the player.
  * 
  * @author Ryan Lin
- * @version (a version number or a date)
+ * @version 2021
  */
 public class Mines extends Tower 
 {

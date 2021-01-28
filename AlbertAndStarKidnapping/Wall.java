@@ -3,7 +3,7 @@ import greenfoot.*;
  * Wall that does nothing
  * 
  * @author Ryan Lin
- * @version (a version number or a date)
+ * @version 2021
  */
 public class Wall extends Tower 
 {

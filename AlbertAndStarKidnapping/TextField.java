@@ -1,16 +1,23 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MoneyText here.
+ * A label that displays text and has a value that can be updated.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Young Chen 
+ * @version 2021
  */
 public class TextField extends Label
 {
     private int x, y;
     float value = 0;
     String prefix = "";
+    
+    /**
+     * Constructor for class TextField.
+     * @param x The x coordinate of the TextField.
+     * @param y The y coordinate of the TextField.
+     * @param prefix The text to be displayed before the value.
+     */
     public TextField(int x, int y, String prefix) {
         super(0, 30);
         this.x = x;
@@ -33,12 +40,17 @@ public class TextField extends Label
         }
     }    
     
-    // Keeps actor to the right of coordinates passed through constructor
+    /**
+     * Keeps actor to the right of coordinates passed through constructor
+     */
     protected void updateLoc() {
         int xLoc = x + getImage().getWidth() / 2;
         setLocation(xLoc, getY());
     }
     
+    /**
+     * Gets the value that needs to be displayed.
+     */
     protected float getValue() {
         return 0;
     }

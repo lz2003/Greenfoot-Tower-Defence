@@ -5,10 +5,10 @@ import java.io.File;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Write a description of class HomeButton here.
+ * Saves the current game.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Young Chen 
+ * @version 2021
  */
 public class SaveButton extends ImageButton
 {
@@ -16,14 +16,23 @@ public class SaveButton extends ImageButton
     public static final String SAVE_DIR = "save";
     public static final String EXT = "owo";
     
+    /**
+     * Constructor for SaveButton class.
+     */
     public SaveButton() {
         super(image);
     }
     
+    /**
+     * Action when the button is pressed.
+     */
     public void onPress() {
         save();
     }
     
+    /**
+     * Saves the current game.
+     */
     public static void save() {
         SavedInstance s = new SavedInstance(Global.getManager());
         try {
@@ -35,6 +44,9 @@ public class SaveButton extends ImageButton
         }
     }
     
+    /**
+     * Get the current time in a String format.
+     */
     public static String getTime() {
         DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
         LocalDateTime currentDate = LocalDateTime.now();

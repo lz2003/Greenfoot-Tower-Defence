@@ -2,8 +2,8 @@ import greenfoot.*;
 /**
  * Write a description of class Pillbox here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Ryan Lin
+ * @version 2021
  */
 public class Pillbox extends CombatTower 
 {
@@ -87,6 +87,10 @@ public class Pillbox extends CombatTower
         return "RPG";
     }
     
+    /**
+     * Get the cost of Pillbox
+     * @retrun the cost of Pillbox
+     */
     public float getCost() {
         return Tower.COST_PILLBOX;
     }

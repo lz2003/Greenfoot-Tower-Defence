@@ -3,7 +3,7 @@ import greenfoot.*;
  * Shoots cannonballs at enemies.
  * 
  * @author Ryan Lin
- * @version (a version number or a date)
+ * @version 2021
  */
 public class Artillery extends CombatTower 
 {
@@ -67,7 +67,6 @@ public class Artillery extends CombatTower
     public Artillery(int x, int y, int iX, int iY, int level)
     {
         super(sprite, MAX_RANGE, MAX_COOLDOWN, true, x, y, iX, iY, level);
-            
         setDimensions(80, 80);
         setY(getY() - 5);
     }
@@ -88,6 +87,10 @@ public class Artillery extends CombatTower
         return "Cannon";
     }
     
+    /**
+     * Gets the cost of an Artillery
+     * @return the cost of an Artillery
+     */
     public float getCost() {
         return Tower.COST_CANNON;
     }
