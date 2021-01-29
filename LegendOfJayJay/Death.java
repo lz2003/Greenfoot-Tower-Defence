@@ -18,7 +18,7 @@ public class Death extends World
     {    
        super(Game.worldWidth, Game.worldHeight, 1);
        next = new TextButton(" Return to Home ", 50);
-       bg = new Character(new GreenfootImage("images/deathMusic.png"));
+       bg = new Character(new GreenfootImage("images/death.png"));
        addObject(bg, getWidth() / 2, getHeight() / 2);
        addObject(next, getWidth() / 2, getHeight() - 100);
        deathMusic = new GreenfootSound("sounds/music/sadMusic.mp3");
